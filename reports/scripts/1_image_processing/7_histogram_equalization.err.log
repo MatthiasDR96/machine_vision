@@ -1,0 +1,35 @@
+Traceback (most recent call last):
+  File "c:\python39\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "c:\python39\lib\site-packages\nbclient\client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\Users\matth\AppData\Roaming\Python\Python39\site-packages\jupyter_core\utils\__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+  File "c:\python39\lib\asyncio\base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "c:\python39\lib\site-packages\nbclient\client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "c:\python39\lib\site-packages\nbclient\client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "c:\python39\lib\site-packages\nbclient\client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Load image
+image = cv2.imread('../../data/lenna_test_image.png')
+    
+# Image to grayscale
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+------------------
+
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31merror[0m                                     Traceback (most recent call last)
+Cell [1;32mIn[2], line 5[0m
+[0;32m      2[0m image [38;5;241m=[39m cv2[38;5;241m.[39mimread([38;5;124m'[39m[38;5;124m../../data/lenna_test_image.png[39m[38;5;124m'[39m)
+[0;32m      4[0m [38;5;66;03m# Image to grayscale[39;00m
+[1;32m----> 5[0m gray [38;5;241m=[39m [43mcv2[49m[38;5;241;43m.[39;49m[43mcvtColor[49m[43m([49m[43mimage[49m[43m,[49m[43m [49m[43mcv2[49m[38;5;241;43m.[39;49m[43mCOLOR_BGR2GRAY[49m[43m)[49m
+
+[1;31merror[0m: OpenCV(4.8.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+
