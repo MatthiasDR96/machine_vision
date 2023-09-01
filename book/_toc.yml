@@ -4,12 +4,14 @@
 format: jb-book
 root: intro
 parts:
-  - file: markdown
-  chapters:
-  - file: markdown
-  - file: notebooks
-  - file: markdown
-  chapters:
-  - file: markdown
-  - file: notebooks
-
+  - caption: Part 1
+    chapters:
+    - file: markdown
+    - file: scripts/1_image_processing/0_introduction
+    - file: scripts/1_image_processing/1_color_spaces
+    - file: scripts/1_image_processing/2_image_analysis
+    - file: scripts/1_image_processing/3_monadic_operations
+  - caption: Part 2
+    chapters:
+    - file: notebooks
+    - file: scripts/2_image_formation/0_introduction
