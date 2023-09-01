@@ -3,7 +3,13 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: scripts/1_image_processing
-- file: scripts/2_image_analysis
-- file: markdown-notebooks
+parts:
+  - file: markdown
+  chapters:
+  - file: markdown
+  - file: notebooks
+  - file: markdown
+  chapters:
+  - file: markdown
+  - file: notebooks
+
