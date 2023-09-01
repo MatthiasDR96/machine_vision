@@ -389,6 +389,12 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\python39\lib\site-packages\tqdm\auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -406,12 +412,22 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;torch._C.Generator at 0x174e5c8cc30&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check available device</span>
 <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cpu
 </pre></div>
 </div>
 </div>
@@ -459,6 +475,12 @@ document.write(`
   <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([1000, 1, 28, 28])
+</pre></div>
+</div>
+<img alt="../../_images/0c5bcf88533d842626c1747b799833cd1dfa0cebaab6268e4b84571cb260dd59.png" src="../../_images/0c5bcf88533d842626c1747b799833cd1dfa0cebaab6268e4b84571cb260dd59.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -588,6 +610,62 @@ document.write(`
 
   <span class="c1"># Test</span>
   <span class="n">test</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\matth\AppData\Local\Temp\ipykernel_22488\2467202547.py:18: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x) # Softmax layer
+c:\python39\lib\site-packages\torch\nn\_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction=&#39;sum&#39; instead.
+  warnings.warn(warning.format(ret))
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Avg. loss: 2.3096, Accuracy: 924/10000 (9%)
+
+Train Epoch: 1 [0/60000 (0%)]	Loss: 2.313179
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">8</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Loop over all epochs</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_epochs</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>   
+<span class="g g-Whitespace">      </span><span class="mi">7</span>   <span class="c1"># Train</span>
+<span class="ne">----&gt; </span><span class="mi">8</span>   <span class="n">train</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>   <span class="c1"># Test</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>   <span class="n">test</span><span class="p">()</span>
+
+<span class="nn">Cell In[8], line 40,</span> in <span class="ni">train</span><span class="nt">(epoch)</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="n">train_counter</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">batch_idx</span><span class="o">*</span><span class="mi">64</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">epoch</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">train_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)))</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span> <span class="c1"># Save model</span>
+<span class="ne">---&gt; </span><span class="mi">40</span> <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="s1">&#39;models/model.pth&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span> <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">optimizer</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="s1">&#39;models/optimizer.pth&#39;</span><span class="p">)</span>
+
+<span class="nn">File c:\python39\lib\site-packages\torch\serialization.py:377,</span> in <span class="ni">save</span><span class="nt">(obj, f, pickle_module, pickle_protocol, _use_new_zipfile_serialization)</span>
+<span class="g g-Whitespace">    </span><span class="mi">341</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;save(obj, f, pickle_module=pickle, pickle_protocol=DEFAULT_PROTOCOL, _use_new_zipfile_serialization=True)</span>
+<span class="g g-Whitespace">    </span><span class="mi">342</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span><span class="sd"> Saves an object to a disk file.</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">373</span><span class="sd">     &gt;&gt;&gt; torch.save(x, buffer)</span>
+<span class="g g-Whitespace">    </span><span class="mi">374</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">375</span> <span class="n">_check_dill_version</span><span class="p">(</span><span class="n">pickle_module</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">377</span> <span class="k">with</span> <span class="n">_open_file_like</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">opened_file</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">378</span>     <span class="k">if</span> <span class="n">_use_new_zipfile_serialization</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">379</span>         <span class="k">with</span> <span class="n">_open_zipfile_writer</span><span class="p">(</span><span class="n">opened_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">opened_zipfile</span><span class="p">:</span>
+
+<span class="nn">File c:\python39\lib\site-packages\torch\serialization.py:231,</span> in <span class="ni">_open_file_like</span><span class="nt">(name_or_buffer, mode)</span>
+<span class="g g-Whitespace">    </span><span class="mi">229</span> <span class="k">def</span> <span class="nf">_open_file_like</span><span class="p">(</span><span class="n">name_or_buffer</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">230</span>     <span class="k">if</span> <span class="n">_is_path</span><span class="p">(</span><span class="n">name_or_buffer</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">231</span>         <span class="k">return</span> <span class="n">_open_file</span><span class="p">(</span><span class="n">name_or_buffer</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">232</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">233</span>         <span class="k">if</span> <span class="s1">&#39;w&#39;</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+
+<span class="nn">File c:\python39\lib\site-packages\torch\serialization.py:212,</span> in <span class="ni">_open_file.__init__</span><span class="nt">(self, name, mode)</span>
+<span class="g g-Whitespace">    </span><span class="mi">211</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">212</span>     <span class="nb">super</span><span class="p">(</span><span class="n">_open_file</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">mode</span><span class="p">))</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;models/model.pth&#39;
 </pre></div>
 </div>
 </div>

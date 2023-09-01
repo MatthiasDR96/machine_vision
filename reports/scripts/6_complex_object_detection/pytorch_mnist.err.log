@@ -1,0 +1,84 @@
+Traceback (most recent call last):
+  File "c:\python39\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "c:\python39\lib\site-packages\nbclient\client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\Users\matth\AppData\Roaming\Python\Python39\site-packages\jupyter_core\utils\__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+  File "c:\python39\lib\asyncio\base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "c:\python39\lib\site-packages\nbclient\client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "c:\python39\lib\site-packages\nbclient\client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "c:\python39\lib\site-packages\nbclient\client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Test the network on randomly generated parameters
+test()
+
+# Loop over all epochs
+for epoch in range(1, n_epochs + 1):
+  
+  # Train
+  train(epoch)
+
+  # Test
+  test()
+------------------
+
+----- stderr -----
+C:\Users\matth\AppData\Local\Temp\ipykernel_22488\2467202547.py:18: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x) # Softmax layer
+c:\python39\lib\site-packages\torch\nn\_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+----- stdout -----
+
+Test set: Avg. loss: 2.3096, Accuracy: 924/10000 (9%)
+
+Train Epoch: 1 [0/60000 (0%)]	Loss: 2.313179
+------------------
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mFileNotFoundError[0m                         Traceback (most recent call last)
+Cell [1;32mIn[10], line 8[0m
+[0;32m      4[0m [38;5;66;03m# Loop over all epochs[39;00m
+[0;32m      5[0m [38;5;28;01mfor[39;00m epoch [38;5;129;01min[39;00m [38;5;28mrange[39m([38;5;241m1[39m, n_epochs [38;5;241m+[39m [38;5;241m1[39m):
+[0;32m      6[0m   
+[0;32m      7[0m   [38;5;66;03m# Train[39;00m
+[1;32m----> 8[0m   [43mtrain[49m[43m([49m[43mepoch[49m[43m)[49m
+[0;32m     10[0m   [38;5;66;03m# Test[39;00m
+[0;32m     11[0m   test()
+
+Cell [1;32mIn[8], line 40[0m, in [0;36mtrain[1;34m(epoch)[0m
+[0;32m     37[0m train_counter[38;5;241m.[39mappend((batch_idx[38;5;241m*[39m[38;5;241m64[39m) [38;5;241m+[39m ((epoch[38;5;241m-[39m[38;5;241m1[39m)[38;5;241m*[39m[38;5;28mlen[39m(train_loader[38;5;241m.[39mdataset)))
+[0;32m     39[0m [38;5;66;03m# Save model[39;00m
+[1;32m---> 40[0m [43mtorch[49m[38;5;241;43m.[39;49m[43msave[49m[43m([49m[43mnetwork[49m[38;5;241;43m.[39;49m[43mstate_dict[49m[43m([49m[43m)[49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mmodels/model.pth[39;49m[38;5;124;43m'[39;49m[43m)[49m
+[0;32m     41[0m torch[38;5;241m.[39msave(optimizer[38;5;241m.[39mstate_dict(), [38;5;124m'[39m[38;5;124mmodels/optimizer.pth[39m[38;5;124m'[39m)
+
+File [1;32mc:\python39\lib\site-packages\torch\serialization.py:377[0m, in [0;36msave[1;34m(obj, f, pickle_module, pickle_protocol, _use_new_zipfile_serialization)[0m
+[0;32m    341[0m [38;5;250m[39m[38;5;124;03m"""save(obj, f, pickle_module=pickle, pickle_protocol=DEFAULT_PROTOCOL, _use_new_zipfile_serialization=True)[39;00m
+[0;32m    342[0m 
+[0;32m    343[0m [38;5;124;03mSaves an object to a disk file.[39;00m
+[1;32m   (...)[0m
+[0;32m    373[0m [38;5;124;03m    >>> torch.save(x, buffer)[39;00m
+[0;32m    374[0m [38;5;124;03m"""[39;00m
+[0;32m    375[0m _check_dill_version(pickle_module)
+[1;32m--> 377[0m [38;5;28;01mwith[39;00m [43m_open_file_like[49m[43m([49m[43mf[49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mwb[39;49m[38;5;124;43m'[39;49m[43m)[49m [38;5;28;01mas[39;00m opened_file:
+[0;32m    378[0m     [38;5;28;01mif[39;00m _use_new_zipfile_serialization:
+[0;32m    379[0m         [38;5;28;01mwith[39;00m _open_zipfile_writer(opened_file) [38;5;28;01mas[39;00m opened_zipfile:
+
+File [1;32mc:\python39\lib\site-packages\torch\serialization.py:231[0m, in [0;36m_open_file_like[1;34m(name_or_buffer, mode)[0m
+[0;32m    229[0m [38;5;28;01mdef[39;00m [38;5;21m_open_file_like[39m(name_or_buffer, mode):
+[0;32m    230[0m     [38;5;28;01mif[39;00m _is_path(name_or_buffer):
+[1;32m--> 231[0m         [38;5;28;01mreturn[39;00m [43m_open_file[49m[43m([49m[43mname_or_buffer[49m[43m,[49m[43m [49m[43mmode[49m[43m)[49m
+[0;32m    232[0m     [38;5;28;01melse[39;00m:
+[0;32m    233[0m         [38;5;28;01mif[39;00m [38;5;124m'[39m[38;5;124mw[39m[38;5;124m'[39m [38;5;129;01min[39;00m mode:
+
+File [1;32mc:\python39\lib\site-packages\torch\serialization.py:212[0m, in [0;36m_open_file.__init__[1;34m(self, name, mode)[0m
+[0;32m    211[0m [38;5;28;01mdef[39;00m [38;5;21m__init__[39m([38;5;28mself[39m, name, mode):
+[1;32m--> 212[0m     [38;5;28msuper[39m(_open_file, [38;5;28mself[39m)[38;5;241m.[39m[38;5;21m__init__[39m([38;5;28;43mopen[39;49m[43m([49m[43mname[49m[43m,[49m[43m [49m[43mmode[49m[43m)[49m)
+
+[1;31mFileNotFoundError[0m: [Errno 2] No such file or directory: 'models/model.pth'
+
