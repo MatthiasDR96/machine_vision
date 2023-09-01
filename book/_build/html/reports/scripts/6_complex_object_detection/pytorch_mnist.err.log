@@ -25,7 +25,7 @@ for epoch in range(1, n_epochs + 1):
 ------------------
 
 ----- stderr -----
-C:\Users\matth\AppData\Local\Temp\ipykernel_23680\2467202547.py:18: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+C:\Users\matth\AppData\Local\Temp\ipykernel_13084\2467202547.py:18: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
   return F.log_softmax(x) # Softmax layer
 c:\python39\lib\site-packages\torch\nn\_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
   warnings.warn(warning.format(ret))
