@@ -15,17 +15,32 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# To grayscale
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+# Create SIFT instance
+surf = cv2.xfeatures2d.SURF_create(400)
+
+# Detect keypoints
+kp = surf.detect(gray, None)
+
+# Compute descriptors
+des = surf.compute(gray, kp)
+
+# Draw keypoints
+cv2.drawKeypoints(gray, kp, img)
+
+# Show result
+plt.imshow(img)
+plt.show()
+
 ------------------
 
 
 [1;31m---------------------------------------------------------------------------[0m
-[1;31merror[0m                                     Traceback (most recent call last)
-Cell [1;32mIn[3], line 2[0m
-[0;32m      1[0m [38;5;66;03m# To grayscale[39;00m
-[1;32m----> 2[0m gray [38;5;241m=[39m [43mcv2[49m[38;5;241;43m.[39;49m[43mcvtColor[49m[43m([49m[43mimg[49m[43m,[49m[43m [49m[43mcv2[49m[38;5;241;43m.[39;49m[43mCOLOR_BGR2GRAY[49m[43m)[49m
+[1;31mAttributeError[0m                            Traceback (most recent call last)
+Cell [1;32mIn[5], line 2[0m
+[0;32m      1[0m [38;5;66;03m# Create SIFT instance[39;00m
+[1;32m----> 2[0m surf [38;5;241m=[39m [43mcv2[49m[38;5;241;43m.[39;49m[43mxfeatures2d[49m[38;5;241m.[39mSURF_create([38;5;241m400[39m)
+[0;32m      4[0m [38;5;66;03m# Detect keypoints[39;00m
+[0;32m      5[0m kp [38;5;241m=[39m surf[38;5;241m.[39mdetect(gray, [38;5;28;01mNone[39;00m)
 
-[1;31merror[0m: OpenCV(4.8.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
-
+[1;31mAttributeError[0m: module 'cv2' has no attribute 'xfeatures2d'
 

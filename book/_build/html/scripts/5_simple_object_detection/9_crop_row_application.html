@@ -65,6 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'scripts/5_simple_object_detection/9_crop_row_application';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Feedforward Neural Network Image Classification: MNIST" href="../6_complex_object_detection/1_feedforward_neural_network_image_classification_MNIST.html" />
+    <link rel="prev" title="Sawblade analysis" href="8_sawblade_application.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -151,19 +153,68 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../../intro.html">
-                    Welcome to the Machine Vision course
+                    Machine Vision Course
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 1</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Image processing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../1_image_processing/0_introduction.html">Image processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_image_processing/1_color_spaces.html">Color spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_image_processing/2_image_analysis.html">Image Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_image_processing/3_monadic_operations.html">Monadic operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_image_processing/4_diadic_operations.html">Diadic operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_image_processing/5_spatial_operations.html">Spatial operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_image_processing/6_shape_changing.html">Shape changing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_image_processing/7_histogram_equalization.html">Histogram equalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_image_processing/8_thresholding.html">Thresholding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_image_processing/9_morphological_transformations.html">Morphological transformations</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 2</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Image formation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../notebooks.html">Content with notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../2_image_formation/0_introduction.html">Image processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_image_formation/1_intrinsic_camera_calibration.html">Intrinsic camera calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_image_formation/2_extrinsic_camera_calibration.html">Extrinsic camera calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_image_formation/3_augmented_reality_application.html">Augmented reality application</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feature extraction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/1_feature_detection.html">Feature detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/2_feature_matching.html">Feature matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/3_panorama_application.html">Panorama application</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Stereo vision</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../4_stereo_vision/stereo_vision.html">Stereo vision</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simple object detection</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="10_car_detection_application.html">Motion detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_fish_detection_application.html">Fish detection application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_edge_detection.html">Edge detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_contour_detection.html">Basic object detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_hough_transforms.html">Hough transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_simple_classifier.html">Simple classifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_color_detection.html">Color detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_haarcascades.html">Haarcascades</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_measuring_application.html">Measuring application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_sawblade_application.html">Sawblade analysis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Crop row application</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Complex object detection</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/1_feedforward_neural_network_image_classification_MNIST.html">Feedforward Neural Network Image Classification: MNIST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/2_convolutional_neural_network_image_classification_MNIST.html">Convolutional Neural Network Image Classification: MNIST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/3_convolutional_neural_network_object_detection.html">Convolutional Neural Network Object Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/4_convolutional_neural_network_image_segmentation.html">Convolutional Neural Network Image Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/5_image_datasets.html">Image datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/6_dataset_creation.html">Dataset Creation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/7_transfer_learning.html">Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_body_pose_estimator.html">Body pose estimator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_fashionMNIST.html">Pytorch on the FashionMNIST dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_make_dataset.html">Make dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_mnist.html">MNIST classicifation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_tensorboard.html">Tensorboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_transfer_learning.html">Transfer learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_yolo_object_detection.html">Yolo object detection</a></li>
 </ul>
 
     </div>
@@ -390,18 +441,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Grayscale Transform</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">b</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">gray</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">g</span> <span class="o">-</span> <span class="n">r</span> <span class="o">-</span> <span class="n">b</span>
-
-<span class="ne">ValueError</span>: not enough values to unpack (expected 3, got 0)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -431,6 +470,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c56c0b50cc9119c38e108a47b16b36421441f5de0c01e85f2b554389db1a706a.png" src="../../_images/c56c0b50cc9119c38e108a47b16b36421441f5de0c01e85f2b554389db1a706a.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -458,6 +500,9 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/16126acdd45c41854da628b2b667c02e8a2f3e062982057bc0dff85fe0c841fd.png" src="../../_images/16126acdd45c41854da628b2b667c02e8a2f3e062982057bc0dff85fe0c841fd.png" />
 </div>
 </div>
 </section>
@@ -493,6 +538,24 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="8_sawblade_application.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Sawblade analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../6_complex_object_detection/1_feedforward_neural_network_image_classification_MNIST.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Feedforward Neural Network Image Classification: MNIST</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>

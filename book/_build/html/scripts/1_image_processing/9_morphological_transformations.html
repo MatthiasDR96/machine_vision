@@ -65,6 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'scripts/1_image_processing/9_morphological_transformations';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Intrinsic camera calibration" href="../2_image_formation/1_intrinsic_camera_calibration.html" />
+    <link rel="prev" title="Thresholding" href="8_thresholding.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -151,19 +153,68 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../../intro.html">
-                    Welcome to the Machine Vision course
+                    Machine Vision Course
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 1</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0_introduction.html">Image processing</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Image processing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_color_spaces.html">Color spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_image_analysis.html">Image Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_monadic_operations.html">Monadic operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_diadic_operations.html">Diadic operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_spatial_operations.html">Spatial operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_shape_changing.html">Shape changing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_histogram_equalization.html">Histogram equalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_thresholding.html">Thresholding</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Morphological transformations</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 2</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Image formation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../notebooks.html">Content with notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../2_image_formation/0_introduction.html">Image processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_image_formation/1_intrinsic_camera_calibration.html">Intrinsic camera calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_image_formation/2_extrinsic_camera_calibration.html">Extrinsic camera calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_image_formation/3_augmented_reality_application.html">Augmented reality application</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feature extraction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/1_feature_detection.html">Feature detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/2_feature_matching.html">Feature matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/3_panorama_application.html">Panorama application</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Stereo vision</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../4_stereo_vision/stereo_vision.html">Stereo vision</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simple object detection</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/10_car_detection_application.html">Motion detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/11_fish_detection_application.html">Fish detection application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/1_edge_detection.html">Edge detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/2_contour_detection.html">Basic object detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/3_hough_transforms.html">Hough transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/4_simple_classifier.html">Simple classifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/5_color_detection.html">Color detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/6_haarcascades.html">Haarcascades</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/7_measuring_application.html">Measuring application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/8_sawblade_application.html">Sawblade analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/9_crop_row_application.html">Crop row application</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Complex object detection</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/1_feedforward_neural_network_image_classification_MNIST.html">Feedforward Neural Network Image Classification: MNIST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/2_convolutional_neural_network_image_classification_MNIST.html">Convolutional Neural Network Image Classification: MNIST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/3_convolutional_neural_network_object_detection.html">Convolutional Neural Network Object Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/4_convolutional_neural_network_image_segmentation.html">Convolutional Neural Network Image Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/5_image_datasets.html">Image datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/6_dataset_creation.html">Dataset Creation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/7_transfer_learning.html">Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_body_pose_estimator.html">Body pose estimator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_fashionMNIST.html">Pytorch on the FashionMNIST dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_make_dataset.html">Make dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_mnist.html">MNIST classicifation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_tensorboard.html">Tensorboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_transfer_learning.html">Transfer learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_yolo_object_detection.html">Yolo object detection</a></li>
 </ul>
 
     </div>
@@ -410,18 +461,7 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\book\scripts\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">error</span><span class="g g-Whitespace">                                     </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Load image</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../../data/letter_j.png&quot;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="ne">error</span>: OpenCV(4.8.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function &#39;cv::cvtColor&#39;
-</pre></div>
-</div>
+<img alt="../../_images/0b6d633bcaf852c7f5255338ba3e17175afa07413188faa188300b7f9c55f093.png" src="../../_images/0b6d633bcaf852c7f5255338ba3e17175afa07413188faa188300b7f9c55f093.png" />
 </div>
 </div>
 <section id="dilation">
@@ -435,6 +475,9 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\book\scripts\
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/50b22c50b489fdadb857439ab7b734c34cb49ce468a85f35983e087684a5725a.png" src="../../_images/50b22c50b489fdadb857439ab7b734c34cb49ce468a85f35983e087684a5725a.png" />
 </div>
 </div>
 </section>
@@ -450,6 +493,9 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\book\scripts\
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c166ad38f745cc4bfa0490a0b79c1e0041d612ef384375d862ef115943f86ad1.png" src="../../_images/c166ad38f745cc4bfa0490a0b79c1e0041d612ef384375d862ef115943f86ad1.png" />
+</div>
 </div>
 </section>
 <section id="opening">
@@ -464,6 +510,9 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\book\scripts\
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5b50cc45668d2f9e9cca3f9c1b89cf9023117c149a97e3cba5643f0ca9ce4f36.png" src="../../_images/5b50cc45668d2f9e9cca3f9c1b89cf9023117c149a97e3cba5643f0ca9ce4f36.png" />
+</div>
 </div>
 </section>
 <section id="closing">
@@ -477,6 +526,9 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\book\scripts\
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2116d5fc0f6a80258b1becfaa4e253ba90812a95935a352a85a2ed97569bcb3d.png" src="../../_images/2116d5fc0f6a80258b1becfaa4e253ba90812a95935a352a85a2ed97569bcb3d.png" />
 </div>
 </div>
 </section>
@@ -520,6 +572,23 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\book\scripts\
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/77a0ccee1d4dc1a16808a1bb51775e8596faaac17c3909cbc8df96d232d5a45e.png" src="../../_images/77a0ccee1d4dc1a16808a1bb51775e8596faaac17c3909cbc8df96d232d5a45e.png" />
+<img alt="../../_images/84cd11e98b33cf417aa57bd08537e2724b3ca4566ffd69f8f5290fe532f5f846.png" src="../../_images/84cd11e98b33cf417aa57bd08537e2724b3ca4566ffd69f8f5290fe532f5f846.png" />
+<img alt="../../_images/04182cbaeba46acfb8f5f43eac9989b133b1a02075cd516006cb7f82abdd03a5.png" src="../../_images/04182cbaeba46acfb8f5f43eac9989b133b1a02075cd516006cb7f82abdd03a5.png" />
+<img alt="../../_images/fea2c52792bafdf6c352e8bb06399dc277a34741eb43558a094cf23df8986358.png" src="../../_images/fea2c52792bafdf6c352e8bb06399dc277a34741eb43558a094cf23df8986358.png" />
+<img alt="../../_images/1eef6c89c6a5ec6572f606f12a55f2d7db99cb4deeeed53b8a63b43157e9213a.png" src="../../_images/1eef6c89c6a5ec6572f606f12a55f2d7db99cb4deeeed53b8a63b43157e9213a.png" />
+<img alt="../../_images/ca8fdbbdfc27d2e632fdb81acf1fa36f394222afec6078e1b77f1a3669759b8b.png" src="../../_images/ca8fdbbdfc27d2e632fdb81acf1fa36f394222afec6078e1b77f1a3669759b8b.png" />
+<img alt="../../_images/416f0d2dc4bad09c566409ea4c534dd2c60ed32a9ed6d400a7bcac4785f0c867.png" src="../../_images/416f0d2dc4bad09c566409ea4c534dd2c60ed32a9ed6d400a7bcac4785f0c867.png" />
+<img alt="../../_images/ee9b7d77d2a6673189335f0bd1c254b80c61f5e2f12ec2acf65aff2cb7418764.png" src="../../_images/ee9b7d77d2a6673189335f0bd1c254b80c61f5e2f12ec2acf65aff2cb7418764.png" />
+<img alt="../../_images/71ceabfb8e837b0184d705d4564c7e6b63a1be093c37f13d9615a93bfd3d7d24.png" src="../../_images/71ceabfb8e837b0184d705d4564c7e6b63a1be093c37f13d9615a93bfd3d7d24.png" />
+<img alt="../../_images/9cecc37bf4e97dde05b0e2becdcf543cbe9813efff5c8f82f0229b64c7e31a61.png" src="../../_images/9cecc37bf4e97dde05b0e2becdcf543cbe9813efff5c8f82f0229b64c7e31a61.png" />
+<img alt="../../_images/a9296a345d7cda85711308964f2f4c0d715e8bd68de34f7c3112d0c2ef964913.png" src="../../_images/a9296a345d7cda85711308964f2f4c0d715e8bd68de34f7c3112d0c2ef964913.png" />
+<img alt="../../_images/9c453421953f96d98748da83464342938e531a693ff978c35174b932d4052247.png" src="../../_images/9c453421953f96d98748da83464342938e531a693ff978c35174b932d4052247.png" />
+<img alt="../../_images/bc4f1f3f784a5df78a2b4f72b4aa6e37104810f97841b9a4673ddbb197b90c82.png" src="../../_images/bc4f1f3f784a5df78a2b4f72b4aa6e37104810f97841b9a4673ddbb197b90c82.png" />
+<img alt="../../_images/e5c5028d4637f233929c8935dc37ca2014a333e272951743264bb048f7c653d9.png" src="../../_images/e5c5028d4637f233929c8935dc37ca2014a333e272951743264bb048f7c653d9.png" />
+<img alt="../../_images/f7942289667a7985e1a764146a3c0c4fcd55866032b7c3c954ac12005a9cb14f.png" src="../../_images/f7942289667a7985e1a764146a3c0c4fcd55866032b7c3c954ac12005a9cb14f.png" />
+</div>
 </div>
 </section>
 </section>
@@ -555,6 +624,24 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\book\scripts\
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="8_thresholding.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Thresholding</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../2_image_formation/1_intrinsic_camera_calibration.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Intrinsic camera calibration</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>

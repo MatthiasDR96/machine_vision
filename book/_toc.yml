@@ -6,8 +6,6 @@ root: intro
 parts:
   - caption: Image processing
     chapters:
-    - file: notebooks
-    - file: scripts/1_image_processing/1_color_spaces
     - glob: scripts/1_image_processing/*
   - caption: Image formation
     chapters:
