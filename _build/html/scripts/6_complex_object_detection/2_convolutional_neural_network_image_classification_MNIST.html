@@ -208,13 +208,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="5_image_datasets.html">Image datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6_dataset_creation.html">Dataset Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="7_transfer_learning.html">Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_body_pose_estimator.html">Body pose estimator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_fashionMNIST.html">Pytorch on the FashionMNIST dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_make_dataset.html">Make dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_mnist.html">MNIST classicifation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_tensorboard.html">Tensorboard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_transfer_learning.html">Transfer learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_yolo_object_detection.html">Yolo object detection</a></li>
 </ul>
 
     </div>
@@ -393,12 +386,12 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import Libraries</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-dataset-object"><strong>PyTorch Dataset Object</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-dataloader-object"><strong>PyTorch DataLoader Object</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-convolutional-neural-network-architecture"><strong>The Convolutional Neural Network Architecture</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training"><strong>Training</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-using-the-trained-convolutional-neural-network"><strong>Predicting using the Trained Convolutional Neural Network</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation"><strong>Evaluation</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-dataset-object">PyTorch Dataset Object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-dataloader-object">PyTorch DataLoader Object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-convolutional-neural-network-architecture">The Convolutional Neural Network Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training">Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-using-the-trained-convolutional-neural-network">Predicting using the Trained Convolutional Neural Network</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
 </ul>
             </nav>
         </div>
@@ -452,7 +445,7 @@ document.write(`
 </div>
 </section>
 <section id="pytorch-dataset-object">
-<h2><strong>PyTorch Dataset Object</strong><a class="headerlink" href="#pytorch-dataset-object" title="Permalink to this heading">#</a></h2>
+<h2>PyTorch Dataset Object<a class="headerlink" href="#pytorch-dataset-object" title="Permalink to this heading">#</a></h2>
 <p>In this part, a class will be created for the datasets. This class will contain Python functions such as length of the dataset and get the specific item (=slicing) from the dataset.</p>
 <p>This class will transform the original pixel value range from 0-&gt;255 to 0-&gt;1 and the labels will be transformed to a one-hot encoding presentation.</p>
 <div class="cell docutils container">
@@ -484,7 +477,7 @@ document.write(`
 </div>
 </section>
 <section id="pytorch-dataloader-object">
-<h2><strong>PyTorch DataLoader Object</strong><a class="headerlink" href="#pytorch-dataloader-object" title="Permalink to this heading">#</a></h2>
+<h2>PyTorch DataLoader Object<a class="headerlink" href="#pytorch-dataloader-object" title="Permalink to this heading">#</a></h2>
 <p>The Dataset objects can be put inside a DataLoader class. This is very useful because batches can be created with this class. Batches of data samples are useful during the training process.</p>
 <p>This will create batches of 100 digit images. The length of the Dataloader object will be 60000/100=600.</p>
 <div class="cell docutils container">
@@ -506,7 +499,7 @@ document.write(`
 </div>
 </section>
 <section id="the-convolutional-neural-network-architecture">
-<h2><strong>The Convolutional Neural Network Architecture</strong><a class="headerlink" href="#the-convolutional-neural-network-architecture" title="Permalink to this heading">#</a></h2>
+<h2>The Convolutional Neural Network Architecture<a class="headerlink" href="#the-convolutional-neural-network-architecture" title="Permalink to this heading">#</a></h2>
 <p>In this section, a definition of the Neural Network will be created. In this example, two convolutional layers followed by a ReLU non-linearity and average pooling are the first part of the Convolutional Neural Network. The last part is the flattening of the feature maps followed by the linear layers.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -546,7 +539,7 @@ document.write(`
 </div>
 </section>
 <section id="training">
-<h2><strong>Training</strong><a class="headerlink" href="#training" title="Permalink to this heading">#</a></h2>
+<h2>Training<a class="headerlink" href="#training" title="Permalink to this heading">#</a></h2>
 <p>A function is created to automise the training of the Convolutional Neural Network.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -823,7 +816,7 @@ Best val Acc: 0.9907
 <p>The loss is already very low from the first epoch. The validation loss also starts to rise again after a certain amount of epochs. This is because overfitting of the model on the training set is occurring. Therefore, the weights of the model with the best validation accuracy are stored.</p>
 </section>
 <section id="predicting-using-the-trained-convolutional-neural-network">
-<h2><strong>Predicting using the Trained Convolutional Neural Network</strong><a class="headerlink" href="#predicting-using-the-trained-convolutional-neural-network" title="Permalink to this heading">#</a></h2>
+<h2>Predicting using the Trained Convolutional Neural Network<a class="headerlink" href="#predicting-using-the-trained-convolutional-neural-network" title="Permalink to this heading">#</a></h2>
 <p>First, we will take a look at the predictions on 2000 samples of the training dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -903,7 +896,7 @@ Best val Acc: 0.9907
 <p>The trained Convolutional Neural Network also performs very well on the test dataset.</p>
 </section>
 <section id="evaluation">
-<h2><strong>Evaluation</strong><a class="headerlink" href="#evaluation" title="Permalink to this heading">#</a></h2>
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ys</span> <span class="o">=</span> <span class="n">ys</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1003,12 +996,12 @@ Best val Acc: 0.9907
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import Libraries</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-dataset-object"><strong>PyTorch Dataset Object</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-dataloader-object"><strong>PyTorch DataLoader Object</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-convolutional-neural-network-architecture"><strong>The Convolutional Neural Network Architecture</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training"><strong>Training</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-using-the-trained-convolutional-neural-network"><strong>Predicting using the Trained Convolutional Neural Network</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation"><strong>Evaluation</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-dataset-object">PyTorch Dataset Object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-dataloader-object">PyTorch DataLoader Object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-convolutional-neural-network-architecture">The Convolutional Neural Network Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training">Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-using-the-trained-convolutional-neural-network">Predicting using the Trained Convolutional Neural Network</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
 </ul>
   </nav></div>
 

@@ -208,13 +208,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/5_image_datasets.html">Image datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/6_dataset_creation.html">Dataset Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/7_transfer_learning.html">Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_body_pose_estimator.html">Body pose estimator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_fashionMNIST.html">Pytorch on the FashionMNIST dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_make_dataset.html">Make dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_mnist.html">MNIST classicifation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_tensorboard.html">Tensorboard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_transfer_learning.html">Transfer learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/pytorch_yolo_object_detection.html">Yolo object detection</a></li>
 </ul>
 
     </div>
@@ -433,9 +426,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/37be7f2bda35d0d142fd0ec6ec3e02ff2214a565c03b96ccb8eb1ba13617b392.png" src="../../_images/37be7f2bda35d0d142fd0ec6ec3e02ff2214a565c03b96ccb8eb1ba13617b392.png" />
-</div>
 </div>
 <section id="detect-corners">
 <h2>Detect corners<a class="headerlink" href="#detect-corners" title="Permalink to this heading">#</a></h2>
@@ -453,9 +443,6 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/b8c0e4aa11befa5b2a5cf3a4267ad198d2a5a745b9b9bcf4bf386b72e1845d5d.png" src="../../_images/b8c0e4aa11befa5b2a5cf3a4267ad198d2a5a745b9b9bcf4bf386b72e1845d5d.png" />
 </div>
 </div>
 </section>
@@ -511,25 +498,12 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dimensions of world coordinate array: (10, 49, 3)
-Dimensions of pixel coordinate array: (10, 49, 1, 2)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calibrate camera and obtain intrinsic camera matrix using the objpoints list and the imgpoints list</span>
 <span class="n">ret</span><span class="p">,</span> <span class="n">mtx</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="n">rvecs</span><span class="p">,</span> <span class="n">tvecs</span>  <span class="o">=</span>  <span class="n">ret</span><span class="p">,</span> <span class="n">mtx</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="n">rvecs</span><span class="p">,</span> <span class="n">tvecs</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calibrateCamera</span><span class="p">(</span><span class="n">objpoints</span><span class="p">,</span> <span class="n">imgpoints</span><span class="p">,</span> <span class="n">gray</span><span class="o">.</span><span class="n">shape</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">mtx</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[471.10988889   0.         322.83819053]
- [  0.         471.60211114 238.95389278]
- [  0.           0.           1.        ]]
 </pre></div>
 </div>
 </div>
@@ -543,11 +517,6 @@ Dimensions of pixel coordinate array: (10, 49, 1, 2)
     <span class="n">error</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">imgpoints</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">imgpoints2</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">NORM_L2</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">imgpoints2</span><span class="p">)</span>
     <span class="n">tot_error</span> <span class="o">+=</span> <span class="n">error</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total reprojection error: </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">tot_error</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">objpoints</span><span class="p">))))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total reprojection error: 0.014542
 </pre></div>
 </div>
 </div>
@@ -631,9 +600,6 @@ Dimensions of pixel coordinate array: (10, 49, 1, 2)
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/38533c9c3926a495e32c8a74231ecd36bffd91864c19dc46e31c46eb0afe0cce.png" src="../../_images/38533c9c3926a495e32c8a74231ecd36bffd91864c19dc46e31c46eb0afe0cce.png" />
 </div>
 </div>
 </section>
