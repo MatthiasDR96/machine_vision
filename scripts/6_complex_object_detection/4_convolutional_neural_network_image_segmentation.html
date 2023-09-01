@@ -208,13 +208,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="5_image_datasets.html">Image datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6_dataset_creation.html">Dataset Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="7_transfer_learning.html">Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_body_pose_estimator.html">Body pose estimator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_fashionMNIST.html">Pytorch on the FashionMNIST dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_make_dataset.html">Make dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_mnist.html">MNIST classicifation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_tensorboard.html">Tensorboard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_transfer_learning.html">Transfer learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_yolo_object_detection.html">Yolo object detection</a></li>
 </ul>
 
     </div>
@@ -392,20 +385,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries"><strong>Import Libraries</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-images"><strong>Loading the Images</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fcn-resnet101"><strong>FCN Resnet101</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-model"><strong>Loading the Model</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image-pre-processing"><strong>Image Pre-processing</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-the-segmentation-masks"><strong>Predicting the Segmentation Masks</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results"><strong>Results</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-images">Loading the Images</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fcn-resnet101">FCN Resnet101</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-model">Loading the Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image-pre-processing">Image Pre-processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mask-r-cnn"><strong>Mask R-CNN</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Loading the Model</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>Image Pre-processing</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>Predicting the Segmentation Masks</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><strong>Results</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mask-r-cnn">Mask R-CNN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Loading the Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Image Pre-processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-the-segmentation-masks">Predicting the Segmentation Masks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Results</a></li>
 </ul>
 </li>
 </ul>
@@ -423,7 +415,7 @@ document.write(`
 <h1>Convolutional Neural Network Image Segmentation<a class="headerlink" href="#convolutional-neural-network-image-segmentation" title="Permalink to this heading">#</a></h1>
 <p>In this notebook, state-of-the-art models for image segmentation are used on some example images. Both FCN Resnet101 and Mask R-CNN will be used to perform semantic segmentation. This means that objects from the same class have the same mask color.</p>
 <section id="import-libraries">
-<h2><strong>Import Libraries</strong><a class="headerlink" href="#import-libraries" title="Permalink to this heading">#</a></h2>
+<h2>Import Libraries<a class="headerlink" href="#import-libraries" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
@@ -447,7 +439,7 @@ document.write(`
 </div>
 </section>
 <section id="loading-the-images">
-<h2><strong>Loading the Images</strong><a class="headerlink" href="#loading-the-images" title="Permalink to this heading">#</a></h2>
+<h2>Loading the Images<a class="headerlink" href="#loading-the-images" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Horses</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;horses.jpg&#39;</span><span class="p">)</span>
@@ -497,9 +489,9 @@ document.write(`
 </div>
 </section>
 <section id="fcn-resnet101">
-<h2><strong>FCN Resnet101</strong><a class="headerlink" href="#fcn-resnet101" title="Permalink to this heading">#</a></h2>
+<h2>FCN Resnet101<a class="headerlink" href="#fcn-resnet101" title="Permalink to this heading">#</a></h2>
 <section id="loading-the-model">
-<h3><strong>Loading the Model</strong><a class="headerlink" href="#loading-the-model" title="Permalink to this heading">#</a></h3>
+<h3>Loading the Model<a class="headerlink" href="#loading-the-model" title="Permalink to this heading">#</a></h3>
 <p>The pre-trained FCN Resnet101 will be loaded here. This model is pre-trained on the COCO dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -858,7 +850,7 @@ document.write(`
 </div>
 </section>
 <section id="image-pre-processing">
-<h3><strong>Image Pre-processing</strong><a class="headerlink" href="#image-pre-processing" title="Permalink to this heading">#</a></h3>
+<h3>Image Pre-processing<a class="headerlink" href="#image-pre-processing" title="Permalink to this heading">#</a></h3>
 <p>The images need to be processed in such a way that these can be presented to the model in the correct form. This done here:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -876,10 +868,8 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="predicting-the-segmentation-masks">
-<h3><strong>Predicting the Segmentation Masks</strong><a class="headerlink" href="#predicting-the-segmentation-masks" title="Permalink to this heading">#</a></h3>
-<p>The FCN Resnet101 model is now used on the example images to predict the segmentation masks.</p>
+<p>###Predicting the Segmentation Masks
+The FCN Resnet101 model is now used on the example images to predict the segmentation masks.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Horses_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">Horses_preprocess</span><span class="p">)</span>
@@ -904,7 +894,7 @@ document.write(`
 </div>
 </section>
 <section id="results">
-<h3><strong>Results</strong><a class="headerlink" href="#results" title="Permalink to this heading">#</a></h3>
+<h3>Results<a class="headerlink" href="#results" title="Permalink to this heading">#</a></h3>
 <p>The predictions of the model are now visualised for each example image.</p>
 <p>First, a mapping from the class labels to their respective indices need to be created:</p>
 <div class="cell docutils container">
@@ -1029,9 +1019,9 @@ document.write(`
 </section>
 </section>
 <section id="mask-r-cnn">
-<h2><strong>Mask R-CNN</strong><a class="headerlink" href="#mask-r-cnn" title="Permalink to this heading">#</a></h2>
+<h2>Mask R-CNN<a class="headerlink" href="#mask-r-cnn" title="Permalink to this heading">#</a></h2>
 <section id="id1">
-<h3><strong>Loading the Model</strong><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3>Loading the Model<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>The pre-trained Mask R-CNN will be loaded here. This model is pre-trained on the COCO dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1345,7 +1335,7 @@ document.write(`
 </div>
 </section>
 <section id="id2">
-<h3><strong>Image Pre-processing</strong><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<h3>Image Pre-processing<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <p>The images need to be processed in such a way that these can be presented to the model in the correct form. This done here:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1364,8 +1354,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="id3">
-<h3><strong>Predicting the Segmentation Masks</strong><a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<section id="predicting-the-segmentation-masks">
+<h3>Predicting the Segmentation Masks<a class="headerlink" href="#predicting-the-segmentation-masks" title="Permalink to this heading">#</a></h3>
 <p>The Mask R-CNN model is now used on the example images to predict the segmentation masks.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1390,8 +1380,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="id4">
-<h3><strong>Results</strong><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<section id="id3">
+<h3>Results<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>The predictions of the model are now visualised for each example image.</p>
 <p>First, a mapping from the class labels to their respective indices need to be created:</p>
 <div class="cell docutils container">
@@ -1662,20 +1652,19 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries"><strong>Import Libraries</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-images"><strong>Loading the Images</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fcn-resnet101"><strong>FCN Resnet101</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-model"><strong>Loading the Model</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image-pre-processing"><strong>Image Pre-processing</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-the-segmentation-masks"><strong>Predicting the Segmentation Masks</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results"><strong>Results</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-images">Loading the Images</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fcn-resnet101">FCN Resnet101</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-model">Loading the Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image-pre-processing">Image Pre-processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mask-r-cnn"><strong>Mask R-CNN</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Loading the Model</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>Image Pre-processing</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>Predicting the Segmentation Masks</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><strong>Results</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mask-r-cnn">Mask R-CNN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Loading the Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Image Pre-processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-the-segmentation-masks">Predicting the Segmentation Masks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Results</a></li>
 </ul>
 </li>
 </ul>

@@ -208,13 +208,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="5_image_datasets.html">Image datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6_dataset_creation.html">Dataset Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="7_transfer_learning.html">Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_body_pose_estimator.html">Body pose estimator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_fashionMNIST.html">Pytorch on the FashionMNIST dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_make_dataset.html">Make dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_mnist.html">MNIST classicifation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_tensorboard.html">Tensorboard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_transfer_learning.html">Transfer learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pytorch_yolo_object_detection.html">Yolo object detection</a></li>
 </ul>
 
     </div>
@@ -392,19 +385,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries"><strong>Import Libraries</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mnist-dataset"><strong>The MNIST Dataset</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation"><strong>Data Preparation</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-hot-encoding"><strong>One-hot Encoding</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#images-transformation"><strong>Images Transformation</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mnist-dataset">The MNIST Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-hot-encoding">One-hot Encoding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#images-transformation">Images Transformation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-dataset-object"><strong>PyTorch Dataset Object</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-dataloader-object"><strong>PyTorch DataLoader Object</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-feedforward-neural-network-architecture"><strong>The Feedforward Neural Network Architecture</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training"><strong>Training</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-using-the-trained-feedforward-neural-network"><strong>Predicting using the Trained Feedforward Neural Network</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation"><strong>Evaluation</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-dataset-object">PyTorch Dataset Object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-dataloader-object">PyTorch DataLoader Object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-feedforward-neural-network-architecture">The Feedforward Neural Network Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training">Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-using-the-trained-feedforward-neural-network">Predicting using the Trained Feedforward Neural Network</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
 </ul>
             </nav>
         </div>
@@ -420,7 +413,7 @@ document.write(`
 <h1>Feedforward Neural Network Image Classification: MNIST<a class="headerlink" href="#feedforward-neural-network-image-classification-mnist" title="Permalink to this heading">#</a></h1>
 <p>In this notebook, a Feedforward Neural Network will be build from scratch and trained on the MNIST dataset. The MNIST dataset is a dataset containing hand-written images of digits. The end goal is to label the images with their corresponding digit.</p>
 <section id="import-libraries">
-<h2><strong>Import Libraries</strong><a class="headerlink" href="#import-libraries" title="Permalink to this heading">#</a></h2>
+<h2>Import Libraries<a class="headerlink" href="#import-libraries" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
@@ -457,7 +450,7 @@ document.write(`
 </div>
 </section>
 <section id="the-mnist-dataset">
-<h2><strong>The MNIST Dataset</strong><a class="headerlink" href="#the-mnist-dataset" title="Permalink to this heading">#</a></h2>
+<h2>The MNIST Dataset<a class="headerlink" href="#the-mnist-dataset" title="Permalink to this heading">#</a></h2>
 <p>In this part, the dataset is loaded and a preview of an image is shown.</p>
 <p>The training set is loaded in this cell, where x denotes the input images and y the corresponding labels.</p>
 <div class="cell docutils container">
@@ -498,9 +491,9 @@ document.write(`
 </div>
 </section>
 <section id="data-preparation">
-<h2><strong>Data Preparation</strong><a class="headerlink" href="#data-preparation" title="Permalink to this heading">#</a></h2>
+<h2>Data Preparation<a class="headerlink" href="#data-preparation" title="Permalink to this heading">#</a></h2>
 <section id="one-hot-encoding">
-<h3><strong>One-hot Encoding</strong><a class="headerlink" href="#one-hot-encoding" title="Permalink to this heading">#</a></h3>
+<h3>One-hot Encoding<a class="headerlink" href="#one-hot-encoding" title="Permalink to this heading">#</a></h3>
 <p>The labels provided in the MNIST dataset will be transformed to a one-hot encoding representation of that label. This is needed to be compatible with the Feedforward Neural network that we will build. The one-hot encoding is a 1 x n vector where the i-th element (corresponding to a specific label) is 1 and the other values are 0. This can be seen as a vector of probabilities (1 = 100% chance of being that label, 0 = 0% chance of being that label).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -542,7 +535,7 @@ document.write(`
 </div>
 </section>
 <section id="images-transformation">
-<h3><strong>Images Transformation</strong><a class="headerlink" href="#images-transformation" title="Permalink to this heading">#</a></h3>
+<h3>Images Transformation<a class="headerlink" href="#images-transformation" title="Permalink to this heading">#</a></h3>
 <p>The images are currently 28 x 28 matrices. But if we want to present them to the Feedforward Neural Network, we have to turn them into vectors of size 28².</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -559,7 +552,7 @@ document.write(`
 </section>
 </section>
 <section id="pytorch-dataset-object">
-<h2><strong>PyTorch Dataset Object</strong><a class="headerlink" href="#pytorch-dataset-object" title="Permalink to this heading">#</a></h2>
+<h2>PyTorch Dataset Object<a class="headerlink" href="#pytorch-dataset-object" title="Permalink to this heading">#</a></h2>
 <p>In this part, a class will be created for the datasets. This class will contain Python functions such as length of the dataset and get the specific item (=slicing) from the dataset.</p>
 <p>This class will transform the original pixel value range from 0-&gt;255 to 0-&gt;1 and the labels will be transformed to a one-hot encoding presentation.</p>
 <div class="cell docutils container">
@@ -591,7 +584,7 @@ document.write(`
 </div>
 </section>
 <section id="pytorch-dataloader-object">
-<h2><strong>PyTorch DataLoader Object</strong><a class="headerlink" href="#pytorch-dataloader-object" title="Permalink to this heading">#</a></h2>
+<h2>PyTorch DataLoader Object<a class="headerlink" href="#pytorch-dataloader-object" title="Permalink to this heading">#</a></h2>
 <p>The Dataset objects can be put inside a DataLoader class. This is very useful because batches can be created with this class. Batches of data samples are useful during the training process.</p>
 <p>This will create batches of 5 digit images. The length of the Dataloader object will be 60000/5=12000.</p>
 <div class="cell docutils container">
@@ -613,7 +606,7 @@ document.write(`
 </div>
 </section>
 <section id="the-feedforward-neural-network-architecture">
-<h2><strong>The Feedforward Neural Network Architecture</strong><a class="headerlink" href="#the-feedforward-neural-network-architecture" title="Permalink to this heading">#</a></h2>
+<h2>The Feedforward Neural Network Architecture<a class="headerlink" href="#the-feedforward-neural-network-architecture" title="Permalink to this heading">#</a></h2>
 <p>In this section, a class object of the Neural Network will be created. In this example, the first layer transforms 28² elements to 100 elements. The second layer transforms 100 elements to 50 elements. The last layer transforms 50 elements to 10 elements. These 10 elements represent the probabilities of being the i-th digit of the vector.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -643,7 +636,7 @@ document.write(`
 </div>
 </section>
 <section id="training">
-<h2><strong>Training</strong><a class="headerlink" href="#training" title="Permalink to this heading">#</a></h2>
+<h2>Training<a class="headerlink" href="#training" title="Permalink to this heading">#</a></h2>
 <p>A function is created to automize the training of the Feedforward Neural Network.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1069,7 +1062,7 @@ Best val Acc: 0.9676
 <p>It is clear that the loss becomes smaller as the amount of epochs progresses. The validation loss keeps decreasing, thus overfitting does not occur here.</p>
 </section>
 <section id="predicting-using-the-trained-feedforward-neural-network">
-<h2><strong>Predicting using the Trained Feedforward Neural Network</strong><a class="headerlink" href="#predicting-using-the-trained-feedforward-neural-network" title="Permalink to this heading">#</a></h2>
+<h2>Predicting using the Trained Feedforward Neural Network<a class="headerlink" href="#predicting-using-the-trained-feedforward-neural-network" title="Permalink to this heading">#</a></h2>
 <p>The actual label of the sample image:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1188,7 +1181,7 @@ Best val Acc: 0.9676
 <p>The trained Neural Network also performs very well on the test data samples.</p>
 </section>
 <section id="evaluation">
-<h2><strong>Evaluation</strong><a class="headerlink" href="#evaluation" title="Permalink to this heading">#</a></h2>
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ys</span> <span class="o">=</span> <span class="n">ys</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1287,19 +1280,19 @@ Best val Acc: 0.9676
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries"><strong>Import Libraries</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mnist-dataset"><strong>The MNIST Dataset</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation"><strong>Data Preparation</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-hot-encoding"><strong>One-hot Encoding</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#images-transformation"><strong>Images Transformation</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mnist-dataset">The MNIST Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-hot-encoding">One-hot Encoding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#images-transformation">Images Transformation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-dataset-object"><strong>PyTorch Dataset Object</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-dataloader-object"><strong>PyTorch DataLoader Object</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-feedforward-neural-network-architecture"><strong>The Feedforward Neural Network Architecture</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training"><strong>Training</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-using-the-trained-feedforward-neural-network"><strong>Predicting using the Trained Feedforward Neural Network</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation"><strong>Evaluation</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-dataset-object">PyTorch Dataset Object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-dataloader-object">PyTorch DataLoader Object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-feedforward-neural-network-architecture">The Feedforward Neural Network Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training">Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-using-the-trained-feedforward-neural-network">Predicting using the Trained Feedforward Neural Network</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
 </ul>
   </nav></div>
 
