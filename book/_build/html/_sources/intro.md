@@ -1,4 +1,4 @@
-# Welcome to the Machine Vision course
+# Machine Vision Course
 
 
 ```{tableofcontents}

@@ -4,26 +4,23 @@
 format: jb-book
 root: intro
 parts:
-  - caption: Part 1
+  - caption: Image processing
     chapters:
-    - file: scripts/1_image_processing/0_introduction
+    - file: notebooks
     - file: scripts/1_image_processing/1_color_spaces
-    - file: scripts/1_image_processing/2_image_analysis
-    - file: scripts/1_image_processing/3_monadic_operations
-    - file: scripts/1_image_processing/4_diadic_operations
-    - file: scripts/1_image_processing/5_spatial_operations
-  - caption: Part 2
+    - glob: scripts/1_image_processing/*
+  - caption: Image formation
     chapters:
     - glob: scripts/2_image_formation/*
-  - caption: Part 3
+  - caption: Feature extraction
     chapters:
     - glob: scripts/3_feature_extraction/*
-  - caption: Part 4
+  - caption: Stereo vision
     chapters:
     - glob: scripts/4_stereo_vision/*
-  - caption: Part 5
+  - caption: Simple object detection
     chapters:
     - glob: scripts/5_simple_object_detection/*
-  - caption: Part 6
+  - caption: Complex object detection
     chapters:
     - glob: scripts/6_complex_object_detection/*
