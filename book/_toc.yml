@@ -6,12 +6,24 @@ root: intro
 parts:
   - caption: Part 1
     chapters:
-    - file: markdown
     - file: scripts/1_image_processing/0_introduction
     - file: scripts/1_image_processing/1_color_spaces
     - file: scripts/1_image_processing/2_image_analysis
     - file: scripts/1_image_processing/3_monadic_operations
+    - file: scripts/1_image_processing/4_diadic_operations
+    - file: scripts/1_image_processing/5_spatial_operations
   - caption: Part 2
     chapters:
-    - file: notebooks
-    - file: scripts/2_image_formation/0_introduction
+    - glob: scripts/2_image_formation/*
+  - caption: Part 3
+    chapters:
+    - glob: scripts/3_feature_extraction/*
+  - caption: Part 4
+    chapters:
+    - glob: scripts/4_stereo_vision/*
+  - caption: Part 5
+    chapters:
+    - glob: scripts/5_simple_object_detection/*
+  - caption: Part 6
+    chapters:
+    - glob: scripts/6_complex_object_detection/*
