@@ -7,15 +7,15 @@ parts:
   - caption: Image processing
     chapters:
     - glob: scripts/1_image_processing/*
-  - caption: Image formation
-    chapters:
-    - glob: scripts/2_image_formation/*
+  #- caption: Image formation
+    #chapters:
+    #- glob: scripts/2_image_formation/*
   - caption: Feature extraction
     chapters:
     - glob: scripts/3_feature_extraction/*
-  - caption: Stereo vision
-    chapters:
-    - glob: scripts/4_stereo_vision/*
+  #- caption: Stereo vision
+    #chapters:
+    #- glob: scripts/4_stereo_vision/*
   - caption: Simple object detection
     chapters:
     - glob: scripts/5_simple_object_detection/*

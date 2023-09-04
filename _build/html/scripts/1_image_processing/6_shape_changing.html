@@ -159,8 +159,8 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Image processing</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="1_color_spaces.html">Color spaces</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2_image_analysis.html">Image Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_image_analysis.html">Image Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_color_spaces.html">Color spaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_monadic_operations.html">Monadic operations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4_diadic_operations.html">Diadic operations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5_spatial_operations.html">Spatial operations</a></li>
@@ -169,24 +169,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="8_thresholding.html">Thresholding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="9_morphological_transformations.html">Morphological transformations</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Image formation</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../2_image_formation/1_intrinsic_camera_calibration.html">Intrinsic camera calibration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../2_image_formation/2_extrinsic_camera_calibration.html">Extrinsic camera calibration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../2_image_formation/3_augmented_reality_application.html">Augmented reality application</a></li>
-</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Feature extraction</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/1_feature_detection.html">Feature detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/2_feature_matching.html">Feature matching</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/3_panorama_application.html">Panorama application</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Stereo vision</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../4_stereo_vision/stereo_vision.html">Stereo vision</a></li>
-</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Simple object detection</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/0_template_matching.html">Template matching</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/10_car_detection_application.html">Motion detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/11_fish_detection_application.html">Fish detection application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/1_edge_detection.html">Edge detection</a></li>
@@ -414,43 +405,33 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For use in Google Colab</span>
-<span class="o">%</span><span class="k">cd</span> /content/drive/MyDrive/machine_vision/scripts/1_image_processing
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[WinError 3] The system cannot find the path specified: &#39;/content/drive/MyDrive/machine_vision/scripts/1_image_processing&#39;
-C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\scripts\1_image_processing
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load image</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/letter_j.png&#39;</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/lenna_test_image.png&#39;</span><span class="p">)</span>
+
+<span class="c1"># Convert BGR-space to RGB-space (OpenCV loads images in BGR-space)</span>
 <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+
+<span class="c1"># Show image</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/61cbfaa43e681d8d56fa05b59cfcf4b5b2f14443270cd025efa04e8d7f49e612.png" src="../../_images/61cbfaa43e681d8d56fa05b59cfcf4b5b2f14443270cd025efa04e8d7f49e612.png" />
+<img alt="../../_images/5dd954915b7a72a3fdd8558038f3000e2f54bff0407a6164df0dc928ff919c70.png" src="../../_images/5dd954915b7a72a3fdd8558038f3000e2f54bff0407a6164df0dc928ff919c70.png" />
 </div>
 </div>
 <section id="cropping">
 <h2>Cropping<a class="headerlink" href="#cropping" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Shape of the image</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The shape of the image is&#39;</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crop of the image</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="mi">200</span><span class="p">:</span><span class="mi">300</span><span class="p">,</span> <span class="mi">200</span><span class="p">:</span><span class="mi">300</span><span class="p">]</span>
 
-<span class="c1">#Crop of the image</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">45</span><span class="p">,</span> <span class="mi">105</span><span class="p">:</span><span class="mi">140</span><span class="p">]</span>
+<span class="c1"># Print the shape of both images</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The original image is a matrix with dimensions: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">image</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; and the resized image has dimensions: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">result</span><span class="p">)))</span>
 
-<span class="c1">#Plot</span>
+<span class="c1"># Show images</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -460,10 +441,10 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\scripts\1_ima
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The shape of the image is (248, 185, 3)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The original image is a matrix with dimensions: (512, 512, 3) and the resized image has dimensions: (100, 100, 3)
 </pre></div>
 </div>
-<img alt="../../_images/447532a02b4ebc8a08c29556141466a008ce62d99a66a9ea33a8053e5cb77c1c.png" src="../../_images/447532a02b4ebc8a08c29556141466a008ce62d99a66a9ea33a8053e5cb77c1c.png" />
+<img alt="../../_images/3a4ccd486e93f1274ff6229d98ddd3796925f785905737e370e382a798a2ab3a.png" src="../../_images/3a4ccd486e93f1274ff6229d98ddd3796925f785905737e370e382a798a2ab3a.png" />
 </div>
 </div>
 </section>
@@ -471,29 +452,34 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\scripts\1_ima
 <h2>Image resizing<a class="headerlink" href="#image-resizing" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Preserving the aspect ratio</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Preserving the aspect ratio</span>
 <span class="n">scale_percent</span> <span class="o">=</span> <span class="mi">50</span>
 
+<span class="c1"># Compute new image sizes</span>
 <span class="n">height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale_percent</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale_percent</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
-
 <span class="n">new_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
 
-<span class="c1">#Resizing the image</span>
+<span class="c1"># Resizing the image</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">new_size</span><span class="p">)</span>
 
-<span class="c1">#Plot</span>
+<span class="c1"># Print the shape of both images</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The original image is a matrix with dimensions: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">image</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; and the resized image has dimensions: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">result</span><span class="p">)))</span>
+
+<span class="c1"># Show images</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">185</span><span class="p">,</span> <span class="mi">248</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/e1ce1eaa0aa5e020c65792a063e76a8d544270c7a028c23d09df51a79091d96e.png" src="../../_images/e1ce1eaa0aa5e020c65792a063e76a8d544270c7a028c23d09df51a79091d96e.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The original image is a matrix with dimensions: (512, 512, 3) and the resized image has dimensions: (256, 256, 3)
+</pre></div>
+</div>
+<img alt="../../_images/9d4d80056b29bc4f787b0d40625fcbc8ac5a538bface6f812d56091b90b3761c.png" src="../../_images/9d4d80056b29bc4f787b0d40625fcbc8ac5a538bface6f812d56091b90b3761c.png" />
 </div>
 </div>
 </section>
@@ -501,25 +487,24 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\scripts\1_ima
 <h2>Image pyramids<a class="headerlink" href="#image-pyramids" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#creating an image pyramid of 4 deep</span>
-<span class="n">deep</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">layer</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">deep</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creating an image pyramid of 4 deep</span>
+<span class="n">deep</span> <span class="o">=</span> <span class="mi">4</span>
 
+<span class="c1"># Make pyramids </span>
+<span class="n">image_</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">deep</span><span class="p">):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">deep</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">185</span><span class="p">,</span> <span class="mi">248</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-<span class="c1"># using pyrDown() function</span>
-    <span class="n">layer</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">pyrDown</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">deep</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">image_</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">pyrDown</span><span class="p">(</span><span class="n">image_</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image_</span><span class="p">)</span>
     
+<span class="c1"># Show images</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c52c65d730c12e4e4df937a5f8dd707757e0676e26476004825bee69f942e5fa.png" src="../../_images/c52c65d730c12e4e4df937a5f8dd707757e0676e26476004825bee69f942e5fa.png" />
+<img alt="../../_images/050eeb8f0b44e54053c2557c6ff529582091d0eaa4b20aced8d09a20dda54504.png" src="../../_images/050eeb8f0b44e54053c2557c6ff529582091d0eaa4b20aced8d09a20dda54504.png" />
 </div>
 </div>
 </section>
@@ -527,24 +512,45 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\scripts\1_ima
 <h2>Image warping<a class="headerlink" href="#image-warping" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define warping points</span>
-<span class="n">points_A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">([[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">2000</span><span class="p">],</span> <span class="p">[</span><span class="mi">150</span><span class="p">,</span><span class="mi">200</span><span class="p">],</span> <span class="p">[</span><span class="mi">150</span><span class="p">,</span><span class="mi">50</span><span class="p">],</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">500</span><span class="p">]])</span>
-<span class="n">points_B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">250</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">250</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get image shape and center location</span>
+<span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="p">(</span><span class="n">cX</span><span class="p">,</span> <span class="n">cY</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">w</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">h</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
 
-<span class="c1"># Get perspective transform</span>
-<span class="n">M</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getPerspectiveTransform</span><span class="p">(</span><span class="n">points_A</span><span class="p">,</span> <span class="n">points_B</span><span class="p">)</span>
+<span class="c1"># Scaling of 1.5 in x- and 1.8 in y-direction</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">([[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">0</span>  <span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span>   <span class="mf">1.8</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">1</span><span class="p">]])</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpPerspective</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span>
 
-<span class="c1"># Warp image</span>
-<span class="n">warped</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpPerspective</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">))</span>
+<span class="c1"># Translation of 50 pixels in x- and 50 pixels in y-direction</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">result1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpPerspective</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span>
 
-<span class="c1"># Show</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">warped</span><span class="p">)</span>
+<span class="c1"># Rotation of 45 degrees</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getRotationMatrix2D</span><span class="p">((</span><span class="n">cX</span><span class="p">,</span> <span class="n">cY</span><span class="p">),</span> <span class="mi">45</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">result2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpAffine</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span>
+
+<span class="c1"># Shearing of 0.5 in x-direction</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>  <span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>  <span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">result3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpPerspective</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span>
+
+<span class="c1"># Define pts1 (points on original image) and pts2 (points where the original points should lie)</span>
+<span class="n">pts1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">512</span><span class="p">],</span> <span class="p">[</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">],</span> <span class="p">[</span><span class="mi">512</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">pts2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">([[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">450</span><span class="p">],</span> <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">490</span><span class="p">],</span> <span class="p">[</span><span class="mi">512</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+     
+<span class="c1"># Compute corresponding transformationn matrix in 3D and apply transform</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getPerspectiveTransform</span><span class="p">(</span><span class="n">pts1</span><span class="p">,</span> <span class="n">pts2</span><span class="p">)</span>
+<span class="n">result4</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpPerspective</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span>
+
+<span class="c1"># Concatenate results</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">result</span><span class="p">,</span> <span class="n">result1</span><span class="p">,</span> <span class="n">result2</span><span class="p">,</span> <span class="n">result3</span><span class="p">,</span> <span class="n">result4</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Shiow images</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a9de6ca850bb1cec645b6c4a3c7bca169c267a76ad3cfdf0a343725db9968a50.png" src="../../_images/a9de6ca850bb1cec645b6c4a3c7bca169c267a76ad3cfdf0a343725db9968a50.png" />
+<img alt="../../_images/7e150e0ceea1a52f826de29069eb9a8d25d9b3df8bea4d3b33dea480dcde50fa.png" src="../../_images/7e150e0ceea1a52f826de29069eb9a8d25d9b3df8bea4d3b33dea480dcde50fa.png" />
 </div>
 </div>
 </section>

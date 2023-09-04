@@ -159,8 +159,8 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Image processing</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="1_color_spaces.html">Color spaces</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2_image_analysis.html">Image Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_image_analysis.html">Image Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_color_spaces.html">Color spaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_monadic_operations.html">Monadic operations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4_diadic_operations.html">Diadic operations</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Spatial operations</a></li>
@@ -169,24 +169,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="8_thresholding.html">Thresholding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="9_morphological_transformations.html">Morphological transformations</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Image formation</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../2_image_formation/1_intrinsic_camera_calibration.html">Intrinsic camera calibration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../2_image_formation/2_extrinsic_camera_calibration.html">Extrinsic camera calibration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../2_image_formation/3_augmented_reality_application.html">Augmented reality application</a></li>
-</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Feature extraction</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/1_feature_detection.html">Feature detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/2_feature_matching.html">Feature matching</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/3_panorama_application.html">Panorama application</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Stereo vision</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../4_stereo_vision/stereo_vision.html">Stereo vision</a></li>
-</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Simple object detection</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/0_template_matching.html">Template matching</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/10_car_detection_application.html">Motion detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/11_fish_detection_application.html">Fish detection application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/1_edge_detection.html">Edge detection</a></li>
@@ -385,11 +376,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutional-kernels-mean-kernel">Convolutional kernels: Mean kernel</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutional-kernels-gaussian-kernel">Convolutional kernels: Gaussian kernel</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutional-kernel-sharpening">Convolutional kernel: Sharpening</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutional-kernel-edge-detection">Convolutional kernel: Edge detection</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#template-matching">Template matching</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-filter">Mean filter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-filter">Gaussian filter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sharpening">Sharpening</a></li>
 </ul>
             </nav>
         </div>
@@ -415,112 +404,83 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For use in Google Colab</span>
-<span class="o">%</span><span class="k">cd</span> /content/drive/MyDrive/machine_vision/scripts/1_image_processing
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[WinError 3] The system cannot find the path specified: &#39;/content/drive/MyDrive/machine_vision/scripts/1_image_processing&#39;
-C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\scripts\1_image_processing
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load image</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/lenna_test_image.png&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/lenna_test_image.png&#39;</span><span class="p">)</span>
+
+<span class="c1"># Convert from BGR-space to RGB-space</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+
+<span class="c1"># Show image</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ac1b621199fd115576f0291512a59be3506553006d03338764d24c534eca0b93.png" src="../../_images/ac1b621199fd115576f0291512a59be3506553006d03338764d24c534eca0b93.png" />
+<img alt="../../_images/5dd954915b7a72a3fdd8558038f3000e2f54bff0407a6164df0dc928ff919c70.png" src="../../_images/5dd954915b7a72a3fdd8558038f3000e2f54bff0407a6164df0dc928ff919c70.png" />
 </div>
 </div>
-<section id="convolutional-kernels-mean-kernel">
-<h2>Convolutional kernels: Mean kernel<a class="headerlink" href="#convolutional-kernels-mean-kernel" title="Permalink to this heading">#</a></h2>
+<section id="mean-filter">
+<h2>Mean filter<a class="headerlink" href="#mean-filter" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define array</span>
-<span class="n">array</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="mi">110</span><span class="p">,</span> <span class="mi">100</span><span class="p">:</span><span class="mi">110</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-
-<span class="c1"># Define convolutional kernel</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define convolutional kernel</span>
 <span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="mi">9</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="mf">.5</span><span class="p">)</span>
 
 <span class="c1"># Define convolutional kernel</span>
 <span class="n">kernel1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="mi">25</span>
-<span class="n">result1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel1</span><span class="p">)</span>
+<span class="n">result1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel1</span><span class="p">)</span>
 <span class="n">result1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">result1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="mf">.5</span><span class="p">)</span>
 
 <span class="c1"># Define convolutional kernel</span>
 <span class="n">kernel2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
-<span class="n">result2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel2</span><span class="p">)</span>
+<span class="n">result2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel2</span><span class="p">)</span>
 <span class="n">result2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">result2</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="mf">.5</span><span class="p">)</span>
 
 <span class="c1"># Define convolutional kernel</span>
 <span class="n">kernel3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="mi">400</span>
-<span class="n">result3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel3</span><span class="p">)</span>
+<span class="n">result3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel3</span><span class="p">)</span>
 <span class="n">result3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">result3</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="mf">.5</span><span class="p">)</span>
 
-<span class="c1"># Array result</span>
-<span class="n">Z</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
-
 <span class="c1"># Concatenate results</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="mf">.5</span><span class="p">)</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">img</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">result1</span><span class="p">,</span> <span class="n">result2</span><span class="p">,</span> <span class="n">result3</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">result</span><span class="p">,</span> <span class="n">result1</span><span class="p">,</span> <span class="n">result2</span><span class="p">,</span> <span class="n">result3</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="c1"># Plot results</span>
+<span class="c1"># Shiow images</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[71 71 71 71 71 71 70 70 70 70]
- [71 71 71 71 71 71 70 70 70 70]
- [71 71 71 71 71 71 70 70 70 70]
- [71 71 71 71 71 71 70 71 70 70]
- [71 71 71 71 71 71 71 71 70 71]
- [71 71 71 71 71 71 70 70 70 70]
- [71 71 71 71 71 71 70 70 70 70]
- [71 71 71 71 71 71 70 71 70 70]
- [71 71 71 71 71 71 71 71 71 71]
- [71 71 71 71 71 71 71 71 71 71]]
-</pre></div>
-</div>
-<img alt="../../_images/d37939418f22f42e45ede88d57370b3e345d1af7087be30ab2b60351a30dd705.png" src="../../_images/d37939418f22f42e45ede88d57370b3e345d1af7087be30ab2b60351a30dd705.png" />
+<img alt="../../_images/dcf60b755339946bf82d9c522a6f55ccc9ade1e978d59a432318ba5b90e7991d.png" src="../../_images/dcf60b755339946bf82d9c522a6f55ccc9ade1e978d59a432318ba5b90e7991d.png" />
 </div>
 </div>
 </section>
-<section id="convolutional-kernels-gaussian-kernel">
-<h2>Convolutional kernels: Gaussian kernel<a class="headerlink" href="#convolutional-kernels-gaussian-kernel" title="Permalink to this heading">#</a></h2>
+<section id="gaussian-filter">
+<h2>Gaussian filter<a class="headerlink" href="#gaussian-filter" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform convolution</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">33</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">33</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Concatenate images</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">img</span><span class="p">,</span> <span class="n">result</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">image</span><span class="p">,</span> <span class="n">result</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="c1"># Plot results</span>
+<span class="c1"># Shiow images</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0c917d74826c29c733c20e2439ca7b7f73726aaeac92aa0e7fc3bfd0c4ccd7d9.png" src="../../_images/0c917d74826c29c733c20e2439ca7b7f73726aaeac92aa0e7fc3bfd0c4ccd7d9.png" />
+<img alt="../../_images/8fac886916ccbd70b123447790049da9202bb4050ff9a86595c9ebd3ad9ead6f.png" src="../../_images/8fac886916ccbd70b123447790049da9202bb4050ff9a86595c9ebd3ad9ead6f.png" />
 </div>
 </div>
 </section>
-<section id="convolutional-kernel-sharpening">
-<h2>Convolutional kernel: Sharpening<a class="headerlink" href="#convolutional-kernel-sharpening" title="Permalink to this heading">#</a></h2>
+<section id="sharpening">
+<h2>Sharpening<a class="headerlink" href="#sharpening" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define convolutional kernel</span>
@@ -528,75 +488,19 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\scripts\1_ima
 <span class="n">kernel</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
 
 <span class="c1"># Perform convolution</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
 
 <span class="c1"># Concatenate images</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">img</span><span class="p">,</span> <span class="n">result</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">image</span><span class="p">,</span> <span class="n">result</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="c1"># Plot results</span>
+<span class="c1"># Show images</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/195993d8ea6280260e7d428c36c79b09cba87b2681d4cc4843a61dc046d26c2d.png" src="../../_images/195993d8ea6280260e7d428c36c79b09cba87b2681d4cc4843a61dc046d26c2d.png" />
-</div>
-</div>
-</section>
-<section id="convolutional-kernel-edge-detection">
-<h2>Convolutional kernel: Edge detection<a class="headerlink" href="#convolutional-kernel-edge-detection" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define convolutional kernel</span>
-<span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
-<span class="n">kernel</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span>
-
-<span class="c1"># Perform convolution</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
-
-<span class="c1"># Concatenate images</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">img</span><span class="p">,</span> <span class="n">result</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># Plot results</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/b5427296b719b626b49b42b6dc2b953e09ceee001f28ea6d49eda08db745a8bb.png" src="../../_images/b5427296b719b626b49b42b6dc2b953e09ceee001f28ea6d49eda08db745a8bb.png" />
-</div>
-</div>
-</section>
-<section id="template-matching">
-<h2>Template matching<a class="headerlink" href="#template-matching" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the source image and the template</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/mario.jpg&#39;</span><span class="p">)</span>
-<span class="n">img_gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
-<span class="n">template</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/mario_coin.jpg&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">shape</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">source</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-
-<span class="c1"># Template matching </span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">matchTemplate</span><span class="p">(</span><span class="n">img_gray</span><span class="p">,</span><span class="n">template</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">TM_CCOEFF_NORMED</span><span class="p">)</span>
-<span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.8</span>
-<span class="n">loc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span> <span class="n">res</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">pt</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">loc</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
-  <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">pt</span><span class="p">,</span> <span class="p">(</span><span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span><span class="p">,</span> <span class="n">pt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/620238da124eee224696cd99441c1046d24d868b1b850f8d932568b6f854d89f.png" src="../../_images/620238da124eee224696cd99441c1046d24d868b1b850f8d932568b6f854d89f.png" />
-<img alt="../../_images/3167bae339fba0b07340aaae1dc8fb2a6d04c9154d6dd56a7760a10519cb5866.png" src="../../_images/3167bae339fba0b07340aaae1dc8fb2a6d04c9154d6dd56a7760a10519cb5866.png" />
+<img alt="../../_images/6a688f0fee035c0223a019beadd3888edef1a76df277749f7d7a401ddcc093a8.png" src="../../_images/6a688f0fee035c0223a019beadd3888edef1a76df277749f7d7a401ddcc093a8.png" />
 </div>
 </div>
 </section>
@@ -669,11 +573,9 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\scripts\1_ima
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutional-kernels-mean-kernel">Convolutional kernels: Mean kernel</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutional-kernels-gaussian-kernel">Convolutional kernels: Gaussian kernel</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutional-kernel-sharpening">Convolutional kernel: Sharpening</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutional-kernel-edge-detection">Convolutional kernel: Edge detection</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#template-matching">Template matching</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-filter">Mean filter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-filter">Gaussian filter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sharpening">Sharpening</a></li>
 </ul>
   </nav></div>
 

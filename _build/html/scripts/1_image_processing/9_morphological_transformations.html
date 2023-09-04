@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'scripts/1_image_processing/9_morphological_transformations';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Intrinsic camera calibration" href="../2_image_formation/1_intrinsic_camera_calibration.html" />
+    <link rel="next" title="Feature detection" href="../3_feature_extraction/1_feature_detection.html" />
     <link rel="prev" title="Thresholding" href="8_thresholding.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -159,8 +159,8 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Image processing</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="1_color_spaces.html">Color spaces</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2_image_analysis.html">Image Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_image_analysis.html">Image Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_color_spaces.html">Color spaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_monadic_operations.html">Monadic operations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4_diadic_operations.html">Diadic operations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5_spatial_operations.html">Spatial operations</a></li>
@@ -169,24 +169,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="8_thresholding.html">Thresholding</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Morphological transformations</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Image formation</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../2_image_formation/1_intrinsic_camera_calibration.html">Intrinsic camera calibration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../2_image_formation/2_extrinsic_camera_calibration.html">Extrinsic camera calibration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../2_image_formation/3_augmented_reality_application.html">Augmented reality application</a></li>
-</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Feature extraction</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/1_feature_detection.html">Feature detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/2_feature_matching.html">Feature matching</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/3_panorama_application.html">Panorama application</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Stereo vision</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../4_stereo_vision/stereo_vision.html">Stereo vision</a></li>
-</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Simple object detection</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/0_template_matching.html">Template matching</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/10_car_detection_application.html">Motion detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/11_fish_detection_application.html">Fish detection application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/1_edge_detection.html">Edge detection</a></li>
@@ -415,30 +406,12 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For use in Google Colab</span>
-<span class="o">%</span><span class="k">cd</span> /content/drive/MyDrive/machine_vision/scripts/1_image_processing
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[WinError 3] The system cannot find the path specified: &#39;/content/drive/MyDrive/machine_vision/scripts/1_image_processing&#39;
-C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\scripts\1_image_processing
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load image</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../../data/letter_j.png&quot;</span><span class="p">)</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">image1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../../data/letter_j.png&quot;</span><span class="p">)</span>
+<span class="n">image2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../../data/opening.png&quot;</span><span class="p">)</span>
+<span class="n">image3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../../data/closing.png&quot;</span><span class="p">)</span> 
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/0b6d633bcaf852c7f5255338ba3e17175afa07413188faa188300b7f9c55f093.png" src="../../_images/0b6d633bcaf852c7f5255338ba3e17175afa07413188faa188300b7f9c55f093.png" />
 </div>
 </div>
 <section id="dilation">
@@ -447,14 +420,20 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\scripts\1_ima
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dilation</span>
 <span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
-<span class="n">dilation</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">dilate</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">iterations</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">dilation</span><span class="p">)</span>
+<span class="n">dilation</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">dilate</span><span class="p">(</span><span class="n">image1</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">iterations</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Show images</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">dilation</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/50b22c50b489fdadb857439ab7b734c34cb49ce468a85f35983e087684a5725a.png" src="../../_images/50b22c50b489fdadb857439ab7b734c34cb49ce468a85f35983e087684a5725a.png" />
+<img alt="../../_images/a7ec5c311da19bf9490f511f6f49688e8bdb59177db6a8419ceea333d454c10f.png" src="../../_images/a7ec5c311da19bf9490f511f6f49688e8bdb59177db6a8419ceea333d454c10f.png" />
 </div>
 </div>
 </section>
@@ -464,14 +443,20 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\scripts\1_ima
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Erosion</span>
 <span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
-<span class="n">erode</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">erode</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">iterations</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">erode</span><span class="p">)</span>
+<span class="n">erode</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">erode</span><span class="p">(</span><span class="n">image1</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">iterations</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Show images</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">erode</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c166ad38f745cc4bfa0490a0b79c1e0041d612ef384375d862ef115943f86ad1.png" src="../../_images/c166ad38f745cc4bfa0490a0b79c1e0041d612ef384375d862ef115943f86ad1.png" />
+<img alt="../../_images/68e2a3ce12958fd8d10c3311265b9af3d5bc5fe4cd5e6a470530df551c16ed36.png" src="../../_images/68e2a3ce12958fd8d10c3311265b9af3d5bc5fe4cd5e6a470530df551c16ed36.png" />
 </div>
 </div>
 </section>
@@ -481,14 +466,20 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\scripts\1_ima
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Opening</span>
 <span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
-<span class="n">opening</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">morphologyEx</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_OPEN</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">opening</span><span class="p">)</span>
+<span class="n">opening</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">morphologyEx</span><span class="p">(</span><span class="n">image2</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_OPEN</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
+
+<span class="c1"># Show images</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">opening</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/5b50cc45668d2f9e9cca3f9c1b89cf9023117c149a97e3cba5643f0ca9ce4f36.png" src="../../_images/5b50cc45668d2f9e9cca3f9c1b89cf9023117c149a97e3cba5643f0ca9ce4f36.png" />
+<img alt="../../_images/6864c61f0812107fa405b48c7fae540c95f2e08ca3a301eb4d60207918f44df6.png" src="../../_images/6864c61f0812107fa405b48c7fae540c95f2e08ca3a301eb4d60207918f44df6.png" />
 </div>
 </div>
 </section>
@@ -498,14 +489,20 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\scripts\1_ima
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Closing</span>
 <span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
-<span class="n">closing</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">morphologyEx</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_CLOSE</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">closing</span><span class="p">)</span>
+<span class="n">closing</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">morphologyEx</span><span class="p">(</span><span class="n">image3</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_CLOSE</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
+
+<span class="c1"># Show images</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image3</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">closing</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2116d5fc0f6a80258b1becfaa4e253ba90812a95935a352a85a2ed97569bcb3d.png" src="../../_images/2116d5fc0f6a80258b1becfaa4e253ba90812a95935a352a85a2ed97569bcb3d.png" />
+<img alt="../../_images/1d8045fa093f52074a99ea478b657c17e8bee9bcab04f15ed8342f95c4f04ab8.png" src="../../_images/1d8045fa093f52074a99ea478b657c17e8bee9bcab04f15ed8342f95c4f04ab8.png" />
 </div>
 </div>
 </section>
@@ -513,9 +510,15 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\scripts\1_ima
 <h2>Skeletonization<a class="headerlink" href="#skeletonization" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make empty skeleton image</span>
-<span class="n">size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-<span class="n">skel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert RGB-image to gray scale image</span>
+<span class="n">image1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image1</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2GRAY</span><span class="p">)</span>
+
+<span class="c1"># Make empty skeleton image</span>
+<span class="n">size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">image1</span><span class="p">)</span>
+<span class="n">skel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">image1</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+<span class="c1"># Threshold</span>
+<span class="n">ret</span><span class="p">,</span> <span class="n">image_edit</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">image1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span> <span class="o">|</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_OTSU</span><span class="p">)</span>
 
 <span class="c1"># Skeletonize</span>
 <span class="n">element</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getStructuringElement</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_CROSS</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
@@ -523,48 +526,48 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\scripts\1_ima
 <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
         
     <span class="c1"># Eroding</span>
-    <span class="n">eroded</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">erode</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">element</span><span class="p">)</span>
+    <span class="n">eroded</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">erode</span><span class="p">(</span><span class="n">image1</span><span class="p">,</span> <span class="n">element</span><span class="p">)</span>
     
     <span class="c1"># Dilating</span>
     <span class="n">dilated</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">dilate</span><span class="p">(</span><span class="n">eroded</span><span class="p">,</span> <span class="n">element</span><span class="p">)</span>
         
     <span class="c1"># Subtraction</span>
-    <span class="n">temp</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">dilated</span><span class="p">)</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">image1</span><span class="p">,</span> <span class="n">dilated</span><span class="p">)</span>
         
     <span class="c1"># OR-operation</span>
     <span class="n">skel</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_or</span><span class="p">(</span><span class="n">skel</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span>
 
     <span class="c1"># Copy eroded image</span>
-    <span class="n">image</span> <span class="o">=</span> <span class="n">eroded</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">image1</span> <span class="o">=</span> <span class="n">eroded</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         
     <span class="c1"># If eroded image is empty =&gt; stop</span>
-    <span class="n">zeros</span> <span class="o">=</span> <span class="n">size</span> <span class="o">-</span> <span class="n">cv2</span><span class="o">.</span><span class="n">countNonZero</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="n">zeros</span> <span class="o">=</span> <span class="n">size</span> <span class="o">-</span> <span class="n">cv2</span><span class="o">.</span><span class="n">countNonZero</span><span class="p">(</span><span class="n">image1</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">zeros</span> <span class="o">==</span> <span class="n">size</span><span class="p">:</span>
         <span class="n">done</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="c1"># Show result</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">image</span><span class="p">,</span> <span class="n">eroded</span><span class="p">,</span> <span class="n">dilated</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">skel</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">image1</span><span class="p">,</span> <span class="n">eroded</span><span class="p">,</span> <span class="n">dilated</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">skel</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">pause</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/77a0ccee1d4dc1a16808a1bb51775e8596faaac17c3909cbc8df96d232d5a45e.png" src="../../_images/77a0ccee1d4dc1a16808a1bb51775e8596faaac17c3909cbc8df96d232d5a45e.png" />
-<img alt="../../_images/84cd11e98b33cf417aa57bd08537e2724b3ca4566ffd69f8f5290fe532f5f846.png" src="../../_images/84cd11e98b33cf417aa57bd08537e2724b3ca4566ffd69f8f5290fe532f5f846.png" />
-<img alt="../../_images/04182cbaeba46acfb8f5f43eac9989b133b1a02075cd516006cb7f82abdd03a5.png" src="../../_images/04182cbaeba46acfb8f5f43eac9989b133b1a02075cd516006cb7f82abdd03a5.png" />
-<img alt="../../_images/fea2c52792bafdf6c352e8bb06399dc277a34741eb43558a094cf23df8986358.png" src="../../_images/fea2c52792bafdf6c352e8bb06399dc277a34741eb43558a094cf23df8986358.png" />
-<img alt="../../_images/1eef6c89c6a5ec6572f606f12a55f2d7db99cb4deeeed53b8a63b43157e9213a.png" src="../../_images/1eef6c89c6a5ec6572f606f12a55f2d7db99cb4deeeed53b8a63b43157e9213a.png" />
-<img alt="../../_images/ca8fdbbdfc27d2e632fdb81acf1fa36f394222afec6078e1b77f1a3669759b8b.png" src="../../_images/ca8fdbbdfc27d2e632fdb81acf1fa36f394222afec6078e1b77f1a3669759b8b.png" />
-<img alt="../../_images/416f0d2dc4bad09c566409ea4c534dd2c60ed32a9ed6d400a7bcac4785f0c867.png" src="../../_images/416f0d2dc4bad09c566409ea4c534dd2c60ed32a9ed6d400a7bcac4785f0c867.png" />
-<img alt="../../_images/ee9b7d77d2a6673189335f0bd1c254b80c61f5e2f12ec2acf65aff2cb7418764.png" src="../../_images/ee9b7d77d2a6673189335f0bd1c254b80c61f5e2f12ec2acf65aff2cb7418764.png" />
-<img alt="../../_images/71ceabfb8e837b0184d705d4564c7e6b63a1be093c37f13d9615a93bfd3d7d24.png" src="../../_images/71ceabfb8e837b0184d705d4564c7e6b63a1be093c37f13d9615a93bfd3d7d24.png" />
-<img alt="../../_images/9cecc37bf4e97dde05b0e2becdcf543cbe9813efff5c8f82f0229b64c7e31a61.png" src="../../_images/9cecc37bf4e97dde05b0e2becdcf543cbe9813efff5c8f82f0229b64c7e31a61.png" />
-<img alt="../../_images/a9296a345d7cda85711308964f2f4c0d715e8bd68de34f7c3112d0c2ef964913.png" src="../../_images/a9296a345d7cda85711308964f2f4c0d715e8bd68de34f7c3112d0c2ef964913.png" />
-<img alt="../../_images/9c453421953f96d98748da83464342938e531a693ff978c35174b932d4052247.png" src="../../_images/9c453421953f96d98748da83464342938e531a693ff978c35174b932d4052247.png" />
-<img alt="../../_images/bc4f1f3f784a5df78a2b4f72b4aa6e37104810f97841b9a4673ddbb197b90c82.png" src="../../_images/bc4f1f3f784a5df78a2b4f72b4aa6e37104810f97841b9a4673ddbb197b90c82.png" />
-<img alt="../../_images/e5c5028d4637f233929c8935dc37ca2014a333e272951743264bb048f7c653d9.png" src="../../_images/e5c5028d4637f233929c8935dc37ca2014a333e272951743264bb048f7c653d9.png" />
-<img alt="../../_images/f7942289667a7985e1a764146a3c0c4fcd55866032b7c3c954ac12005a9cb14f.png" src="../../_images/f7942289667a7985e1a764146a3c0c4fcd55866032b7c3c954ac12005a9cb14f.png" />
+<img alt="../../_images/c2926471be9f7461ff505794a8982057e84cba46a06c7ef8887f6a28b63b5cbb.png" src="../../_images/c2926471be9f7461ff505794a8982057e84cba46a06c7ef8887f6a28b63b5cbb.png" />
+<img alt="../../_images/0f38903ddb9d7c653fa9aa7940263295961df1f3e7b02fd43e4c4c8010867580.png" src="../../_images/0f38903ddb9d7c653fa9aa7940263295961df1f3e7b02fd43e4c4c8010867580.png" />
+<img alt="../../_images/c91e1b9283972a554414fbc139acbe46ebd3835c0ae6863ba2a1ba01dfcf9681.png" src="../../_images/c91e1b9283972a554414fbc139acbe46ebd3835c0ae6863ba2a1ba01dfcf9681.png" />
+<img alt="../../_images/34a8955511a74c91e78f49e62e339982e6be63c90e1f15859c263e31795dc386.png" src="../../_images/34a8955511a74c91e78f49e62e339982e6be63c90e1f15859c263e31795dc386.png" />
+<img alt="../../_images/aa496d112edd12c3c0a0e49746cc39a2b94a37170a2c97d673818ff497f4d56e.png" src="../../_images/aa496d112edd12c3c0a0e49746cc39a2b94a37170a2c97d673818ff497f4d56e.png" />
+<img alt="../../_images/f60f4c94975b8d818a761b81374801b7bb9d71aa25c29a9f1b078672cac5d36a.png" src="../../_images/f60f4c94975b8d818a761b81374801b7bb9d71aa25c29a9f1b078672cac5d36a.png" />
+<img alt="../../_images/a0de1c1d4d493c7307f43f359d14fad7037407d81e67c800d6ef2c2c401e9e68.png" src="../../_images/a0de1c1d4d493c7307f43f359d14fad7037407d81e67c800d6ef2c2c401e9e68.png" />
+<img alt="../../_images/6a35dabdfd27f09d0bc1538bb9111dca457e6408a6aa8c32f73fd65e626c482e.png" src="../../_images/6a35dabdfd27f09d0bc1538bb9111dca457e6408a6aa8c32f73fd65e626c482e.png" />
+<img alt="../../_images/89bdd2bb585a0d101b7fc45974d85df778adb18619f853779145ea559904bce8.png" src="../../_images/89bdd2bb585a0d101b7fc45974d85df778adb18619f853779145ea559904bce8.png" />
+<img alt="../../_images/fa9c078f5d826f54055924c86dab382a8fa80577bf525e3402563414b24ab491.png" src="../../_images/fa9c078f5d826f54055924c86dab382a8fa80577bf525e3402563414b24ab491.png" />
+<img alt="../../_images/d9f4f791675407993a50cc3fce6b7d7078197be062b7b6f77855ac6a58286216.png" src="../../_images/d9f4f791675407993a50cc3fce6b7d7078197be062b7b6f77855ac6a58286216.png" />
+<img alt="../../_images/41317cd47629d0528c8bbd5a56bee10e925188073b91d0d1e91d27311560e7c0.png" src="../../_images/41317cd47629d0528c8bbd5a56bee10e925188073b91d0d1e91d27311560e7c0.png" />
+<img alt="../../_images/67b12fc64175a27654b3d32366cf534b998a2430e93b0174d661e5f7c0fa2491.png" src="../../_images/67b12fc64175a27654b3d32366cf534b998a2430e93b0174d661e5f7c0fa2491.png" />
+<img alt="../../_images/720ad5a1607614e071edbd73c35748f513340ed9e4403eee91b74cccca557ac3.png" src="../../_images/720ad5a1607614e071edbd73c35748f513340ed9e4403eee91b74cccca557ac3.png" />
+<img alt="../../_images/737d414afd41cbb4e454615946d57a8cf8be29ed7fa6e9952d7abfc0b84616b8.png" src="../../_images/737d414afd41cbb4e454615946d57a8cf8be29ed7fa6e9952d7abfc0b84616b8.png" />
 </div>
 </div>
 </section>
@@ -611,11 +614,11 @@ C:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\scripts\1_ima
       </div>
     </a>
     <a class="right-next"
-       href="../2_image_formation/1_intrinsic_camera_calibration.html"
+       href="../3_feature_extraction/1_feature_detection.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Intrinsic camera calibration</p>
+        <p class="prev-next-title">Feature detection</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
