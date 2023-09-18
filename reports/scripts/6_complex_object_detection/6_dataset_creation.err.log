@@ -15,14 +15,74 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-Here 
+# Get a batch from the dataset
+inputs, labels = next(iter(train_loader))
+
+print(inputs[0])
+
+# Set to device
+inputs = inputs.to(device)
+labels = labels.to(device)
+
+# Make a grid
+out = torchvision.utils.make_grid(x, nrow=1) # organizing the images in a grid structure
+
+# Show
+imshow(out, title=predictions)
 ------------------
 
 
 [1;31m---------------------------------------------------------------------------[0m
-[1;31mNameError[0m                                 Traceback (most recent call last)
-Cell [1;32mIn[2], line 1[0m
-[1;32m----> 1[0m [43mHere[49m 
+[1;31mRuntimeError[0m                              Traceback (most recent call last)
+Cell [1;32mIn[5], line 2[0m
+[0;32m      1[0m [38;5;66;03m# Get a batch from the dataset[39;00m
+[1;32m----> 2[0m inputs, labels [38;5;241m=[39m [38;5;28;43mnext[39;49m[43m([49m[38;5;28;43miter[39;49m[43m([49m[43mtrain_loader[49m[43m)[49m[43m)[49m
+[0;32m      4[0m [38;5;28mprint[39m(inputs[[38;5;241m0[39m])
+[0;32m      6[0m [38;5;66;03m# Set to device[39;00m
 
-[1;31mNameError[0m: name 'Here' is not defined
+File [1;32mc:\python39\lib\site-packages\torch\utils\data\dataloader.py:530[0m, in [0;36m_BaseDataLoaderIter.__next__[1;34m(self)[0m
+[0;32m    528[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39m_sampler_iter [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[0;32m    529[0m     [38;5;28mself[39m[38;5;241m.[39m_reset()
+[1;32m--> 530[0m data [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_next_data[49m[43m([49m[43m)[49m
+[0;32m    531[0m [38;5;28mself[39m[38;5;241m.[39m_num_yielded [38;5;241m+[39m[38;5;241m=[39m [38;5;241m1[39m
+[0;32m    532[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39m_dataset_kind [38;5;241m==[39m _DatasetKind[38;5;241m.[39mIterable [38;5;129;01mand[39;00m \
+[0;32m    533[0m         [38;5;28mself[39m[38;5;241m.[39m_IterableDataset_len_called [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mand[39;00m \
+[0;32m    534[0m         [38;5;28mself[39m[38;5;241m.[39m_num_yielded [38;5;241m>[39m [38;5;28mself[39m[38;5;241m.[39m_IterableDataset_len_called:
+
+File [1;32mc:\python39\lib\site-packages\torch\utils\data\dataloader.py:570[0m, in [0;36m_SingleProcessDataLoaderIter._next_data[1;34m(self)[0m
+[0;32m    568[0m [38;5;28;01mdef[39;00m [38;5;21m_next_data[39m([38;5;28mself[39m):
+[0;32m    569[0m     index [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_next_index()  [38;5;66;03m# may raise StopIteration[39;00m
+[1;32m--> 570[0m     data [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_dataset_fetcher[49m[38;5;241;43m.[39;49m[43mfetch[49m[43m([49m[43mindex[49m[43m)[49m  [38;5;66;03m# may raise StopIteration[39;00m
+[0;32m    571[0m     [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39m_pin_memory:
+[0;32m    572[0m         data [38;5;241m=[39m _utils[38;5;241m.[39mpin_memory[38;5;241m.[39mpin_memory(data)
+
+File [1;32mc:\python39\lib\site-packages\torch\utils\data\_utils\fetch.py:52[0m, in [0;36m_MapDatasetFetcher.fetch[1;34m(self, possibly_batched_index)[0m
+[0;32m     50[0m [38;5;28;01melse[39;00m:
+[0;32m     51[0m     data [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mdataset[possibly_batched_index]
+[1;32m---> 52[0m [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcollate_fn[49m[43m([49m[43mdata[49m[43m)[49m
+
+File [1;32mc:\python39\lib\site-packages\torch\utils\data\_utils\collate.py:172[0m, in [0;36mdefault_collate[1;34m(batch)[0m
+[0;32m    169[0m transposed [38;5;241m=[39m [38;5;28mlist[39m([38;5;28mzip[39m([38;5;241m*[39mbatch))  [38;5;66;03m# It may be accessed twice, so we use a list.[39;00m
+[0;32m    171[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(elem, [38;5;28mtuple[39m):
+[1;32m--> 172[0m     [38;5;28;01mreturn[39;00m [default_collate(samples) [38;5;28;01mfor[39;00m samples [38;5;129;01min[39;00m transposed]  [38;5;66;03m# Backwards compatibility.[39;00m
+[0;32m    173[0m [38;5;28;01melse[39;00m:
+[0;32m    174[0m     [38;5;28;01mtry[39;00m:
+
+File [1;32mc:\python39\lib\site-packages\torch\utils\data\_utils\collate.py:172[0m, in [0;36m<listcomp>[1;34m(.0)[0m
+[0;32m    169[0m transposed [38;5;241m=[39m [38;5;28mlist[39m([38;5;28mzip[39m([38;5;241m*[39mbatch))  [38;5;66;03m# It may be accessed twice, so we use a list.[39;00m
+[0;32m    171[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(elem, [38;5;28mtuple[39m):
+[1;32m--> 172[0m     [38;5;28;01mreturn[39;00m [[43mdefault_collate[49m[43m([49m[43msamples[49m[43m)[49m [38;5;28;01mfor[39;00m samples [38;5;129;01min[39;00m transposed]  [38;5;66;03m# Backwards compatibility.[39;00m
+[0;32m    173[0m [38;5;28;01melse[39;00m:
+[0;32m    174[0m     [38;5;28;01mtry[39;00m:
+
+File [1;32mc:\python39\lib\site-packages\torch\utils\data\_utils\collate.py:138[0m, in [0;36mdefault_collate[1;34m(batch)[0m
+[0;32m    136[0m         storage [38;5;241m=[39m elem[38;5;241m.[39mstorage()[38;5;241m.[39m_new_shared(numel)
+[0;32m    137[0m         out [38;5;241m=[39m elem[38;5;241m.[39mnew(storage)[38;5;241m.[39mresize_([38;5;28mlen[39m(batch), [38;5;241m*[39m[38;5;28mlist[39m(elem[38;5;241m.[39msize()))
+[1;32m--> 138[0m     [38;5;28;01mreturn[39;00m [43mtorch[49m[38;5;241;43m.[39;49m[43mstack[49m[43m([49m[43mbatch[49m[43m,[49m[43m [49m[38;5;241;43m0[39;49m[43m,[49m[43m [49m[43mout[49m[38;5;241;43m=[39;49m[43mout[49m[43m)[49m
+[0;32m    139[0m [38;5;28;01melif[39;00m elem_type[38;5;241m.[39m[38;5;18m__module__[39m [38;5;241m==[39m [38;5;124m'[39m[38;5;124mnumpy[39m[38;5;124m'[39m [38;5;129;01mand[39;00m elem_type[38;5;241m.[39m[38;5;18m__name__[39m [38;5;241m!=[39m [38;5;124m'[39m[38;5;124mstr_[39m[38;5;124m'[39m \
+[0;32m    140[0m         [38;5;129;01mand[39;00m elem_type[38;5;241m.[39m[38;5;18m__name__[39m [38;5;241m!=[39m [38;5;124m'[39m[38;5;124mstring_[39m[38;5;124m'[39m:
+[0;32m    141[0m     [38;5;28;01mif[39;00m elem_type[38;5;241m.[39m[38;5;18m__name__[39m [38;5;241m==[39m [38;5;124m'[39m[38;5;124mndarray[39m[38;5;124m'[39m [38;5;129;01mor[39;00m elem_type[38;5;241m.[39m[38;5;18m__name__[39m [38;5;241m==[39m [38;5;124m'[39m[38;5;124mmemmap[39m[38;5;124m'[39m:
+[0;32m    142[0m         [38;5;66;03m# array of string classes and object[39;00m
+
+[1;31mRuntimeError[0m: stack expects each tensor to be equal size, but got [3, 1800, 2850] at entry 0 and [3, 720, 1080] at entry 1
 

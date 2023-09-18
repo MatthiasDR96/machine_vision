@@ -15,18 +15,100 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-#FiftyOne is an open source toolkit for building image datasets and computer vision models.
-import fiftyone as fo
-import fiftyone.zoo as foz
+# The dataset is constructed from the Open Images v6 dataset. It will contain 25 samples of images where glasses are detected.
+dataset = foz.load_zoo_dataset(
+    "open-images-v6",
+    split="validation", 
+    label_types=["detections"],
+    classes=["Glasses"],
+    max_samples = 25
+    )
+session = fo.launch_app(dataset)
 ------------------
 
+----- stdout -----
+Downloading split 'validation' to 'C:\Users\matth\fiftyone\open-images-v6\validation' if necessary
+----- stdout -----
+Necessary images already downloaded
+----- stdout -----
+Existing download of split 'validation' is sufficient
+----- stdout -----
+Loading existing dataset 'open-images-v6-validation-25'. To reload from disk, either delete the existing dataset or provide a custom `dataset_name` to use
+----- stdout -----
+
+Could not connect session, trying again in 10 seconds
+------------------
 
 [1;31m---------------------------------------------------------------------------[0m
-[1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [1;32mIn[1], line 2[0m
-[0;32m      1[0m [38;5;66;03m#FiftyOne is an open source toolkit for building image datasets and computer vision models.[39;00m
-[1;32m----> 2[0m [38;5;28;01mimport[39;00m [38;5;21;01mfiftyone[39;00m [38;5;28;01mas[39;00m [38;5;21;01mfo[39;00m
-[0;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mfiftyone[39;00m[38;5;21;01m.[39;00m[38;5;21;01mzoo[39;00m [38;5;28;01mas[39;00m [38;5;21;01mfoz[39;00m
+[1;31mRuntimeError[0m                              Traceback (most recent call last)
+Cell [1;32mIn[2], line 9[0m
+[0;32m      1[0m [38;5;66;03m# The dataset is constructed from the Open Images v6 dataset. It will contain 25 samples of images where glasses are detected.[39;00m
+[0;32m      2[0m dataset [38;5;241m=[39m foz[38;5;241m.[39mload_zoo_dataset(
+[0;32m      3[0m     [38;5;124m"[39m[38;5;124mopen-images-v6[39m[38;5;124m"[39m,
+[0;32m      4[0m     split[38;5;241m=[39m[38;5;124m"[39m[38;5;124mvalidation[39m[38;5;124m"[39m, 
+[1;32m   (...)[0m
+[0;32m      7[0m     max_samples [38;5;241m=[39m [38;5;241m25[39m
+[0;32m      8[0m     )
+[1;32m----> 9[0m session [38;5;241m=[39m [43mfo[49m[38;5;241;43m.[39;49m[43mlaunch_app[49m[43m([49m[43mdataset[49m[43m)[49m
 
-[1;31mModuleNotFoundError[0m: No module named 'fiftyone'
+File [1;32mc:\python39\lib\site-packages\fiftyone\core\session\session.py:197[0m, in [0;36mlaunch_app[1;34m(dataset, view, spaces, color_scheme, plots, port, address, remote, desktop, height, auto, config)[0m
+[0;32m    185[0m [38;5;66;03m#[39;00m
+[0;32m    186[0m [38;5;66;03m# Note, we always `close_app()` here rather than just calling[39;00m
+[0;32m    187[0m [38;5;66;03m# `session.open()` if a session already exists, because the app may have[39;00m
+[1;32m   (...)[0m
+[0;32m    193[0m [38;5;66;03m# @todo this can probably be improved[39;00m
+[0;32m    194[0m [38;5;66;03m#[39;00m
+[0;32m    195[0m close_app()
+[1;32m--> 197[0m _session [38;5;241m=[39m [43mSession[49m[43m([49m
+[0;32m    198[0m [43m    [49m[43mdataset[49m[38;5;241;43m=[39;49m[43mdataset[49m[43m,[49m
+[0;32m    199[0m [43m    [49m[43mview[49m[38;5;241;43m=[39;49m[43mview[49m[43m,[49m
+[0;32m    200[0m [43m    [49m[43mspaces[49m[38;5;241;43m=[39;49m[43mspaces[49m[43m,[49m
+[0;32m    201[0m [43m    [49m[43mcolor_scheme[49m[38;5;241;43m=[39;49m[43mcolor_scheme[49m[43m,[49m
+[0;32m    202[0m [43m    [49m[43mplots[49m[38;5;241;43m=[39;49m[43mplots[49m[43m,[49m
+[0;32m    203[0m [43m    [49m[43mport[49m[38;5;241;43m=[39;49m[43mport[49m[43m,[49m
+[0;32m    204[0m [43m    [49m[43maddress[49m[38;5;241;43m=[39;49m[43maddress[49m[43m,[49m
+[0;32m    205[0m [43m    [49m[43mremote[49m[38;5;241;43m=[39;49m[43mremote[49m[43m,[49m
+[0;32m    206[0m [43m    [49m[43mdesktop[49m[38;5;241;43m=[39;49m[43mdesktop[49m[43m,[49m
+[0;32m    207[0m [43m    [49m[43mheight[49m[38;5;241;43m=[39;49m[43mheight[49m[43m,[49m
+[0;32m    208[0m [43m    [49m[43mauto[49m[38;5;241;43m=[39;49m[43mauto[49m[43m,[49m
+[0;32m    209[0m [43m    [49m[43mconfig[49m[38;5;241;43m=[39;49m[43mconfig[49m[43m,[49m
+[0;32m    210[0m [43m[49m[43m)[49m
+[0;32m    212[0m [38;5;28;01mif[39;00m _session[38;5;241m.[39mremote:
+[0;32m    213[0m     logger[38;5;241m.[39minfo(_REMOTE_INSTRUCTIONS[38;5;241m.[39mstrip()[38;5;241m.[39mformat(_session[38;5;241m.[39mserver_port))
+
+File [1;32mc:\python39\lib\site-packages\fiftyone\core\session\session.py:430[0m, in [0;36mSession.__init__[1;34m(self, dataset, view, view_name, spaces, color_scheme, plots, port, address, remote, desktop, height, auto, config)[0m
+[0;32m    427[0m _register_session([38;5;28mself[39m)
+[0;32m    429[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mauto [38;5;129;01mand[39;00m focx[38;5;241m.[39mis_notebook_context():
+[1;32m--> 430[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mshow[49m[43m([49m[43mheight[49m[38;5;241;43m=[39;49m[43mconfig[49m[38;5;241;43m.[39;49m[43mnotebook_height[49m[43m)[49m
+[0;32m    432[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mremote:
+[0;32m    433[0m     [38;5;28;01mif[39;00m focx[38;5;241m.[39mis_notebook_context():
+
+File [1;32mc:\python39\lib\site-packages\fiftyone\core\session\session.py:256[0m, in [0;36mupdate_state.<locals>.decorator.<locals>.wrapper[1;34m(session, *args, **kwargs)[0m
+[0;32m    254[0m [38;5;28;01mif[39;00m auto_show [38;5;129;01mand[39;00m session[38;5;241m.[39mauto [38;5;129;01mand[39;00m focx[38;5;241m.[39mis_notebook_context():
+[0;32m    255[0m     session[38;5;241m.[39mfreeze()
+[1;32m--> 256[0m result [38;5;241m=[39m func(session, [38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs)
+[0;32m    257[0m session[38;5;241m.[39m_client[38;5;241m.[39msend_event(StateUpdate(state[38;5;241m=[39msession[38;5;241m.[39m_state))
+[0;32m    258[0m [38;5;28;01mif[39;00m auto_show [38;5;129;01mand[39;00m session[38;5;241m.[39mauto [38;5;129;01mand[39;00m focx[38;5;241m.[39mis_notebook_context():
+
+File [1;32mc:\python39\lib\site-packages\fiftyone\core\session\session.py:1024[0m, in [0;36mSession.show[1;34m(self, height)[0m
+[0;32m   1021[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m focx[38;5;241m.[39mis_notebook_context() [38;5;129;01mor[39;00m [38;5;28mself[39m[38;5;241m.[39mdesktop:
+[0;32m   1022[0m     [38;5;28;01mreturn[39;00m
+[1;32m-> 1024[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mfreeze[49m[43m([49m[43m)[49m
+[0;32m   1025[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mdataset [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[0;32m   1026[0m     [38;5;28mself[39m[38;5;241m.[39mdataset[38;5;241m.[39m_reload()
+
+File [1;32mc:\python39\lib\site-packages\fiftyone\core\session\session.py:1125[0m, in [0;36mSession.freeze[1;34m(self)[0m
+[0;32m   1122[0m     logger[38;5;241m.[39mwarning([38;5;124m"[39m[38;5;124mOnly notebook sessions can be frozen[39m[38;5;124m"[39m)
+[0;32m   1123[0m     [38;5;28;01mreturn[39;00m
+[1;32m-> 1125[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_client[49m[38;5;241;43m.[39;49m[43msend_event[49m[43m([49m[43mDeactivateNotebookCell[49m[43m([49m[43m)[49m[43m)[49m
+[0;32m   1126[0m [38;5;28mself[39m[38;5;241m.[39mplots[38;5;241m.[39mfreeze()
+
+File [1;32mc:\python39\lib\site-packages\fiftyone\core\session\client.py:145[0m, in [0;36mClient.send_event[1;34m(self, event)[0m
+[0;32m    142[0m     [38;5;28;01mreturn[39;00m
+[0;32m    144[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m[38;5;241m.[39m_connected:
+[1;32m--> 145[0m     [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m([38;5;124m"[39m[38;5;124mClient is not connected[39m[38;5;124m"[39m)
+[0;32m    147[0m [38;5;28mself[39m[38;5;241m.[39m_post_event(event)
+[0;32m    148[0m [38;5;28mself[39m[38;5;241m.[39m_dispatch_event(event)
+
+[1;31mRuntimeError[0m: Client is not connected
 

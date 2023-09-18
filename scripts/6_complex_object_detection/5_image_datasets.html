@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Dataset Creation" href="6_dataset_creation.html" />
-    <link rel="prev" title="Convolutional Neural Network Image Segmentation" href="4_convolutional_neural_network_image_segmentation.html" />
+    <link rel="prev" title="Image Segmentation" href="4_image_segmentation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -178,7 +178,6 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Simple object detection</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/10_car_detection_application.html">Car detection using motion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/1_contour_detection.html">Contour detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/2_hough_transforms.html">Hough transforms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/3_template_matching.html">Template matching</a></li>
@@ -187,17 +186,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/6_color_detection_application.html">Color detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/7_measuring_application.html">Measuring application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/8_sawblade_application.html">Sawblade analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/92_car_detection_application.html">Car detection using motion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/9_crop_row_application.html">Crop row application</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Complex object detection</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="1_feedforward_neural_network_image_classification_MNIST.html">Feedforward Neural Network Image Classification: MNIST</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2_convolutional_neural_network_image_classification_MNIST.html">Convolutional Neural Network Image Classification: MNIST</a></li>
-<li class="toctree-l1"><a class="reference internal" href="3_convolutional_neural_network_object_detection.html">Convolutional Neural Network Object Detection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="4_convolutional_neural_network_image_segmentation.html">Convolutional Neural Network Image Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_image_classification_fully_connected.html">Image Classification using fully connected layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_image_classification_convolutional.html">Image Classification using convolutional layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_object_detection.html">Object Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_image_segmentation.html">Image Segmentation</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Image datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6_dataset_creation.html">Dataset Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="7_transfer_learning.html">Transfer Learning</a></li>
+
 </ul>
 
     </div>
@@ -400,24 +401,12 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="image-datasets">
 <h1>Image datasets<a class="headerlink" href="#image-datasets" title="Permalink to this heading">#</a></h1>
-<p>In this notebook, a look will be provided into some different open source datasets. A subdivision will be made between datasets used for object detection and datasets used for image segmentation. More documentation on the used functions can be found at <a class="reference external" href="https://voxel51.com/">https://voxel51.com/</a> .</p>
+<p>In this notebook, we will take a look at some different open source datasets. A subdivision will be made between datasets used for object detection and datasets used for image segmentation. More documentation on the used functions can be found at <a class="reference external" href="https://voxel51.com/">https://voxel51.com/</a> .</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#FiftyOne is an open source toolkit for building image datasets and computer vision models.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># FiftyOne is an open source toolkit for building image datasets and computer vision models.</span>
 <span class="kn">import</span> <span class="nn">fiftyone</span> <span class="k">as</span> <span class="nn">fo</span>
 <span class="kn">import</span> <span class="nn">fiftyone.zoo</span> <span class="k">as</span> <span class="nn">foz</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#FiftyOne is an open source toolkit for building image datasets and computer vision models.</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">fiftyone</span> <span class="k">as</span> <span class="nn">fo</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">fiftyone.zoo</span> <span class="k">as</span> <span class="nn">foz</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;fiftyone&#39;
 </pre></div>
 </div>
 </div>
@@ -429,7 +418,7 @@ document.write(`
 <p>This dataset from Google contains approximately 9 million images annotated with image-level labels and object bounding boxes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#The dataset is constructed from the Open Images v6 dataset. It will contain 25 samples of images where glasses are detected.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The dataset is constructed from the Open Images v6 dataset. It will contain 25 samples of images where glasses are detected.</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">foz</span><span class="o">.</span><span class="n">load_zoo_dataset</span><span class="p">(</span>
     <span class="s2">&quot;open-images-v6&quot;</span><span class="p">,</span>
     <span class="n">split</span><span class="o">=</span><span class="s2">&quot;validation&quot;</span><span class="p">,</span> 
@@ -441,6 +430,97 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading split &#39;validation&#39; to &#39;C:\Users\matth\fiftyone\open-images-v6\validation&#39; if necessary
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Necessary images already downloaded
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Existing download of split &#39;validation&#39; is sufficient
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading existing dataset &#39;open-images-v6-validation-25&#39;. To reload from disk, either delete the existing dataset or provide a custom `dataset_name` to use
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Could not connect session, trying again in 10 seconds
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># The dataset is constructed from the Open Images v6 dataset. It will contain 25 samples of images where glasses are detected.</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">dataset</span> <span class="o">=</span> <span class="n">foz</span><span class="o">.</span><span class="n">load_zoo_dataset</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="s2">&quot;open-images-v6&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">split</span><span class="o">=</span><span class="s2">&quot;validation&quot;</span><span class="p">,</span> 
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">max_samples</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="n">session</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">launch_app</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+
+<span class="nn">File c:\python39\lib\site-packages\fiftyone\core\session\session.py:197,</span> in <span class="ni">launch_app</span><span class="nt">(dataset, view, spaces, color_scheme, plots, port, address, remote, desktop, height, auto, config)</span>
+<span class="g g-Whitespace">    </span><span class="mi">185</span> <span class="c1">#</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span> <span class="c1"># Note, we always `close_app()` here rather than just calling</span>
+<span class="g g-Whitespace">    </span><span class="mi">187</span> <span class="c1"># `session.open()` if a session already exists, because the app may have</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">193</span> <span class="c1"># @todo this can probably be improved</span>
+<span class="g g-Whitespace">    </span><span class="mi">194</span> <span class="c1">#</span>
+<span class="g g-Whitespace">    </span><span class="mi">195</span> <span class="n">close_app</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">197</span> <span class="n">_session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">198</span>     <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">199</span>     <span class="n">view</span><span class="o">=</span><span class="n">view</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">200</span>     <span class="n">spaces</span><span class="o">=</span><span class="n">spaces</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">201</span>     <span class="n">color_scheme</span><span class="o">=</span><span class="n">color_scheme</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">202</span>     <span class="n">plots</span><span class="o">=</span><span class="n">plots</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">203</span>     <span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">204</span>     <span class="n">address</span><span class="o">=</span><span class="n">address</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">205</span>     <span class="n">remote</span><span class="o">=</span><span class="n">remote</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="n">desktop</span><span class="o">=</span><span class="n">desktop</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>     <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">208</span>     <span class="n">auto</span><span class="o">=</span><span class="n">auto</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span>     <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">212</span> <span class="k">if</span> <span class="n">_session</span><span class="o">.</span><span class="n">remote</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">213</span>     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">_REMOTE_INSTRUCTIONS</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_session</span><span class="o">.</span><span class="n">server_port</span><span class="p">))</span>
+
+<span class="nn">File c:\python39\lib\site-packages\fiftyone\core\session\session.py:430,</span> in <span class="ni">Session.__init__</span><span class="nt">(self, dataset, view, view_name, spaces, color_scheme, plots, port, address, remote, desktop, height, auto, config)</span>
+<span class="g g-Whitespace">    </span><span class="mi">427</span> <span class="n">_register_session</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">429</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto</span> <span class="ow">and</span> <span class="n">focx</span><span class="o">.</span><span class="n">is_notebook_context</span><span class="p">():</span>
+<span class="ne">--&gt; </span><span class="mi">430</span>     <span class="bp">self</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">notebook_height</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">432</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">remote</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">433</span>     <span class="k">if</span> <span class="n">focx</span><span class="o">.</span><span class="n">is_notebook_context</span><span class="p">():</span>
+
+<span class="nn">File c:\python39\lib\site-packages\fiftyone\core\session\session.py:256,</span> in <span class="ni">update_state.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(session, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span> <span class="k">if</span> <span class="n">auto_show</span> <span class="ow">and</span> <span class="n">session</span><span class="o">.</span><span class="n">auto</span> <span class="ow">and</span> <span class="n">focx</span><span class="o">.</span><span class="n">is_notebook_context</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span>     <span class="n">session</span><span class="o">.</span><span class="n">freeze</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">256</span> <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">257</span> <span class="n">session</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">send_event</span><span class="p">(</span><span class="n">StateUpdate</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">session</span><span class="o">.</span><span class="n">_state</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span> <span class="k">if</span> <span class="n">auto_show</span> <span class="ow">and</span> <span class="n">session</span><span class="o">.</span><span class="n">auto</span> <span class="ow">and</span> <span class="n">focx</span><span class="o">.</span><span class="n">is_notebook_context</span><span class="p">():</span>
+
+<span class="nn">File c:\python39\lib\site-packages\fiftyone\core\session\session.py:1024,</span> in <span class="ni">Session.show</span><span class="nt">(self, height)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1021</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">focx</span><span class="o">.</span><span class="n">is_notebook_context</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">desktop</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1022</span>     <span class="k">return</span>
+<span class="ne">-&gt; </span><span class="mi">1024</span> <span class="bp">self</span><span class="o">.</span><span class="n">freeze</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1025</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1026</span>     <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">_reload</span><span class="p">()</span>
+
+<span class="nn">File c:\python39\lib\site-packages\fiftyone\core\session\session.py:1125,</span> in <span class="ni">Session.freeze</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1122</span>     <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Only notebook sessions can be frozen&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1123</span>     <span class="k">return</span>
+<span class="ne">-&gt; </span><span class="mi">1125</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">send_event</span><span class="p">(</span><span class="n">DeactivateNotebookCell</span><span class="p">())</span>
+<span class="g g-Whitespace">   </span><span class="mi">1126</span> <span class="bp">self</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">freeze</span><span class="p">()</span>
+
+<span class="nn">File c:\python39\lib\site-packages\fiftyone\core\session\client.py:145,</span> in <span class="ni">Client.send_event</span><span class="nt">(self, event)</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span>     <span class="k">return</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">145</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Client is not connected&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post_event</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch_event</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+
+<span class="ne">RuntimeError</span>: Client is not connected
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="imagenet">
@@ -448,9 +528,52 @@ document.write(`
 <p>This dataset is organised according to the WordNet hierarchy. Each node of the hierarchy contains hundreds and thousands of images. Object detection can be trained with this dataset, but here the dataset is previewed for image classification.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#The dataset is constructed from the ImageNet dataset. </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The dataset is constructed from the ImageNet dataset. </span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">foz</span><span class="o">.</span><span class="n">load_zoo_dataset</span><span class="p">(</span><span class="s2">&quot;imagenet-sample&quot;</span><span class="p">)</span>
 <span class="n">session</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">launch_app</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading dataset to &#39;C:\Users\matth\fiftyone\imagenet-sample&#39;
+Downloading dataset...
+ 100% |████|  762.4Mb/762.4Mb [11.3s elapsed, 0s remaining, 64.0Mb/s]      
+Extracting dataset...
+Parsing dataset metadata
+Found 1000 samples
+Dataset info written to &#39;C:\Users\matth\fiftyone\imagenet-sample\info.json&#39;
+Loading &#39;imagenet-sample&#39;
+ 100% |███████████████| 1000/1000 [955.1ms elapsed, 0s remaining, 1.1K samples/s]       
+Dataset &#39;imagenet-sample&#39; created
+</pre></div>
+</div>
+<div class="output text_html">
+        <iframe
+            width="100%"
+            height="800"
+            src="http://localhost:5151/?notebook=True&subscription=83a19c96-6d4b-4d0c-93e8-1d75e67c3ee2"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Welcome to
+
+███████╗██╗███████╗████████╗██╗   ██╗ ██████╗ ███╗   ██╗███████╗
+██╔════╝██║██╔════╝╚══██╔══╝╚██╗ ██╔╝██╔═══██╗████╗  ██║██╔════╝
+█████╗  ██║█████╗     ██║    ╚████╔╝ ██║   ██║██╔██╗ ██║█████╗
+██╔══╝  ██║██╔══╝     ██║     ╚██╔╝  ██║   ██║██║╚██╗██║██╔══╝
+██║     ██║██║        ██║      ██║   ╚██████╔╝██║ ╚████║███████╗
+╚═╝     ╚═╝╚═╝        ╚═╝      ╚═╝    ╚═════╝ ╚═╝  ╚═══╝╚══════╝ v0.21.6
+
+If you&#39;re finding FiftyOne helpful, here&#39;s how you can get involved:
+
+|
+|  ⭐⭐⭐ Give the project a star on GitHub ⭐⭐⭐
+|  https://github.com/voxel51/fiftyone
+|
+|  🚀🚀🚀 Join the FiftyOne Slack community 🚀🚀🚀
+|  https://slack.voxel51.com
+|
 </pre></div>
 </div>
 </div>
@@ -461,7 +584,7 @@ document.write(`
 <p>This is a large-scale dataset for object detection and segmentation. It contains 330k images and 80 object categories.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#The dataset is constructed from the COCO 2017 dataset. It will contain 25 samples of images where cats and/or dogs are detected.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The dataset is constructed from the COCO 2017 dataset. It will contain 25 samples of images where cats and/or dogs are detected.</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">foz</span><span class="o">.</span><span class="n">load_zoo_dataset</span><span class="p">(</span>
     <span class="s2">&quot;coco-2017&quot;</span><span class="p">,</span>
     <span class="n">split</span><span class="o">=</span><span class="s2">&quot;validation&quot;</span><span class="p">,</span>
@@ -480,7 +603,7 @@ document.write(`
 <p>This is a dataset which is used for autonomous driving systems. It contains images of cars and pedestrians from the driver’s view.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#The dataset is constructed from the KITTI dataset. Note: it takes approximately 25 minutes to download the images.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The dataset is constructed from the KITTI dataset. Note: it takes approximately 25 minutes to download the images.</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">foz</span><span class="o">.</span><span class="n">load_zoo_dataset</span><span class="p">(</span><span class="s2">&quot;kitti&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
 <span class="n">session</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">launch_app</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
 </pre></div>
@@ -493,7 +616,7 @@ document.write(`
 <p>This dataset contain around 12k images, where each image contains a set of objects. There are 20 object classes available.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#The dataset is constructed from the PASCAL VOC 2012 dataset.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The dataset is constructed from the PASCAL VOC 2012 dataset.</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">foz</span><span class="o">.</span><span class="n">load_zoo_dataset</span><span class="p">(</span><span class="s2">&quot;voc-2012&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;validation&quot;</span><span class="p">)</span>
 <span class="n">session</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">launch_app</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
 </pre></div>
@@ -509,7 +632,7 @@ document.write(`
 <p>This dataset from Google contains approximately 9 million images annotated with image-level labels and object bounding boxes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#The dataset is constructed from the Open Images v6 dataset. It will contain 25 samples of segmented images.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The dataset is constructed from the Open Images v6 dataset. It will contain 25 samples of segmented images.</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">foz</span><span class="o">.</span><span class="n">load_zoo_dataset</span><span class="p">(</span>
     <span class="s2">&quot;open-images-v6&quot;</span><span class="p">,</span>
     <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> 
@@ -557,12 +680,12 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="4_convolutional_neural_network_image_segmentation.html"
+       href="4_image_segmentation.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Convolutional Neural Network Image Segmentation</p>
+        <p class="prev-next-title">Image Segmentation</p>
       </div>
     </a>
     <a class="right-next"

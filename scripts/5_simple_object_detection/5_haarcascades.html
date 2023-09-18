@@ -178,7 +178,6 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Simple object detection</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="10_car_detection_application.html">Car detection using motion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_contour_detection.html">Contour detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2_hough_transforms.html">Hough transforms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_template_matching.html">Template matching</a></li>
@@ -187,17 +186,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="6_color_detection_application.html">Color detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="7_measuring_application.html">Measuring application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="8_sawblade_application.html">Sawblade analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="92_car_detection_application.html">Car detection using motion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="9_crop_row_application.html">Crop row application</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Complex object detection</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/1_feedforward_neural_network_image_classification_MNIST.html">Feedforward Neural Network Image Classification: MNIST</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/2_convolutional_neural_network_image_classification_MNIST.html">Convolutional Neural Network Image Classification: MNIST</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/3_convolutional_neural_network_object_detection.html">Convolutional Neural Network Object Detection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/4_convolutional_neural_network_image_segmentation.html">Convolutional Neural Network Image Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/1_image_classification_fully_connected.html">Image Classification using fully connected layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/2_image_classification_convolutional.html">Image Classification using convolutional layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/3_object_detection.html">Object Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/4_image_segmentation.html">Image Segmentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/5_image_datasets.html">Image datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/6_dataset_creation.html">Dataset Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/7_transfer_learning.html">Transfer Learning</a></li>
+
 </ul>
 
     </div>
@@ -395,7 +396,7 @@ document.write(`
 <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/smiling_person.jpg&#39;</span><span class="p">)</span>
 
 <span class="c1"># Converting RGB image to grayscale</span>
-<span class="n">gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+<span class="n">gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
 
 <span class="c1"># Show image</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
@@ -404,18 +405,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/smiling_person.jpg&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Converting RGB image to grayscale</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1"># Show image</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;img&#39; is not defined
-</pre></div>
-</div>
+<img alt="../../_images/5b756db40425b4cde02842e8a7fe311cab2aceed2f6ae14d80a4205dcf66fc9b.png" src="../../_images/5b756db40425b4cde02842e8a7fe311cab2aceed2f6ae14d80a4205dcf66fc9b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -436,7 +426,7 @@ document.write(`
 
     <span class="c1"># Define face images ROIs</span>
     <span class="n">roi_gray</span> <span class="o">=</span> <span class="n">gray</span><span class="p">[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span> <span class="o">+</span> <span class="n">w</span><span class="p">]</span>
-    <span class="n">roi_color</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span> <span class="o">+</span> <span class="n">w</span><span class="p">]</span>
+    <span class="n">roi_color</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span> <span class="o">+</span> <span class="n">w</span><span class="p">]</span>
 
     <span class="c1"># Detect smile</span>
     <span class="n">smile</span> <span class="o">=</span> <span class="n">smileCascade</span><span class="o">.</span><span class="n">detectMultiScale</span><span class="p">(</span><span class="n">roi_gray</span><span class="p">,</span> <span class="n">scaleFactor</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">minNeighbors</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
@@ -459,7 +449,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/39a7fbda5f4aabe5da778f0171bc472e1088e45f62d0e6acdf1535ece5cb8e00.png" src="../../_images/39a7fbda5f4aabe5da778f0171bc472e1088e45f62d0e6acdf1535ece5cb8e00.png" />
+<img alt="../../_images/a9b2a0e4c625670a4943a8f34c349c1bac2a25f515cd30d8298bfa7b7f738b3d.png" src="../../_images/a9b2a0e4c625670a4943a8f34c349c1bac2a25f515cd30d8298bfa7b7f738b3d.png" />
 </div>
 </div>
 </section>
