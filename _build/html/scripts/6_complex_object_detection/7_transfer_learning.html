@@ -530,7 +530,7 @@ These are the classes: [&#39;crazing&#39;, &#39;inclusion&#39;, &#39;patches&#39
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/8429778c9e63dae52ebe8358a21c067c6270b47659daae540f0979e3652e28ae.png" src="../../_images/8429778c9e63dae52ebe8358a21c067c6270b47659daae540f0979e3652e28ae.png" />
+<img alt="../../_images/2b70d2a67ad6484c7f7325ffaf97910a8ed6cbbe248465662bbb1851ca362162.png" src="../../_images/2b70d2a67ad6484c7f7325ffaf97910a8ed6cbbe248465662bbb1851ca362162.png" />
 </div>
 </div>
 </section>
@@ -663,77 +663,83 @@ These are the classes: [&#39;crazing&#39;, &#39;inclusion&#39;, &#39;patches&#39
 ----------
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">8</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1"># Train for 50 epochs</span>
-<span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">best_acc</span><span class="p">,</span> <span class="n">best_model</span><span class="p">,</span> <span class="n">results</span> <span class="o">=</span> <span class="n">train_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">)</span>
-
-<span class="nn">Cell In[8], line 31,</span> in <span class="ni">train_model</span><span class="nt">(model, criterion, optimizer, n_epochs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span> <span class="c1"># Extract batches from the data loaders untill all batches are retrieved</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="n">num_samples</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="ne">---&gt; </span><span class="mi">31</span> <span class="k">for</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">dataloaders_dict</span><span class="p">[</span><span class="n">phase</span><span class="p">]:</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span> 
-<span class="g g-Whitespace">     </span><span class="mi">33</span>     <span class="c1"># Inputs shape</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span>     <span class="n">batch_size</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">shape</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span>     <span class="c1"># Store the inputs and labels to the selected device</span>
-
-<span class="nn">File c:\python39\lib\site-packages\torch\utils\data\dataloader.py:530,</span> in <span class="ni">_BaseDataLoaderIter.__next__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">528</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sampler_iter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">529</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">530</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_data</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">531</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_yielded</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">    </span><span class="mi">532</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_kind</span> <span class="o">==</span> <span class="n">_DatasetKind</span><span class="o">.</span><span class="n">Iterable</span> <span class="ow">and</span> \
-<span class="g g-Whitespace">    </span><span class="mi">533</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_IterableDataset_len_called</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> \
-<span class="g g-Whitespace">    </span><span class="mi">534</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_num_yielded</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_IterableDataset_len_called</span><span class="p">:</span>
-
-<span class="nn">File c:\python39\lib\site-packages\torch\utils\data\dataloader.py:570,</span> in <span class="ni">_SingleProcessDataLoaderIter._next_data</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">568</span> <span class="k">def</span> <span class="nf">_next_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">569</span>     <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_index</span><span class="p">()</span>  <span class="c1"># may raise StopIteration</span>
-<span class="ne">--&gt; </span><span class="mi">570</span>     <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_fetcher</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>  <span class="c1"># may raise StopIteration</span>
-<span class="g g-Whitespace">    </span><span class="mi">571</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pin_memory</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">572</span>         <span class="n">data</span> <span class="o">=</span> <span class="n">_utils</span><span class="o">.</span><span class="n">pin_memory</span><span class="o">.</span><span class="n">pin_memory</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-
-<span class="nn">File c:\python39\lib\site-packages\torch\utils\data\_utils\fetch.py:49,</span> in <span class="ni">_MapDatasetFetcher.fetch</span><span class="nt">(self, possibly_batched_index)</span>
-<span class="g g-Whitespace">     </span><span class="mi">47</span> <span class="k">def</span> <span class="nf">fetch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">possibly_batched_index</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">48</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_collation</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">49</span>         <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">possibly_batched_index</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">50</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">51</span>         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">possibly_batched_index</span><span class="p">]</span>
-
-<span class="nn">File c:\python39\lib\site-packages\torch\utils\data\_utils\fetch.py:49,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">     </span><span class="mi">47</span> <span class="k">def</span> <span class="nf">fetch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">possibly_batched_index</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">48</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_collation</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">49</span>         <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">possibly_batched_index</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">50</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">51</span>         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">possibly_batched_index</span><span class="p">]</span>
-
-<span class="nn">File c:\python39\lib\site-packages\torchvision\datasets\folder.py:230,</span> in <span class="ni">DatasetFolder.__getitem__</span><span class="nt">(self, index)</span>
-<span class="g g-Whitespace">    </span><span class="mi">222</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">223</span><span class="sd"> Args:</span>
-<span class="g g-Whitespace">    </span><span class="mi">224</span><span class="sd">     index (int): Index</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">227</span><span class="sd">     tuple: (sample, target) where target is class_index of the target class.</span>
-<span class="g g-Whitespace">    </span><span class="mi">228</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">229</span> <span class="n">path</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-<span class="ne">--&gt; </span><span class="mi">230</span> <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loader</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">231</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">232</span>     <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
-
-<span class="nn">File c:\python39\lib\site-packages\torchvision\datasets\folder.py:269,</span> in <span class="ni">default_loader</span><span class="nt">(path)</span>
-<span class="g g-Whitespace">    </span><span class="mi">267</span>     <span class="k">return</span> <span class="n">accimage_loader</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">268</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">269</span>     <span class="k">return</span> <span class="n">pil_loader</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-
-<span class="nn">File c:\python39\lib\site-packages\torchvision\datasets\folder.py:247,</span> in <span class="ni">pil_loader</span><span class="nt">(path)</span>
-<span class="g g-Whitespace">    </span><span class="mi">245</span> <span class="k">def</span> <span class="nf">pil_loader</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">246</span>     <span class="c1"># open path as file to avoid ResourceWarning (https://github.com/python-pillow/Pillow/issues/835)</span>
-<span class="ne">--&gt; </span><span class="mi">247</span>     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">248</span>         <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">249</span>         <span class="k">return</span> <span class="n">img</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">)</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.694 train_loss 0.905
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.922 val_loss 0.430
+Epoch 2/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.884 train_loss 0.442
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.894 val_loss 0.368
+Epoch 3/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.912 train_loss 0.326
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.922 val_loss 0.322
+Epoch 4/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.908 train_loss 0.307
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.936 val_loss 0.239
+Epoch 5/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.923 train_loss 0.257
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.939 val_loss 0.245
+Epoch 6/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.932 train_loss 0.236
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.922 val_loss 0.261
+Epoch 7/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.921 train_loss 0.244
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.958 val_loss 0.161
+Epoch 8/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.924 train_loss 0.238
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.933 val_loss 0.210
+Epoch 9/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.945 train_loss 0.211
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.939 val_loss 0.198
+Epoch 10/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.932 train_loss 0.215
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.925 val_loss 0.270
+Best val Acc: 0.9583
 </pre></div>
 </div>
 </div>
@@ -746,7 +752,7 @@ These are the classes: [&#39;crazing&#39;, &#39;inclusion&#39;, &#39;patches&#39
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The best validation accuracy is: 1.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The best validation accuracy is: 0.9583333333333334
 </pre></div>
 </div>
 </div>
@@ -776,7 +782,7 @@ These are the classes: [&#39;crazing&#39;, &#39;inclusion&#39;, &#39;patches&#39
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Accuracy&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/0bf2b0088aa0c62f4051921d2cb26cda94697b2f484b8cc338d4ec5da1a0f0b2.png" src="../../_images/0bf2b0088aa0c62f4051921d2cb26cda94697b2f484b8cc338d4ec5da1a0f0b2.png" />
+<img alt="../../_images/79ca6031ed1833556e27017da13863073c40c90ac7073b5f7b3aee7291208600.png" src="../../_images/79ca6031ed1833556e27017da13863073c40c90ac7073b5f7b3aee7291208600.png" />
 </div>
 </div>
 </section>
@@ -812,7 +818,7 @@ These are the classes: [&#39;crazing&#39;, &#39;inclusion&#39;, &#39;patches&#39
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/6af22a27bbd09742d136442bdf65ede60305bd38cd2eeb7a05c63bc7cfb3a993.png" src="../../_images/6af22a27bbd09742d136442bdf65ede60305bd38cd2eeb7a05c63bc7cfb3a993.png" />
+<img alt="../../_images/bc830de46afbc5bfe5102a83dccd3fa3ed26b634245ae17d11bec50eaad492bb.png" src="../../_images/bc830de46afbc5bfe5102a83dccd3fa3ed26b634245ae17d11bec50eaad492bb.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -849,7 +855,7 @@ These are the classes: [&#39;crazing&#39;, &#39;inclusion&#39;, &#39;patches&#39
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The model has an accuracy of 100.0 on the test set.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The model has an accuracy of 83.33333333333334 on the test set.
 </pre></div>
 </div>
 </div>

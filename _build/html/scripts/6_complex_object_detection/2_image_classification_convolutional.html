@@ -622,40 +622,82 @@ document.write(`
 ----------
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">criterium</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Train for 50 epochs</span>
-<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">results</span> <span class="o">=</span> <span class="n">train_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">criterium</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-
-<span class="nn">Cell In[6], line 57,</span> in <span class="ni">train_model</span><span class="nt">(model, optimizer, criterum, n_epochs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">55</span>     <span class="k">if</span> <span class="n">phase</span><span class="o">==</span><span class="s1">&#39;train&#39;</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span>         <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span> <span class="c1"># Pytorch keeps track of the gradients over multiple epochs, therefore initialise it to 0</span>
-<span class="ne">---&gt; </span><span class="mi">57</span>         <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span> <span class="c1"># Calculate the weight gradients (Backward Propagation)</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span>         <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span> <span class="c1"># Update the model parameters using the defined optimizer </span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="c1"># Save results</span>
-
-<span class="nn">File c:\python39\lib\site-packages\torch\_tensor.py:363,</span> in <span class="ni">Tensor.backward</span><span class="nt">(self, gradient, retain_graph, create_graph, inputs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">354</span> <span class="k">if</span> <span class="n">has_torch_function_unary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">355</span>     <span class="k">return</span> <span class="n">handle_torch_function</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">356</span>         <span class="n">Tensor</span><span class="o">.</span><span class="n">backward</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">357</span>         <span class="p">(</span><span class="bp">self</span><span class="p">,),</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">361</span>         <span class="n">create_graph</span><span class="o">=</span><span class="n">create_graph</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">362</span>         <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">363</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
-
-<span class="nn">File c:\python39\lib\site-packages\torch\autograd\__init__.py:173,</span> in <span class="ni">backward</span><span class="nt">(tensors, grad_tensors, retain_graph, create_graph, grad_variables, inputs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span>     <span class="n">retain_graph</span> <span class="o">=</span> <span class="n">create_graph</span>
-<span class="g g-Whitespace">    </span><span class="mi">170</span> <span class="c1"># The reason we repeat same the comment below is that</span>
-<span class="g g-Whitespace">    </span><span class="mi">171</span> <span class="c1"># some Python versions print out the first line of a multi-line function</span>
-<span class="g g-Whitespace">    </span><span class="mi">172</span> <span class="c1"># calls in the traceback and some print out the last line</span>
-<span class="ne">--&gt; </span><span class="mi">173</span> <span class="n">Variable</span><span class="o">.</span><span class="n">_execution_engine</span><span class="o">.</span><span class="n">run_backward</span><span class="p">(</span>  <span class="c1"># Calls into the C++ engine to run the backward pass</span>
-<span class="g g-Whitespace">    </span><span class="mi">174</span>     <span class="n">tensors</span><span class="p">,</span> <span class="n">grad_tensors_</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">175</span>     <span class="n">allow_unreachable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">accumulate_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.692 train_loss 1.045
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.882 val_loss 0.385
+Epoch 2/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.891 train_loss 0.361
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.909 val_loss 0.304
+Epoch 3/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.914 train_loss 0.284
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.929 val_loss 0.244
+Epoch 4/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.932 train_loss 0.230
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.940 val_loss 0.194
+Epoch 5/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.943 train_loss 0.191
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.951 val_loss 0.165
+Epoch 6/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.951 train_loss 0.163
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.958 val_loss 0.145
+Epoch 7/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.957 train_loss 0.143
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.962 val_loss 0.122
+Epoch 8/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.962 train_loss 0.127
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.967 val_loss 0.109
+Epoch 9/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.966 train_loss 0.115
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.970 val_loss 0.097
+Epoch 10/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.968 train_loss 0.106
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.972 val_loss 0.093
 </pre></div>
 </div>
 </div>
@@ -686,7 +728,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Accuracy&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/981f45bf0d6a0ffacf9e77ea7e1bc551ab3ae3cb2ec67894afcfa707ce65d873.png" src="../../_images/981f45bf0d6a0ffacf9e77ea7e1bc551ab3ae3cb2ec67894afcfa707ce65d873.png" />
+<img alt="../../_images/e67562a6d4944d644e85282d5efc5ed52cc10bc5465a95afdfd4cec91ec26c27.png" src="../../_images/e67562a6d4944d644e85282d5efc5ed52cc10bc5465a95afdfd4cec91ec26c27.png" />
 </div>
 </div>
 <p>The loss is already very low from the first epoch. The validation loss also starts to rise again after a certain amount of epochs. This is because overfitting of the model on the training set is occurring. Therefore, the weights of the model with the best validation accuracy are stored.</p>
@@ -716,7 +758,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/188c522673de58e593f250440610200e8bda76bb41e3fce626be636ea2a39223.png" src="../../_images/188c522673de58e593f250440610200e8bda76bb41e3fce626be636ea2a39223.png" />
+<img alt="../../_images/df07574756d937172592ffc3ad2b2a6369ed3edf945f85b90004aae258a4067c.png" src="../../_images/df07574756d937172592ffc3ad2b2a6369ed3edf945f85b90004aae258a4067c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -753,7 +795,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The model has an accuracy of 96.7 on the validation set.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The model has an accuracy of 97.2 on the validation set.
 </pre></div>
 </div>
 </div>
