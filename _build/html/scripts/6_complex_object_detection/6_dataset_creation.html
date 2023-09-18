@@ -178,7 +178,6 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Simple object detection</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/10_car_detection_application.html">Car detection using motion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/1_contour_detection.html">Contour detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/2_hough_transforms.html">Hough transforms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/3_template_matching.html">Template matching</a></li>
@@ -187,17 +186,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/6_color_detection_application.html">Color detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/7_measuring_application.html">Measuring application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/8_sawblade_application.html">Sawblade analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/92_car_detection_application.html">Car detection using motion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/9_crop_row_application.html">Crop row application</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Complex object detection</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="1_feedforward_neural_network_image_classification_MNIST.html">Feedforward Neural Network Image Classification: MNIST</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2_convolutional_neural_network_image_classification_MNIST.html">Convolutional Neural Network Image Classification: MNIST</a></li>
-<li class="toctree-l1"><a class="reference internal" href="3_convolutional_neural_network_object_detection.html">Convolutional Neural Network Object Detection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="4_convolutional_neural_network_image_segmentation.html">Convolutional Neural Network Image Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_image_classification_fully_connected.html">Image Classification using fully connected layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_image_classification_convolutional.html">Image Classification using convolutional layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_object_detection.html">Object Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_image_segmentation.html">Image Segmentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5_image_datasets.html">Image datasets</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Dataset Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="7_transfer_learning.html">Transfer Learning</a></li>
+
 </ul>
 
     </div>
@@ -380,15 +381,15 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="dataset-creation">
 <h1>Dataset Creation<a class="headerlink" href="#dataset-creation" title="Permalink to this heading">#</a></h1>
 <p>In this notebook, the creation of a simple annotated dataset for image classification tasks will be covered. The dataset will be created in PyTorch because these are then compatible with the use of pre-trained torch models.</p>
-<p>First, the needed libraries are imported.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">torchvision</span>
-<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">transforms</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torchvision</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">transforms</span>
 </pre></div>
 </div>
 </div>
@@ -401,33 +402,17 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Here</span> 
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">Here</span> 
-
-<span class="ne">NameError</span>: name &#39;Here&#39; is not defined
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normalization parameters (comuted from numerous images)</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
 <span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">])</span>
 
-<span class="c1"># transforms.compose is used to perform multiple sequential transformations on an image </span>
+<span class="c1"># Define transforms for the dataset </span>
 <span class="n">data_transforms</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
         <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
         <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">std</span><span class="p">)</span>
     <span class="p">]),</span>
-    <span class="s1">&#39;val&#39;</span><span class="p">:</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
+    <span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
         <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span> 
         <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">std</span><span class="p">)</span>
     <span class="p">])</span>
@@ -437,54 +422,33 @@ document.write(`
 </div>
 </div>
 <p>We will create a tiny custom dataset of images from 4 different cartoons (Looney Tunes, The Simpsons, Tom &amp; Jerry, Scooby-Doo). The images can be stored in a local folder. The corresponding labels are defined in the name of the folder.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="s1">&#39;Custom Dataset&#39;</span> <span class="c1"># change the path </span>
-<span class="n">sets</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;val&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
 <p>The images are loaded with the datasets.Imagefolder function. These datasets are then read with the Dataloader function. We can define the size of the batches here.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_datasets</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span><span class="n">x</span><span class="p">),</span><span class="n">data_transforms</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sets</span><span class="p">}</span>
-<span class="n">dataloaders</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">image_datasets</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sets</span><span class="p">}</span>
-<span class="n">dataloaders</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Image folder object to load images from folders</span>
+<span class="n">train_datasets</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;../../data/custom_dataset&#39;</span><span class="p">,</span> <span class="s1">&#39;train&#39;</span><span class="p">),</span> <span class="n">data_transforms</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">])</span>
+<span class="n">valid_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;../../data/custom_dataset&#39;</span><span class="p">,</span> <span class="s1">&#39;valid&#39;</span><span class="p">),</span> <span class="n">data_transforms</span><span class="p">[</span><span class="s1">&#39;valid&#39;</span><span class="p">])</span>
+<span class="n">datasets_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="n">train_datasets</span><span class="p">,</span> <span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="n">valid_dataset</span><span class="p">}</span>
+
+<span class="c1"># Image dataloaders to load data in batches</span>
+<span class="n">train_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">datasets_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">valid_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">datasets_dict</span><span class="p">[</span><span class="s1">&#39;valid&#39;</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">dataloaders_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="n">train_loader</span><span class="p">,</span> <span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="n">valid_loader</span><span class="p">}</span>
+
+<span class="c1"># Get size of datasets</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">datasets_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;In the &quot;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s2">&quot; dataset are &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">datasets_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span> <span class="o">+</span> <span class="s2">&quot; images&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get classes</span>
+<span class="n">class_names</span> <span class="o">=</span> <span class="n">datasets_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">classes</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;These are the classes: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">class_names</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;train&#39;: &lt;torch.utils.data.dataloader.DataLoader at 0x27704a0d300&gt;,
- &#39;val&#39;: &lt;torch.utils.data.dataloader.DataLoader at 0x27704a0dea0&gt;}
-</pre></div>
-</div>
-</div>
-</div>
-<p>The amount of images in the the respective subsets are obtained as follow:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset_sizes</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">image_datasets</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sets</span><span class="p">}</span>
-<span class="n">dataset_sizes</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;train&#39;: 8, &#39;val&#39;: 4}
-</pre></div>
-</div>
-</div>
-</div>
-<p>The different class names or labels are:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">class_names</span> <span class="o">=</span> <span class="n">image_datasets</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">classes</span>
-<span class="n">class_names</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Looney Tunes&#39;, &#39;Scooby Doo&#39;, &#39;The Simpsons&#39;, &#39;Tom &amp; Jerry&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In the train dataset are 8 images
+In the valid dataset are 4 images
+These are the classes: [&#39;Looney Tunes&#39;, &#39;Scooby Doo&#39;, &#39;The Simpsons&#39;, &#39;Tom &amp; Jerry&#39;]
 </pre></div>
 </div>
 </div>
@@ -492,7 +456,7 @@ document.write(`
 <p>A function is written to show the images with its corresponding label.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">imshow</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span><span class="n">title</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">imshow</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
     <span class="n">inp</span> <span class="o">=</span> <span class="n">inp</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">transpose</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
     <span class="n">inp</span> <span class="o">=</span> <span class="n">std</span> <span class="o">*</span> <span class="n">inp</span> <span class="o">+</span> <span class="n">mean</span>
     <span class="n">inp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
@@ -505,24 +469,81 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">dataloaders</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get a batch from the dataset</span>
+<span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">train_loader</span><span class="p">))</span>
 
-<span class="n">out</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">make_grid</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">nrow</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imshow</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="p">[</span><span class="n">class_names</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Set to device</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+<span class="c1"># Make a grid</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">make_grid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nrow</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># organizing the images in a grid structure</span>
+
+<span class="c1"># Show</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">predictions</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/914c094a05b3f91bf58601058aaf449b37e1c324ff3c3398dcecbe7136962ca3.png" src="../../_images/914c094a05b3f91bf58601058aaf449b37e1c324ff3c3398dcecbe7136962ca3.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Get a batch from the dataset</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">train_loader</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1"># Set to device</span>
+
+<span class="nn">File c:\python39\lib\site-packages\torch\utils\data\dataloader.py:530,</span> in <span class="ni">_BaseDataLoaderIter.__next__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">528</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sampler_iter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">529</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">530</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_data</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">531</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_yielded</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">    </span><span class="mi">532</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_kind</span> <span class="o">==</span> <span class="n">_DatasetKind</span><span class="o">.</span><span class="n">Iterable</span> <span class="ow">and</span> \
+<span class="g g-Whitespace">    </span><span class="mi">533</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_IterableDataset_len_called</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> \
+<span class="g g-Whitespace">    </span><span class="mi">534</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_num_yielded</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_IterableDataset_len_called</span><span class="p">:</span>
+
+<span class="nn">File c:\python39\lib\site-packages\torch\utils\data\dataloader.py:570,</span> in <span class="ni">_SingleProcessDataLoaderIter._next_data</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">568</span> <span class="k">def</span> <span class="nf">_next_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">569</span>     <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_index</span><span class="p">()</span>  <span class="c1"># may raise StopIteration</span>
+<span class="ne">--&gt; </span><span class="mi">570</span>     <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_fetcher</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>  <span class="c1"># may raise StopIteration</span>
+<span class="g g-Whitespace">    </span><span class="mi">571</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pin_memory</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">572</span>         <span class="n">data</span> <span class="o">=</span> <span class="n">_utils</span><span class="o">.</span><span class="n">pin_memory</span><span class="o">.</span><span class="n">pin_memory</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="nn">File c:\python39\lib\site-packages\torch\utils\data\_utils\fetch.py:52,</span> in <span class="ni">_MapDatasetFetcher.fetch</span><span class="nt">(self, possibly_batched_index)</span>
+<span class="g g-Whitespace">     </span><span class="mi">50</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">51</span>     <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">possibly_batched_index</span><span class="p">]</span>
+<span class="ne">---&gt; </span><span class="mi">52</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">collate_fn</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="nn">File c:\python39\lib\site-packages\torch\utils\data\_utils\collate.py:172,</span> in <span class="ni">default_collate</span><span class="nt">(batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span> <span class="n">transposed</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">batch</span><span class="p">))</span>  <span class="c1"># It may be accessed twice, so we use a list.</span>
+<span class="g g-Whitespace">    </span><span class="mi">171</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">172</span>     <span class="k">return</span> <span class="p">[</span><span class="n">default_collate</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span> <span class="k">for</span> <span class="n">samples</span> <span class="ow">in</span> <span class="n">transposed</span><span class="p">]</span>  <span class="c1"># Backwards compatibility.</span>
+<span class="g g-Whitespace">    </span><span class="mi">173</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span>     <span class="k">try</span><span class="p">:</span>
+
+<span class="nn">File c:\python39\lib\site-packages\torch\utils\data\_utils\collate.py:172,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span> <span class="n">transposed</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">batch</span><span class="p">))</span>  <span class="c1"># It may be accessed twice, so we use a list.</span>
+<span class="g g-Whitespace">    </span><span class="mi">171</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">172</span>     <span class="k">return</span> <span class="p">[</span><span class="n">default_collate</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span> <span class="k">for</span> <span class="n">samples</span> <span class="ow">in</span> <span class="n">transposed</span><span class="p">]</span>  <span class="c1"># Backwards compatibility.</span>
+<span class="g g-Whitespace">    </span><span class="mi">173</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span>     <span class="k">try</span><span class="p">:</span>
+
+<span class="nn">File c:\python39\lib\site-packages\torch\utils\data\_utils\collate.py:138,</span> in <span class="ni">default_collate</span><span class="nt">(batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span>         <span class="n">storage</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">storage</span><span class="p">()</span><span class="o">.</span><span class="n">_new_shared</span><span class="p">(</span><span class="n">numel</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">137</span>         <span class="n">out</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">storage</span><span class="p">)</span><span class="o">.</span><span class="n">resize_</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="p">),</span> <span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">size</span><span class="p">()))</span>
+<span class="ne">--&gt; </span><span class="mi">138</span>     <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">139</span> <span class="k">elif</span> <span class="n">elem_type</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">==</span> <span class="s1">&#39;numpy&#39;</span> <span class="ow">and</span> <span class="n">elem_type</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">!=</span> <span class="s1">&#39;str_&#39;</span> \
+<span class="g g-Whitespace">    </span><span class="mi">140</span>         <span class="ow">and</span> <span class="n">elem_type</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">!=</span> <span class="s1">&#39;string_&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span>     <span class="k">if</span> <span class="n">elem_type</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;ndarray&#39;</span> <span class="ow">or</span> <span class="n">elem_type</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;memmap&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span>         <span class="c1"># array of string classes and object</span>
+
+<span class="ne">RuntimeError</span>: stack expects each tensor to be equal size, but got [3, 1800, 2850] at entry 0 and [3, 720, 1080] at entry 1
+</pre></div>
 </div>
 </div>
-<p>These dataloaders for the training and validation set can now be used to train/ finetune a CNN.</p>
+</div>
 </section>
 
     <script type="text/x-thebe-config">

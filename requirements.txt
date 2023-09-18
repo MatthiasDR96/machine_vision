@@ -1,4 +1,7 @@
+torch
 numpy
+fiftyone
+torchmetrics
 matplotlib
 opencv-python
 jupyter-book

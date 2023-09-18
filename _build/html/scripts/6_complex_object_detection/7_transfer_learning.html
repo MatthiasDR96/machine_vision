@@ -177,7 +177,6 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Simple object detection</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/10_car_detection_application.html">Car detection using motion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/1_contour_detection.html">Contour detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/2_hough_transforms.html">Hough transforms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/3_template_matching.html">Template matching</a></li>
@@ -186,17 +185,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/6_color_detection_application.html">Color detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/7_measuring_application.html">Measuring application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/8_sawblade_application.html">Sawblade analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/92_car_detection_application.html">Car detection using motion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/9_crop_row_application.html">Crop row application</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Complex object detection</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="1_feedforward_neural_network_image_classification_MNIST.html">Feedforward Neural Network Image Classification: MNIST</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2_convolutional_neural_network_image_classification_MNIST.html">Convolutional Neural Network Image Classification: MNIST</a></li>
-<li class="toctree-l1"><a class="reference internal" href="3_convolutional_neural_network_object_detection.html">Convolutional Neural Network Object Detection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="4_convolutional_neural_network_image_segmentation.html">Convolutional Neural Network Image Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_image_classification_fully_connected.html">Image Classification using fully connected layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_image_classification_convolutional.html">Image Classification using convolutional layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_object_detection.html">Object Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_image_segmentation.html">Image Segmentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5_image_datasets.html">Image datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6_dataset_creation.html">Dataset Creation</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Transfer Learning</a></li>
+
 </ul>
 
     </div>
@@ -374,9 +375,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading"><strong>Data loading</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Transfer Learning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-analysis">Dataset analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-training"><strong>Model training</strong></a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#model-validation">Model validation</a></li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -390,19 +396,19 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="transfer-learning">
 <h1>Transfer Learning<a class="headerlink" href="#transfer-learning" title="Permalink to this heading">#</a></h1>
 <p>In this notebook, transfer learning will be applied to pre-trained image classification CNN’s for a more practical example, namely the classification of surface defects of hot-rolled steel strip.</p>
-<p>First, the libraries are imported.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
-<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
-<span class="kn">from</span> <span class="nn">torch.optim</span> <span class="kn">import</span> <span class="n">lr_scheduler</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">torchvision</span> 
-<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">transforms</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
 <span class="kn">import</span> <span class="nn">os</span> 
 <span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torchvision</span> 
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">torch.optim</span> <span class="kn">import</span> <span class="n">lr_scheduler</span>
+<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">transforms</span>
 </pre></div>
 </div>
 </div>
@@ -413,23 +419,27 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="data-loading">
-<h2><strong>Data loading</strong><a class="headerlink" href="#data-loading" title="Permalink to this heading">#</a></h2>
-<p>The dataset, which is downloaded from Kaggle (<a class="reference external" href="https://www.kaggle.com/datasets/kaustubhdikshit/neu-surface-defect-database">https://www.kaggle.com/datasets/kaustubhdikshit/neu-surface-defect-database</a>), is loaded here. Data augmentation is also performed to obtain samples to train on. The dataset is divided in batches of 10. In the end of this section, the bathc of images will be visualised</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda:0&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set model parameters</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">10</span>
 </pre></div>
 </div>
 </div>
 </div>
+<section id="dataset-analysis">
+<h2>Dataset analysis<a class="headerlink" href="#dataset-analysis" title="Permalink to this heading">#</a></h2>
+<p>The dataset, which is downloaded from Kaggle (<a class="reference external" href="https://www.kaggle.com/datasets/kaustubhdikshit/neu-surface-defect-database">https://www.kaggle.com/datasets/kaustubhdikshit/neu-surface-defect-database</a>), is loaded here. Data augmentation is also performed to obtain samples to train on. The dataset is divided in batches of 10. In the end of this section, the batch of images will be visualised</p>
 <p>First, the transformations for both the training and validation dataset are defined.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normalization parameters (comuted from numerous images)</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
 <span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">])</span>
 
-<span class="c1"># transforms.compose is used to perform multiple sequential transformations on an image </span>
+<span class="c1"># Define transforms that will be applied to the downloaded images</span>
 <span class="n">data_transforms</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
         <span class="n">transforms</span><span class="o">.</span><span class="n">RandomResizedCrop</span><span class="p">(</span><span class="mi">224</span><span class="p">),</span>
@@ -437,9 +447,15 @@ document.write(`
         <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
         <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">std</span><span class="p">)</span>
     <span class="p">]),</span>
-    <span class="s1">&#39;val&#39;</span><span class="p">:</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
+    <span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
         <span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span>
         <span class="n">transforms</span><span class="o">.</span><span class="n">CenterCrop</span><span class="p">(</span><span class="mi">224</span><span class="p">),</span>
+        <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span> 
+        <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">std</span><span class="p">)</span>
+    <span class="p">]),</span>
+    <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
+        <span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span>
+        <span class="c1">#transforms.CenterCrop(224),</span>
         <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span> 
         <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">std</span><span class="p">)</span>
     <span class="p">])</span>
@@ -451,102 +467,33 @@ document.write(`
 <p>Next, the data is loaded.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="s1">&#39;NEU-DET&#39;</span> <span class="c1"># change the path </span>
-<span class="n">sets</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;val&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Image folder object to load images from folders</span>
+<span class="n">train_datasets</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;../../data/NEU-DET&#39;</span><span class="p">,</span> <span class="s1">&#39;train&#39;</span><span class="p">),</span> <span class="n">data_transforms</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">])</span>
+<span class="n">valid_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;../../data/NEU-DET&#39;</span><span class="p">,</span> <span class="s1">&#39;valid&#39;</span><span class="p">),</span> <span class="n">data_transforms</span><span class="p">[</span><span class="s1">&#39;valid&#39;</span><span class="p">])</span>
+<span class="n">test_datasets</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;../../data/NEU-DET&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">),</span> <span class="n">data_transforms</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">])</span>
+<span class="n">datasets_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="n">train_datasets</span><span class="p">,</span> <span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="n">valid_dataset</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="n">test_datasets</span><span class="p">}</span>
 
-<span class="n">image_datasets</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span><span class="n">x</span><span class="p">),</span><span class="n">data_transforms</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sets</span><span class="p">}</span>   <span class="c1"># a dict is created with key values train and val. The values are the transformed data from the respective folders.</span>
-<span class="n">dataloaders</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">image_datasets</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sets</span><span class="p">}</span> <span class="c1"># random batches of size 10 are loaded instead of the whole dataset.</span>
-<span class="n">dataset_sizes</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">image_datasets</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sets</span><span class="p">}</span>
-<span class="n">class_names</span> <span class="o">=</span> <span class="n">image_datasets</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">classes</span>
+<span class="c1"># Image dataloaders to load data in batches</span>
+<span class="n">train_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">datasets_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">valid_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">datasets_dict</span><span class="p">[</span><span class="s1">&#39;valid&#39;</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">datasets_dict</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">dataloaders_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="n">train_loader</span><span class="p">,</span> <span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="n">test_loader</span><span class="p">}</span>
+
+<span class="c1"># Get size of datasets</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">datasets_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;In the &quot;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s2">&quot; dataset are &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">datasets_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span> <span class="o">+</span> <span class="s2">&quot; images&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get classes</span>
+<span class="n">class_names</span> <span class="o">=</span> <span class="n">datasets_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">classes</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;These are the classes: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">class_names</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">data_dir</span> <span class="o">=</span> <span class="s1">&#39;NEU-DET&#39;</span> <span class="c1"># change the path </span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">sets</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;val&#39;</span><span class="p">]</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">image_datasets</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span><span class="n">x</span><span class="p">),</span><span class="n">data_transforms</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sets</span><span class="p">}</span>   <span class="c1"># a dict is created with key values train and val. The values are the transformed data from the respective folders.</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">dataloaders</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">image_datasets</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sets</span><span class="p">}</span> <span class="c1"># random batches of size 10 are loaded instead of the whole dataset.</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">dataset_sizes</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">image_datasets</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sets</span><span class="p">}</span>
-
-<span class="nn">Cell In[4], line 4,</span> in <span class="ni">&lt;dictcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">data_dir</span> <span class="o">=</span> <span class="s1">&#39;NEU-DET&#39;</span> <span class="c1"># change the path </span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">sets</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;val&#39;</span><span class="p">]</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">image_datasets</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span><span class="n">x</span><span class="p">),</span><span class="n">data_transforms</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sets</span><span class="p">}</span>   <span class="c1"># a dict is created with key values train and val. The values are the transformed data from the respective folders.</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">dataloaders</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">image_datasets</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sets</span><span class="p">}</span> <span class="c1"># random batches of size 10 are loaded instead of the whole dataset.</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">dataset_sizes</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">image_datasets</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sets</span><span class="p">}</span>
-
-<span class="nn">File c:\python39\lib\site-packages\torchvision\datasets\folder.py:310,</span> in <span class="ni">ImageFolder.__init__</span><span class="nt">(self, root, transform, target_transform, loader, is_valid_file)</span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">303</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">304</span>     <span class="n">root</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">308</span>     <span class="n">is_valid_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span> <span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">310</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">311</span>         <span class="n">root</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span>         <span class="n">loader</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="n">IMG_EXTENSIONS</span> <span class="k">if</span> <span class="n">is_valid_file</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">314</span>         <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">315</span>         <span class="n">target_transform</span><span class="o">=</span><span class="n">target_transform</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">316</span>         <span class="n">is_valid_file</span><span class="o">=</span><span class="n">is_valid_file</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">317</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">318</span>     <span class="bp">self</span><span class="o">.</span><span class="n">imgs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span>
-
-<span class="nn">File c:\python39\lib\site-packages\torchvision\datasets\folder.py:145,</span> in <span class="ni">DatasetFolder.__init__</span><span class="nt">(self, root, loader, extensions, transform, target_transform, is_valid_file)</span>
-<span class="g g-Whitespace">    </span><span class="mi">135</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">136</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">137</span>     <span class="n">root</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">142</span>     <span class="n">is_valid_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">143</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">144</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">target_transform</span><span class="o">=</span><span class="n">target_transform</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">145</span>     <span class="n">classes</span><span class="p">,</span> <span class="n">class_to_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_classes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">146</span>     <span class="n">samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_dataset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">class_to_idx</span><span class="p">,</span> <span class="n">extensions</span><span class="p">,</span> <span class="n">is_valid_file</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span>     <span class="bp">self</span><span class="o">.</span><span class="n">loader</span> <span class="o">=</span> <span class="n">loader</span>
-
-<span class="nn">File c:\python39\lib\site-packages\torchvision\datasets\folder.py:219,</span> in <span class="ni">DatasetFolder.find_classes</span><span class="nt">(self, directory)</span>
-<span class="g g-Whitespace">    </span><span class="mi">192</span> <span class="k">def</span> <span class="nf">find_classes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
-<span class="g g-Whitespace">    </span><span class="mi">193</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Find the class folders in a dataset structured as follows::</span>
-<span class="g g-Whitespace">    </span><span class="mi">194</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">195</span><span class="sd">         directory/</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">217</span><span class="sd">         (Tuple[List[str], Dict[str, int]]): List of all classes and dictionary mapping each class to an index.</span>
-<span class="g g-Whitespace">    </span><span class="mi">218</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">219</span>     <span class="k">return</span> <span class="n">find_classes</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
-
-<span class="nn">File c:\python39\lib\site-packages\torchvision\datasets\folder.py:41,</span> in <span class="ni">find_classes</span><span class="nt">(directory)</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="k">def</span> <span class="nf">find_classes</span><span class="p">(</span><span class="n">directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Finds the class folders in a dataset.</span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">39</span><span class="sd">     See :class:`DatasetFolder` for details.</span>
-<span class="g g-Whitespace">     </span><span class="mi">40</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="nn">---&gt; 41     classes = sorted(entry.name for entry</span> in <span class="ni">os.scandir(directory) if entry.is_dir</span><span class="nt">())</span>
-<span class="g g-Whitespace">     </span><span class="mi">42</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">classes</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">43</span>         <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Couldn&#39;t find any class folder in </span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [WinError 3] The system cannot find the path specified: &#39;NEU-DET\\train&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<p>The number of images of all classes in the training dataset is 1440 and in the validation dataset is 360. The different labels are presented below.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset_sizes</span><span class="p">,</span> <span class="n">class_names</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({&#39;train&#39;: 1440, &#39;val&#39;: 360},
- [&#39;crazing&#39;,
-  &#39;inclusion&#39;,
-  &#39;patches&#39;,
-  &#39;pitted_surface&#39;,
-  &#39;rolled-in_scale&#39;,
-  &#39;scratches&#39;])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In the train dataset are 1374 images
+In the valid dataset are 360 images
+In the test dataset are 66 images
+These are the classes: [&#39;crazing&#39;, &#39;inclusion&#39;, &#39;patches&#39;, &#39;pitted_surface&#39;, &#39;rolled-in_scale&#39;, &#39;scratches&#39;]
 </pre></div>
 </div>
 </div>
@@ -554,7 +501,7 @@ document.write(`
 <p>A function is written to show the images with its corresponding label.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">imshow</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span><span class="n">title</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">imshow</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
     <span class="n">inp</span> <span class="o">=</span> <span class="n">inp</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">transpose</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
     <span class="n">inp</span> <span class="o">=</span> <span class="n">std</span> <span class="o">*</span> <span class="n">inp</span> <span class="o">+</span> <span class="n">mean</span>
     <span class="n">inp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
@@ -568,34 +515,22 @@ document.write(`
 <p>Select a batch of the training data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">dataloaders</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]))</span> <span class="c1"># iterate through the batch to obtain the individual images and its labels</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract a batch</span>
+<span class="n">batch</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">train_loader</span><span class="p">))</span>
 
-<span class="n">out</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">make_grid</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">nrow</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># organizing the images in a grid structure</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">out</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([3, 454, 1132])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Now, we use the imshow function to visualise the image batch.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imshow</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="p">[</span><span class="n">class_names</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">])</span>
+<span class="c1"># Extract the images and labels</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">batch</span>
+
+<span class="c1"># Make a grid</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">make_grid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nrow</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># organizing the images in a grid structure</span>
+
+<span class="c1"># Show</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="p">[</span><span class="n">class_names</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">y</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/fe3869dc736d888a104e0c2452df0ce3e1116520d6afc7b54e4badb7a8e9881e.png" src="../../_images/fe3869dc736d888a104e0c2452df0ce3e1116520d6afc7b54e4badb7a8e9881e.png" />
+<img alt="../../_images/b6045698825fa5780d46a566d79c486bce61ceaf34d79ccf0c4ad7583dfab395.png" src="../../_images/b6045698825fa5780d46a566d79c486bce61ceaf34d79ccf0c4ad7583dfab395.png" />
 </div>
 </div>
 </section>
@@ -604,64 +539,95 @@ document.write(`
 <p>The transfer learning training loop will be defined here. The training loop is used to train the classification layers of the new model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">scheduler</span><span class="p">,</span> <span class="n">num_epochs</span><span class="o">=</span><span class="mi">25</span><span class="p">):</span>
-    <span class="n">best_model_wts</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">())</span>  <span class="c1"># takes a copy of the model and also of all the inner layers, weights, biases</span>
-    <span class="n">best_acc</span> <span class="o">=</span> <span class="mf">0.0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Search for the available training device on the computer</span>
+<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda:0&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This function implements the model training</span>
+<span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">25</span><span class="p">):</span>
 
-    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Epoch </span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">num_epochs</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="c1"># Learning curves</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;training_acc&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;training_loss&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;validation_acc&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;validation_loss&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+
+    <span class="c1"># Loop over all epochs</span>
+    <span class="n">best_acc</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">best_model</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_epochs</span><span class="p">):</span>
+
+        <span class="c1"># Debug</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Epoch </span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_epochs</span><span class="p">))</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
 
-        <span class="c1"># each epoch has a training and validation phase</span>
-        <span class="k">for</span> <span class="n">phase</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span><span class="s1">&#39;val&#39;</span><span class="p">]:</span>
+        <span class="c1"># Each epoch has a training and validation phase</span>
+        <span class="k">for</span> <span class="n">phase</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span><span class="s1">&#39;valid&#39;</span><span class="p">]:</span>
+
+            <span class="c1"># Set the network state dependent on the phase</span>
             <span class="k">if</span> <span class="n">phase</span> <span class="o">==</span> <span class="s1">&#39;train&#39;</span><span class="p">:</span>
                 <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
 
+            <span class="c1"># Reset the losses and corrects at the start of each epoch</span>
             <span class="n">running_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
             <span class="n">running_corrects</span> <span class="o">=</span> <span class="mf">0.0</span>
+            
+            <span class="c1"># Extract batches from the data loaders untill all batches are retrieved</span>
+            <span class="n">num_samples</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">dataloaders_dict</span><span class="p">[</span><span class="n">phase</span><span class="p">]:</span>
 
-            <span class="c1">#iterate over data </span>
-            <span class="k">for</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">dataloaders</span><span class="p">[</span><span class="n">phase</span><span class="p">]:</span>
-                <span class="n">inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>  <span class="c1"># store the inputs to the selected device</span>
-                <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>  <span class="c1"># store the labels to the selected device</span>
+                <span class="c1"># Inputs shape</span>
+                <span class="n">batch_size</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">shape</span>
 
-                <span class="c1"># forward step</span>
-                <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">set_grad_enabled</span><span class="p">(</span><span class="n">phase</span><span class="o">==</span><span class="s1">&#39;train&#39;</span><span class="p">):</span>    <span class="c1"># gradient calculation will only be enabled when in training mode</span>
-                    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-                    <span class="n">_</span><span class="p">,</span> <span class="n">preds</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>     <span class="c1"># preds are the indices of the max value</span>
-                    <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+                <span class="c1"># Store the inputs and labels to the selected device</span>
+                <span class="n">inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>  
+                <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>  
 
-                    <span class="c1"># backward step and optimise only in train phase</span>
-                    <span class="k">if</span> <span class="n">phase</span><span class="o">==</span><span class="s1">&#39;train&#39;</span><span class="p">:</span>
-                        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>   <span class="c1"># Pytorch keeps track of the gradients over multiple epochs, therefore initialise it to 0</span>
-                        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
-                        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>    <span class="c1"># update the model parameters using the defined optimizer </span>
+                <span class="c1"># Forward pass through the network</span>
+                <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+
+                <span class="c1"># Softmax transforms the output probabilities into one selected class</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">class_pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+                <span class="c1"># Compute the loss of the batch</span>
+                <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
                 
-                <span class="n">running_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="n">inputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-                <span class="n">running_corrects</span> <span class="o">+=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">preds</span><span class="o">==</span><span class="n">labels</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> 
-            
-            <span class="k">if</span> <span class="n">phase</span><span class="o">==</span><span class="s1">&#39;train&#39;</span><span class="p">:</span>
-                <span class="n">scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+                <span class="c1"># Update the losses and corrects for this batch</span>
+                <span class="n">running_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="n">batch_size</span>
+                <span class="n">running_corrects</span> <span class="o">+=</span> <span class="n">class_pred</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
 
-            <span class="n">epoch_loss</span> <span class="o">=</span> <span class="n">running_loss</span><span class="o">/</span><span class="n">dataset_sizes</span><span class="p">[</span><span class="n">phase</span><span class="p">]</span>
-            <span class="n">epoch_acc</span> <span class="o">=</span> <span class="n">running_corrects</span><span class="o">.</span><span class="n">double</span><span class="p">()</span><span class="o">/</span><span class="n">dataset_sizes</span><span class="p">[</span><span class="n">phase</span><span class="p">]</span>
+                <span class="c1"># Calculate total samples</span>
+                <span class="n">num_samples</span> <span class="o">+=</span> <span class="n">batch_size</span>
 
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> Loss: </span><span class="si">{:.4f}</span><span class="s1"> Acc: </span><span class="si">{:.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">phase</span><span class="p">,</span><span class="n">epoch_loss</span><span class="p">,</span><span class="n">epoch_acc</span><span class="p">))</span>
+                <span class="c1"># If in training phase, adapt the model paramters to account for the losses</span>
+                <span class="k">if</span> <span class="n">phase</span><span class="o">==</span><span class="s1">&#39;train&#39;</span><span class="p">:</span>
+                    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span> <span class="c1"># Pytorch keeps track of the gradients over multiple epochs, therefore initialise it to 0</span>
+                    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span> <span class="c1"># Calculate the weight gradients (Backward Propagation)</span>
+                    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span> <span class="c1"># Update the model parameters using the defined optimizer </span>
+                    
+            <span class="c1"># Save results</span>
+            <span class="k">if</span> <span class="n">phase</span> <span class="o">==</span> <span class="s1">&#39;train&#39;</span><span class="p">:</span>
+                <span class="n">results</span><span class="p">[</span><span class="s1">&#39;training_acc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">running_corrects</span><span class="o">/</span><span class="n">num_samples</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+                <span class="n">results</span><span class="p">[</span><span class="s1">&#39;training_loss&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">running_loss</span><span class="o">/</span><span class="n">num_samples</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;train_acc </span><span class="si">%.3f</span><span class="s2"> train_loss </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">running_corrects</span><span class="o">/</span><span class="n">num_samples</span><span class="p">,</span> <span class="n">running_loss</span><span class="o">/</span><span class="n">num_samples</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">phase</span> <span class="o">==</span> <span class="s1">&#39;valid&#39;</span><span class="p">:</span>
+                <span class="n">results</span><span class="p">[</span><span class="s1">&#39;validation_acc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">running_corrects</span><span class="o">/</span><span class="n">num_samples</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+                <span class="n">results</span><span class="p">[</span><span class="s1">&#39;validation_loss&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">running_loss</span><span class="o">/</span><span class="n">num_samples</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;val_acc </span><span class="si">%.3f</span><span class="s2"> val_loss </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">running_corrects</span><span class="o">/</span><span class="n">num_samples</span><span class="p">,</span> <span class="n">running_loss</span><span class="o">/</span><span class="n">num_samples</span><span class="p">))</span>
 
-            <span class="c1"># deep copy the model</span>
-            <span class="k">if</span> <span class="n">phase</span><span class="o">==</span><span class="s1">&#39;val&#39;</span> <span class="ow">and</span> <span class="n">epoch_acc</span> <span class="o">&gt;</span> <span class="n">best_acc</span><span class="p">:</span>
+            <span class="c1"># Deep copy the model</span>
+            <span class="n">epoch_acc</span> <span class="o">=</span> <span class="n">running_corrects</span><span class="o">/</span><span class="n">num_samples</span>
+            <span class="k">if</span> <span class="n">phase</span><span class="o">==</span><span class="s1">&#39;valid&#39;</span> <span class="ow">and</span> <span class="n">epoch_acc</span> <span class="o">&gt;</span> <span class="n">best_acc</span><span class="p">:</span>
                 <span class="n">best_acc</span> <span class="o">=</span> <span class="n">epoch_acc</span>
-                <span class="n">best_model_wts</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">())</span>
-            
-            <span class="nb">print</span><span class="p">()</span>
+                <span class="n">best_model</span> <span class="o">=</span> <span class="n">model</span>
 
+    <span class="c1"># Print</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Best val Acc: </span><span class="si">{:.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">best_acc</span><span class="p">))</span>
-
-    <span class="c1"># load best model weights</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">best_model_wts</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">model</span>
+    
+    <span class="k">return</span> <span class="n">best_acc</span><span class="p">,</span> <span class="n">best_model</span><span class="p">,</span> <span class="n">results</span>
 </pre></div>
 </div>
 </div>
@@ -669,12 +635,10 @@ document.write(`
 <p>Now, load a pretrained model and reset the final fully connected layer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">resnet18</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   <span class="c1"># change to other models</span>
-<span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>    <span class="c1"># freezing all the parameters except the ones which are created after this for loop</span>
-    <span class="n">param</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">False</span>
-    
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load pretrained Resnet18 model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">resnet18</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   <span class="c1"># change to other models</span>
+<span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span> <span class="n">param</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># If feature extractor does not need to be updated</span>
 <span class="n">num_ftrs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fc</span><span class="o">.</span><span class="n">in_features</span>
-
 <span class="n">model</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">num_ftrs</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_names</span><span class="p">))</span>    <span class="c1"># the outputs are the amount of class labels</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
 </pre></div>
@@ -683,22 +647,229 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
-<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
-<span class="n">step_lr_scheduler</span> <span class="o">=</span> <span class="n">lr_scheduler</span><span class="o">.</span><span class="n">StepLR</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span><span class="n">step_size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>    <span class="c1"># StepLR decays the learning rate every 7 epochs by a factor of 0.1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the optimizer</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span>
+
+<span class="c1"># Set the loss function</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+
+<span class="c1"># Train for 50 epochs</span>
+<span class="n">best_acc</span><span class="p">,</span> <span class="n">best_model</span><span class="p">,</span> <span class="n">results</span> <span class="o">=</span> <span class="n">train_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/10
+----------
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">8</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1"># Train for 50 epochs</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">best_acc</span><span class="p">,</span> <span class="n">best_model</span><span class="p">,</span> <span class="n">results</span> <span class="o">=</span> <span class="n">train_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">)</span>
+
+<span class="nn">Cell In[8], line 41,</span> in <span class="ni">train_model</span><span class="nt">(model, criterion, optimizer, n_epochs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>  
+<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="c1"># Forward pass through the network</span>
+<span class="ne">---&gt; </span><span class="mi">41</span> <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="c1"># Softmax transforms the output probabilities into one selected class</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="n">_</span><span class="p">,</span> <span class="n">class_pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nn">File c:\python39\lib\site-packages\torch\nn\modules\module.py:1110,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *input, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1106</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
+<span class="g g-Whitespace">   </span><span class="mi">1107</span> <span class="c1"># this function, and just call forward.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1108</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1109</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1110</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1111</span> <span class="c1"># Do not call functions when jit is used</span>
+<span class="g g-Whitespace">   </span><span class="mi">1112</span> <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="nn">File c:\python39\lib\site-packages\torchvision\models\resnet.py:283,</span> in <span class="ni">ResNet.forward</span><span class="nt">(self, x)</span>
+<span class="g g-Whitespace">    </span><span class="mi">282</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">283</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_impl</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nn">File c:\python39\lib\site-packages\torchvision\models\resnet.py:271,</span> in <span class="ni">ResNet._forward_impl</span><span class="nt">(self, x)</span>
+<span class="g g-Whitespace">    </span><span class="mi">268</span> <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">269</span> <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxpool</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">271</span> <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">272</span> <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">273</span> <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nn">File c:\python39\lib\site-packages\torch\nn\modules\module.py:1110,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *input, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1106</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
+<span class="g g-Whitespace">   </span><span class="mi">1107</span> <span class="c1"># this function, and just call forward.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1108</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1109</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1110</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1111</span> <span class="c1"># Do not call functions when jit is used</span>
+<span class="g g-Whitespace">   </span><span class="mi">1112</span> <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="nn">File c:\python39\lib\site-packages\torch\nn\modules\container.py:141,</span> in <span class="ni">Sequential.forward</span><span class="nt">(self, input)</span>
+<span class="g g-Whitespace">    </span><span class="mi">139</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span>     <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">141</span>         <span class="nb">input</span> <span class="o">=</span> <span class="n">module</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span>     <span class="k">return</span> <span class="nb">input</span>
+
+<span class="nn">File c:\python39\lib\site-packages\torch\nn\modules\module.py:1110,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *input, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1106</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
+<span class="g g-Whitespace">   </span><span class="mi">1107</span> <span class="c1"># this function, and just call forward.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1108</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1109</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1110</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1111</span> <span class="c1"># Do not call functions when jit is used</span>
+<span class="g g-Whitespace">   </span><span class="mi">1112</span> <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="nn">File c:\python39\lib\site-packages\torchvision\models\resnet.py:90,</span> in <span class="ni">BasicBlock.forward</span><span class="nt">(self, x)</span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">88</span>     <span class="n">identity</span> <span class="o">=</span> <span class="n">x</span>
+<span class="ne">---&gt; </span><span class="mi">90</span>     <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">91</span>     <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">92</span>     <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+
+<span class="nn">File c:\python39\lib\site-packages\torch\nn\modules\module.py:1110,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *input, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1106</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
+<span class="g g-Whitespace">   </span><span class="mi">1107</span> <span class="c1"># this function, and just call forward.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1108</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1109</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1110</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1111</span> <span class="c1"># Do not call functions when jit is used</span>
+<span class="g g-Whitespace">   </span><span class="mi">1112</span> <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="nn">File c:\python39\lib\site-packages\torch\nn\modules\conv.py:447,</span> in <span class="ni">Conv2d.forward</span><span class="nt">(self, input)</span>
+<span class="g g-Whitespace">    </span><span class="mi">446</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">447</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conv_forward</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
+
+<span class="nn">File c:\python39\lib\site-packages\torch\nn\modules\conv.py:443,</span> in <span class="ni">Conv2d._conv_forward</span><span class="nt">(self, input, weight, bias)</span>
+<span class="g g-Whitespace">    </span><span class="mi">439</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding_mode</span> <span class="o">!=</span> <span class="s1">&#39;zeros&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">440</span>     <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reversed_padding_repeated_twice</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padding_mode</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span>                     <span class="n">weight</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">442</span>                     <span class="n">_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">443</span> <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">444</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">train_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">criterion</span><span class="p">,</span><span class="n">optimizer</span><span class="p">,</span><span class="n">step_lr_scheduler</span><span class="p">,</span><span class="n">num_epochs</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The best validation accuracy is: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">best_acc</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The best validation accuracy is: 1.0
 </pre></div>
 </div>
 </div>
 </div>
-<p>The transfer learning of the Resnet18 model yields very good results. This model can now be used on a test dataset to measure the performance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;training_loss&#39;</span><span class="p">])),</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;training_loss&#39;</span><span class="p">],</span> <span class="s1">&#39;bo-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;validation_loss&#39;</span><span class="p">])),</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;validation_loss&#39;</span><span class="p">],</span> <span class="s1">&#39;ro-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;val&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epochs&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;training_acc&#39;</span><span class="p">])),</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;training_acc&#39;</span><span class="p">],</span> <span class="s1">&#39;bo-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;validation_acc&#39;</span><span class="p">])),</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;validation_acc&#39;</span><span class="p">],</span> <span class="s1">&#39;ro-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;val&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epochs&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Accuracy&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/0bf2b0088aa0c62f4051921d2cb26cda94697b2f484b8cc338d4ec5da1a0f0b2.png" src="../../_images/0bf2b0088aa0c62f4051921d2cb26cda94697b2f484b8cc338d4ec5da1a0f0b2.png" />
+</div>
+</div>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="model-validation">
+<h1>Model validation<a class="headerlink" href="#model-validation" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put in evaluation mode</span>
+<span class="n">best_model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+<span class="c1"># Extract a batch</span>
+<span class="n">batch</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">test_loader</span><span class="p">))</span>
+
+<span class="c1"># Extract the images and labels</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">batch</span>
+
+<span class="c1"># Set to device</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+<span class="c1"># Predict</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">preds</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="p">[</span><span class="n">class_names</span><span class="p">[</span><span class="n">preds</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">preds</span><span class="p">))]</span>
+
+<span class="c1"># Make a grid</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">make_grid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nrow</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># organizing the images in a grid structure</span>
+
+<span class="c1"># Show</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">predictions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6af22a27bbd09742d136442bdf65ede60305bd38cd2eeb7a05c63bc7cfb3a993.png" src="../../_images/6af22a27bbd09742d136442bdf65ede60305bd38cd2eeb7a05c63bc7cfb3a993.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reset the losses and corrects at the start of each epoch</span>
+<span class="n">running_corrects</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+<span class="c1"># Extract batches from the data loaders untill all batches are retrieved</span>
+<span class="n">num_samples</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
+
+    <span class="c1"># Inputs shape</span>
+    <span class="n">batch_size</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="c1"># Store the inputs and labels to the selected device</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>  
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>  
+
+    <span class="c1"># Forward pass through the network</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+
+    <span class="c1"># Softmax transforms the output probabilities into one selected class</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">class_pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># Update the losses and corrects for this batch</span>
+    <span class="n">running_corrects</span> <span class="o">+=</span> <span class="n">class_pred</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+    <span class="c1"># Calculate total samples</span>
+    <span class="n">num_samples</span> <span class="o">+=</span> <span class="n">batch_size</span>
+
+<span class="c1"># Print results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The model has an accuracy of &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">((</span><span class="n">running_corrects</span><span class="o">/</span><span class="n">num_samples</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; on the test set.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The model has an accuracy of 100.0 on the test set.
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -759,9 +930,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading"><strong>Data loading</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Transfer Learning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-analysis">Dataset analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-training"><strong>Model training</strong></a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#model-validation">Model validation</a></li>
+</ul>
+
   </nav></div>
 
 </div></div>
