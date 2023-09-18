@@ -178,7 +178,6 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Simple object detection</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="10_car_detection_application.html">Car detection using motion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_contour_detection.html">Contour detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2_hough_transforms.html">Hough transforms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_template_matching.html">Template matching</a></li>
@@ -187,17 +186,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Color detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="7_measuring_application.html">Measuring application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="8_sawblade_application.html">Sawblade analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="92_car_detection_application.html">Car detection using motion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="9_crop_row_application.html">Crop row application</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Complex object detection</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/1_feedforward_neural_network_image_classification_MNIST.html">Feedforward Neural Network Image Classification: MNIST</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/2_convolutional_neural_network_image_classification_MNIST.html">Convolutional Neural Network Image Classification: MNIST</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/3_convolutional_neural_network_object_detection.html">Convolutional Neural Network Object Detection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/4_convolutional_neural_network_image_segmentation.html">Convolutional Neural Network Image Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/1_image_classification_fully_connected.html">Image Classification using fully connected layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/2_image_classification_convolutional.html">Image Classification using convolutional layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/3_object_detection.html">Object Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/4_image_segmentation.html">Image Segmentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/5_image_datasets.html">Image datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/6_dataset_creation.html">Dataset Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/7_transfer_learning.html">Transfer Learning</a></li>
+
 </ul>
 
     </div>
@@ -512,16 +513,16 @@ document.write(`
   warnings.warn(
 </pre></div>
 </div>
-<img alt="../../_images/832733899b39074b5657b269e79718590e33d1b967fa43c26922197a2bf2ff9e.png" src="../../_images/832733899b39074b5657b269e79718590e33d1b967fa43c26922197a2bf2ff9e.png" />
-<img alt="../../_images/bc2a8d6945d9475af8e0381c8a9e3e4ef488813f41ba298b0d036140621925c6.png" src="../../_images/bc2a8d6945d9475af8e0381c8a9e3e4ef488813f41ba298b0d036140621925c6.png" />
-<img alt="../../_images/08accc4be371dbd0a3114861e72578c633918706f7095b045ef41082d75bff08.png" src="../../_images/08accc4be371dbd0a3114861e72578c633918706f7095b045ef41082d75bff08.png" />
-<img alt="../../_images/8448c7d0fc4300787794c12871d4796f2b842a4ff95d9d42338b2cff5a83595f.png" src="../../_images/8448c7d0fc4300787794c12871d4796f2b842a4ff95d9d42338b2cff5a83595f.png" />
-<img alt="../../_images/85ecf14dbc0cd4297f417a8debc630778e08e924e9557a4941d26d3b0e4d0a6b.png" src="../../_images/85ecf14dbc0cd4297f417a8debc630778e08e924e9557a4941d26d3b0e4d0a6b.png" />
-<img alt="../../_images/a68c3ad821a3a0af646b4bf52d95c33e700f5d28fa631fce68e1d5d62d012a00.png" src="../../_images/a68c3ad821a3a0af646b4bf52d95c33e700f5d28fa631fce68e1d5d62d012a00.png" />
-<img alt="../../_images/e35973f7c4a90b3bb33f7c236406851216e48074e299f7b5986bffae16905a95.png" src="../../_images/e35973f7c4a90b3bb33f7c236406851216e48074e299f7b5986bffae16905a95.png" />
-<img alt="../../_images/39a03b031e91f86acc00eda5d2fc2e79e63f04b9d5fcaf57aa7a200d6ff803dd.png" src="../../_images/39a03b031e91f86acc00eda5d2fc2e79e63f04b9d5fcaf57aa7a200d6ff803dd.png" />
-<img alt="../../_images/4135fb7265f548918ae5ba1189f2d45f188f83565412d5f180125eb8ced28dd0.png" src="../../_images/4135fb7265f548918ae5ba1189f2d45f188f83565412d5f180125eb8ced28dd0.png" />
-<img alt="../../_images/7c1f98b09bf72e4ade88a499cb0ea54502f9036d4b09ce138c9f2ab2b51c6a70.png" src="../../_images/7c1f98b09bf72e4ade88a499cb0ea54502f9036d4b09ce138c9f2ab2b51c6a70.png" />
+<img alt="../../_images/65d26a61037529950c23b318600fc43628b884dce015f0d0081fe111c16012e3.png" src="../../_images/65d26a61037529950c23b318600fc43628b884dce015f0d0081fe111c16012e3.png" />
+<img alt="../../_images/f9e106e8feb88234728590f4f5894f5f169062a4f7d5f0569ad62a4fa197d491.png" src="../../_images/f9e106e8feb88234728590f4f5894f5f169062a4f7d5f0569ad62a4fa197d491.png" />
+<img alt="../../_images/0e12d75c00f31bd380dc31632dd6f04f58fd21cfae91b8546de8f6508acf06fc.png" src="../../_images/0e12d75c00f31bd380dc31632dd6f04f58fd21cfae91b8546de8f6508acf06fc.png" />
+<img alt="../../_images/5c851db5f1c6e685221b142fcb969c6bfbd5b1475ad7a43e630710bf74bcc3e9.png" src="../../_images/5c851db5f1c6e685221b142fcb969c6bfbd5b1475ad7a43e630710bf74bcc3e9.png" />
+<img alt="../../_images/f6d08cffcf331487baafac6bde6a1a70e2c70ed165a8998e7c408a8739182c64.png" src="../../_images/f6d08cffcf331487baafac6bde6a1a70e2c70ed165a8998e7c408a8739182c64.png" />
+<img alt="../../_images/325262cc0e920f58f6edbf248d40e125b23c92eb5947202b6ed1ccf1dfda14a9.png" src="../../_images/325262cc0e920f58f6edbf248d40e125b23c92eb5947202b6ed1ccf1dfda14a9.png" />
+<img alt="../../_images/4c04d342f7b0a5779a96865e10429f69ff83b7d344f55244c20d82e95ee96d19.png" src="../../_images/4c04d342f7b0a5779a96865e10429f69ff83b7d344f55244c20d82e95ee96d19.png" />
+<img alt="../../_images/40fc2b1edbde37a4da5906f500b7b3021efd30720533e3bcbe291d7d75a19c30.png" src="../../_images/40fc2b1edbde37a4da5906f500b7b3021efd30720533e3bcbe291d7d75a19c30.png" />
+<img alt="../../_images/0821dbc290b4fd7a1adab68b674ab88bc31ba03355a11e2ec74b58f765858bd5.png" src="../../_images/0821dbc290b4fd7a1adab68b674ab88bc31ba03355a11e2ec74b58f765858bd5.png" />
+<img alt="../../_images/4f48dd6c0f888819562eca0ea794429d56eb7b9818c55467610d3599b194607d.png" src="../../_images/4f48dd6c0f888819562eca0ea794429d56eb7b9818c55467610d3599b194607d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -533,7 +534,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/443f20597e4c634a3b066a68bfed050b2471964ee7eb303274c31b22cd177691.png" src="../../_images/443f20597e4c634a3b066a68bfed050b2471964ee7eb303274c31b22cd177691.png" />
+<img alt="../../_images/975db86f84f9805e7bd9fe75b6a71cd58fdf5b1e697bab80ad3e0a254bfe958d.png" src="../../_images/975db86f84f9805e7bd9fe75b6a71cd58fdf5b1e697bab80ad3e0a254bfe958d.png" />
 </div>
 </div>
 </section>
