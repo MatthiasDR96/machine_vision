@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'scripts/6_complex_object_detection/4_image_segmentation';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Image datasets" href="5_image_datasets.html" />
+    <link rel="next" title="Dataset Creation" href="5_dataset_creation.html" />
     <link rel="prev" title="Object Detection" href="3_object_detection.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -195,10 +195,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="2_image_classification_convolutional.html">Image Classification using convolutional layers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_object_detection.html">Object Detection</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Image Segmentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5_image_datasets.html">Image datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="6_dataset_creation.html">Dataset Creation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="7_transfer_learning.html">Transfer Learning</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="5_dataset_creation.html">Dataset Creation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_transfer_learning.html">Transfer Learning</a></li>
 </ul>
 
     </div>
@@ -380,14 +378,15 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fcn-resnet101">FCN Resnet101</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-model">Loading the Model</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image-pre-processing">Image Pre-processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-the-segmentation-masks">Predicting the Segmentation Masks</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mask-r-cnn">Mask R-CNN</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Loading the Model</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Image Pre-processing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-the-segmentation-masks">Predicting the Segmentation Masks</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Predicting the Segmentation Masks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Results</a></li>
 </ul>
 </li>
 </ul>
@@ -483,6 +482,16 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="ne">c</span>:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\scripts\6_complex_object_detection\4_image_segmentation.ipynb Cell 10 line 1
+<span class="o">----&gt;</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/c%3A/Users/matth/OneDrive%20-%20KU</span><span class="si">%20Le</span><span class="s1">uven/Python_Projects/machine_vision/scripts/6_complex_object_detection/4_image_segmentation.ipynb#X12sZmlsZQ%3D%3D?line=0&#39;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">img_preprocess</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">segmentation</span><span class="o">.</span><span class="n">FCN_ResNet101_Weights</span><span class="o">.</span><span class="n">COCO_WITH_VOC_LABELS_V1</span><span class="o">.</span><span class="n">transforms</span><span class="p">(</span><span class="n">resize_size</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="ne">AttributeError</span>: module &#39;torchvision.models.segmentation&#39; has no attribute &#39;FCN_ResNet101_Weights&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -492,9 +501,23 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">c</span>:\Users\matth\OneDrive - KU Leuven\Python_Projects\machine_vision\scripts\6_complex_object_detection\4_image_segmentation.ipynb Cell 11 line 1
+<span class="o">----&gt;</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/c%3A/Users/matth/OneDrive%20-%20KU</span><span class="si">%20Le</span><span class="s1">uven/Python_Projects/machine_vision/scripts/6_complex_object_detection/4_image_segmentation.ipynb#X13sZmlsZQ%3D%3D?line=0&#39;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">Horses_preprocess</span> <span class="o">=</span> <span class="n">img_preprocess</span><span class="p">(</span><span class="n">Horses</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># unsqueeze at index 0 because the batch_size is 1</span>
+      <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/c%3A/Users/matth/OneDrive%20-%20KU</span><span class="si">%20Le</span><span class="s1">uven/Python_Projects/machine_vision/scripts/6_complex_object_detection/4_image_segmentation.ipynb#X13sZmlsZQ%3D%3D?line=1&#39;</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">People_preprocess</span> <span class="o">=</span> <span class="n">img_preprocess</span><span class="p">(</span><span class="n">People</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+      <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/c%3A/Users/matth/OneDrive%20-%20KU</span><span class="si">%20Le</span><span class="s1">uven/Python_Projects/machine_vision/scripts/6_complex_object_detection/4_image_segmentation.ipynb#X13sZmlsZQ%3D%3D?line=2&#39;</span><span class="o">&gt;</span><span class="mi">3</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">Street_preprocess</span> <span class="o">=</span> <span class="n">img_preprocess</span><span class="p">(</span><span class="n">Street</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;img_preprocess&#39; is not defined
+</pre></div>
 </div>
-<p>###Predicting the Segmentation Masks
-The FCN Resnet101 model is now used on the example images to predict the segmentation masks.</p>
+</div>
+</div>
+</section>
+<section id="predicting-the-segmentation-masks">
+<h3>Predicting the Segmentation Masks<a class="headerlink" href="#predicting-the-segmentation-masks" title="Permalink to this heading">#</a></h3>
+<p>The FCN Resnet101 model is now used on the example images to predict the segmentation masks.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Horses_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">Horses_preprocess</span><span class="p">)</span>
@@ -979,8 +1002,8 @@ The FCN Resnet101 model is now used on the example images to predict the segment
 </div>
 </div>
 </section>
-<section id="predicting-the-segmentation-masks">
-<h3>Predicting the Segmentation Masks<a class="headerlink" href="#predicting-the-segmentation-masks" title="Permalink to this heading">#</a></h3>
+<section id="id3">
+<h3>Predicting the Segmentation Masks<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>The Mask R-CNN model is now used on the example images to predict the segmentation masks.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1005,8 +1028,8 @@ The FCN Resnet101 model is now used on the example images to predict the segment
 </div>
 </div>
 </section>
-<section id="id3">
-<h3>Results<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<section id="id4">
+<h3>Results<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <p>The predictions of the model are now visualised for each example image.</p>
 <p>First, a mapping from the class labels to their respective indices need to be created:</p>
 <div class="cell docutils container">
@@ -1251,11 +1274,11 @@ The FCN Resnet101 model is now used on the example images to predict the segment
       </div>
     </a>
     <a class="right-next"
-       href="5_image_datasets.html"
+       href="5_dataset_creation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Image datasets</p>
+        <p class="prev-next-title">Dataset Creation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1281,14 +1304,15 @@ The FCN Resnet101 model is now used on the example images to predict the segment
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fcn-resnet101">FCN Resnet101</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-model">Loading the Model</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image-pre-processing">Image Pre-processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-the-segmentation-masks">Predicting the Segmentation Masks</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mask-r-cnn">Mask R-CNN</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Loading the Model</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Image Pre-processing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-the-segmentation-masks">Predicting the Segmentation Masks</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Predicting the Segmentation Masks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Results</a></li>
 </ul>
 </li>
 </ul>
