@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Image Segmentation" href="4_image_segmentation.html" />
-    <link rel="prev" title="Image Classification using convolutional layers" href="2_image_classification_convolutional.html" />
+    <link rel="prev" title="Image Classification using convolutional layers with PyTorch" href="2_image_classification_convolutional_pytorch.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -191,12 +191,15 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Complex object detection</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="1_image_classification_fully_connected.html">Image Classification using fully connected layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2_image_classification_convolutional.html">Image Classification using convolutional layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_image_classification_fully_connected_keras.html">Image Classification using fully connected layers with Keras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_image_classification_fully_connected_pytorch.html">Image Classification using fully connected layers with PyTorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_image_classification_convolutional_keras.html">Image Classification using convolutional layers with Keras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_image_classification_convolutional_pytorch.html">Image Classification using convolutional layers with PyTorch</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Object Detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4_image_segmentation.html">Image Segmentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5_dataset_creation.html">Dataset Creation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="6_transfer_learning.html">Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_dataset_creation_keras.html">Dataset Creation with Keras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_dataset_creation_pytorch.html">Dataset Creation with PyTorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_transfer_learning_pytorch.html">Transfer Learning</a></li>
 </ul>
 
     </div>
@@ -446,74 +449,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unexpected exception formatting exception. Falling back to standard exception
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
-  File &quot;C:\Users\matth\AppData\Roaming\Python\Python39\site-packages\IPython\core\interactiveshell.py&quot;, line 3442, in run_code
-    exec(code_obj, self.user_global_ns, self.user_ns)
-  File &quot;C:\Users\matth\AppData\Local\Temp\ipykernel_1128\3814406358.py&quot;, line 2, in &lt;module&gt;
-    model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True, min_size=800)
-  File &quot;c:\python39\lib\site-packages\torchvision\models\detection\faster_rcnn.py&quot;, line 394, in fasterrcnn_resnet50_fpn
-    backbone = resnet50(pretrained=pretrained_backbone, progress=progress, norm_layer=misc_nn_ops.FrozenBatchNorm2d)
-  File &quot;c:\python39\lib\site-packages\torchvision\models\resnet.py&quot;, line 331, in resnet50
-    return _resnet(&quot;resnet50&quot;, Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
-  File &quot;c:\python39\lib\site-packages\torchvision\models\resnet.py&quot;, line 294, in _resnet
-    model = ResNet(block, layers, **kwargs)
-  File &quot;c:\python39\lib\site-packages\torchvision\models\resnet.py&quot;, line 202, in __init__
-    self.layer4 = self._make_layer(block, 512, layers[3], stride=2, dilate=replace_stride_with_dilation[2])
-  File &quot;c:\python39\lib\site-packages\torchvision\models\resnet.py&quot;, line 252, in _make_layer
-    block(
-  File &quot;c:\python39\lib\site-packages\torchvision\models\resnet.py&quot;, line 135, in __init__
-    self.conv3 = conv1x1(width, planes * self.expansion)
-  File &quot;c:\python39\lib\site-packages\torchvision\models\resnet.py&quot;, line 54, in conv1x1
-    return nn.Conv2d(in_planes, out_planes, kernel_size=1, stride=stride, bias=False)
-  File &quot;c:\python39\lib\site-packages\torch\nn\modules\conv.py&quot;, line 434, in __init__
-    super(Conv2d, self).__init__(
-  File &quot;c:\python39\lib\site-packages\torch\nn\modules\conv.py&quot;, line 131, in __init__
-    self.weight = Parameter(torch.empty(
-RuntimeError: [enforce fail at C:\actions-runner\_work\pytorch\pytorch\builder\windows\pytorch\c10\core\impl\alloc_cpu.cpp:81] data. DefaultCPUAllocator: not enough memory: you tried to allocate 4194304 bytes.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File &quot;C:\Users\matth\AppData\Roaming\Python\Python39\site-packages\IPython\core\interactiveshell.py&quot;, line 2057, in showtraceback
-    stb = self.InteractiveTB.structured_traceback(
-  File &quot;C:\Users\matth\AppData\Roaming\Python\Python39\site-packages\IPython\core\ultratb.py&quot;, line 1118, in structured_traceback
-    return FormattedTB.structured_traceback(
-  File &quot;C:\Users\matth\AppData\Roaming\Python\Python39\site-packages\IPython\core\ultratb.py&quot;, line 1012, in structured_traceback
-    return VerboseTB.structured_traceback(
-  File &quot;C:\Users\matth\AppData\Roaming\Python\Python39\site-packages\IPython\core\ultratb.py&quot;, line 865, in structured_traceback
-    formatted_exception = self.format_exception_as_a_whole(etype, evalue, etb, number_of_lines_of_context,
-  File &quot;C:\Users\matth\AppData\Roaming\Python\Python39\site-packages\IPython\core\ultratb.py&quot;, line 799, in format_exception_as_a_whole
-    self.get_records(etb, number_of_lines_of_context, tb_offset) if etb else []
-  File &quot;C:\Users\matth\AppData\Roaming\Python\Python39\site-packages\IPython\core\ultratb.py&quot;, line 854, in get_records
-    return list(stack_data.FrameInfo.stack_data(etb, options=options))[tb_offset:]
-  File &quot;C:\Users\matth\AppData\Roaming\Python\Python39\site-packages\stack_data\core.py&quot;, line 597, in stack_data
-    yield from collapse_repeated(
-  File &quot;C:\Users\matth\AppData\Roaming\Python\Python39\site-packages\stack_data\utils.py&quot;, line 83, in collapse_repeated
-    yield from map(mapper, original_group)
-  File &quot;C:\Users\matth\AppData\Roaming\Python\Python39\site-packages\stack_data\core.py&quot;, line 587, in mapper
-    return cls(f, options)
-  File &quot;C:\Users\matth\AppData\Roaming\Python\Python39\site-packages\stack_data\core.py&quot;, line 551, in __init__
-    self.executing = Source.executing(frame_or_tb)
-  File &quot;C:\Users\matth\AppData\Roaming\Python\Python39\site-packages\executing\executing.py&quot;, line 359, in executing
-    source = cls.for_frame(frame)
-  File &quot;C:\Users\matth\AppData\Roaming\Python\Python39\site-packages\executing\executing.py&quot;, line 277, in for_frame
-    return cls.for_filename(frame.f_code.co_filename, frame.f_globals or {}, use_cache)
-  File &quot;C:\Users\matth\AppData\Roaming\Python\Python39\site-packages\executing\executing.py&quot;, line 306, in for_filename
-    return cls._for_filename_and_lines(filename, tuple(lines))
-  File &quot;C:\Users\matth\AppData\Roaming\Python\Python39\site-packages\executing\executing.py&quot;, line 317, in _for_filename_and_lines
-    result = source_cache[(filename, lines)] = cls(filename, lines)
-  File &quot;C:\Users\matth\AppData\Roaming\Python\Python39\site-packages\executing\executing.py&quot;, line 257, in __init__
-    self.tree = ast.parse(ast_text, filename=filename)
-  File &quot;c:\python39\lib\ast.py&quot;, line 50, in parse
-    return compile(source, filename, mode, flags,
-SystemError: &lt;built-in function compile&gt; returned NULL without setting an error
-</pre></div>
-</div>
-</div>
 </div>
 <section id="predicting-the-object-classes">
 <h3>Predicting the Object Classes<a class="headerlink" href="#predicting-the-object-classes" title="Permalink to this heading">#</a></h3>
@@ -636,10 +571,10 @@ Scores: tensor([0.9977, 0.9913, 0.9898, 0.2787, 0.1807, 0.1448, 0.1275, 0.0993, 
         0.0730], grad_fn=&lt;IndexBackward0&gt;)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x2a47de53340&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1fb411fc0a0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/f4c2807c6f4b63f49e0ce10ded10a7b26cda40f570402a239eeeced4e8ad009b.png" src="../../_images/f4c2807c6f4b63f49e0ce10ded10a7b26cda40f570402a239eeeced4e8ad009b.png" />
+<img alt="../../_images/1e51baf976022a9a1a1b4f69fe7e88494ff0ab956a447560a5ee2dbeadd8b4e8.png" src="../../_images/1e51baf976022a9a1a1b4f69fe7e88494ff0ab956a447560a5ee2dbeadd8b4e8.png" />
 </div>
 </div>
 <p>Image example 2:</p>
@@ -775,10 +710,10 @@ Scores: tensor([0.9995, 0.9986, 0.9986, 0.9970, 0.9966, 0.9966, 0.9939, 0.9896, 
         0.0592], grad_fn=&lt;IndexBackward0&gt;)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x2a4053c9a60&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1fb000ff550&gt;
 </pre></div>
 </div>
-<img alt="../../_images/fdf7f4acdf4a4038ba9e41bb32a011a278104fab8902d569a86efefdeacbf172.png" src="../../_images/fdf7f4acdf4a4038ba9e41bb32a011a278104fab8902d569a86efefdeacbf172.png" />
+<img alt="../../_images/a6237567ef09f205f2cdf03f6c253681e9950eef3a061c86b8c796b4b63ec37a.png" src="../../_images/a6237567ef09f205f2cdf03f6c253681e9950eef3a061c86b8c796b4b63ec37a.png" />
 </div>
 </div>
 <p>Image example 3:</p>
@@ -894,10 +829,10 @@ Scores: tensor([0.9993, 0.9897, 0.9853, 0.9846, 0.9822, 0.9693, 0.9591, 0.9528, 
         0.0516, 0.0511], grad_fn=&lt;IndexBackward0&gt;)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x2a4032a71c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1fb00138280&gt;
 </pre></div>
 </div>
-<img alt="../../_images/0560e8127c4d14cf23b311a4071188d710d2647ec1b82f0966be374c58bee969.png" src="../../_images/0560e8127c4d14cf23b311a4071188d710d2647ec1b82f0966be374c58bee969.png" />
+<img alt="../../_images/721223db081a479728536a8b3510adcab42376ea8b7a61a7bbcef56734194d6e.png" src="../../_images/721223db081a479728536a8b3510adcab42376ea8b7a61a7bbcef56734194d6e.png" />
 </div>
 </div>
 </section>
@@ -914,16 +849,24 @@ Scores: tensor([0.9993, 0.9897, 0.9853, 0.9846, 0.9822, 0.9693, 0.9591, 0.9528, 
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using cache found in C:\Users\matth/.cache\torch\hub\ultralytics_yolov5_master
-<span class=" -Color -Color-Bold -Color-Bold-Red">requirements:</span> Ultralytics requirements [&#39;gitpython&gt;=3.1.30&#39;, &#39;setuptools&gt;=65.5.1&#39;] not found, attempting AutoUpdate...
-<span class=" -Color -Color-Bold -Color-Bold-Red">requirements:</span>  AutoUpdate skipped (offline)
-YOLOv5  2023-9-1 Python-3.9.0 torch-1.11.0+cu113 CPU
-
-Downloading https://github.com/ultralytics/yolov5/releases/download/v7.0/yolov5s.pt to yolov5s.pt...
-100%|██████████| 14.1M/14.1M [00:06&lt;00:00, 2.18MB/s]
-
-Fusing layers... 
-YOLOv5s summary: 213 layers, 7225885 parameters, 0 gradients
-Adding AutoShape... 
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">requirements:</span> Ultralytics requirements [&#39;gitpython&gt;=3.1.30&#39;, &#39;setuptools&gt;=65.5.1&#39;] not found, attempting AutoUpdate...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">requirements:</span>  AutoUpdate skipped (offline)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>YOLOv5  2023-9-1 Python-3.9.0 torch-1.11.0+cu113 CPU
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fusing layers... 
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>YOLOv5s summary: 213 layers, 7225885 parameters, 0 gradients
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adding AutoShape... 
 </pre></div>
 </div>
 </div>
@@ -956,7 +899,7 @@ Adding AutoShape...
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 1/2: 720x1280 2 persons, 1 tie
 image 2/2: 1080x810 4 persons, 1 bus
-Speed: 11.5ms pre-process, 520.3ms inference, 3.5ms NMS per image at shape (2, 3, 640, 640)
+Speed: 12.0ms pre-process, 338.2ms inference, 3.5ms NMS per image at shape (2, 3, 640, 640)
 </pre></div>
 </div>
 <img alt="../../_images/571dce5386c5f035f184ce050c9d8f5e1c790f46569eb964aeb37ff871cac3cc.png" src="../../_images/571dce5386c5f035f184ce050c9d8f5e1c790f46569eb964aeb37ff871cac3cc.png" />
@@ -999,12 +942,12 @@ Speed: 11.5ms pre-process, 520.3ms inference, 3.5ms NMS per image at shape (2, 3
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="2_image_classification_convolutional.html"
+       href="2_image_classification_convolutional_pytorch.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Image Classification using convolutional layers</p>
+        <p class="prev-next-title">Image Classification using convolutional layers with PyTorch</p>
       </div>
     </a>
     <a class="right-next"

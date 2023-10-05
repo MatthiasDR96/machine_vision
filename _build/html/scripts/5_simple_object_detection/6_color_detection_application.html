@@ -191,12 +191,15 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Complex object detection</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/1_image_classification_fully_connected.html">Image Classification using fully connected layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/2_image_classification_convolutional.html">Image Classification using convolutional layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/1_image_classification_fully_connected_keras.html">Image Classification using fully connected layers with Keras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/1_image_classification_fully_connected_pytorch.html">Image Classification using fully connected layers with PyTorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/2_image_classification_convolutional_keras.html">Image Classification using convolutional layers with Keras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/2_image_classification_convolutional_pytorch.html">Image Classification using convolutional layers with PyTorch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/3_object_detection.html">Object Detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/4_image_segmentation.html">Image Segmentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/5_dataset_creation.html">Dataset Creation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/6_transfer_learning.html">Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/5_dataset_creation_keras.html">Dataset Creation with Keras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/5_dataset_creation_pytorch.html">Dataset Creation with PyTorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/6_transfer_learning_pytorch.html">Transfer Learning</a></li>
 </ul>
 
     </div>
@@ -511,16 +514,16 @@ document.write(`
   warnings.warn(
 </pre></div>
 </div>
-<img alt="../../_images/94759e92eec8f68514f93b0d0668a314411a4fa1198e1a2a7824f3cd26373e02.png" src="../../_images/94759e92eec8f68514f93b0d0668a314411a4fa1198e1a2a7824f3cd26373e02.png" />
-<img alt="../../_images/42c5691443522cc6836841df728bc008d2708fc519f80ca670d4b905f0f3fdab.png" src="../../_images/42c5691443522cc6836841df728bc008d2708fc519f80ca670d4b905f0f3fdab.png" />
-<img alt="../../_images/4ad307895563ab234f908f5069658dd6a1a01310136b794e5de0b44ed50ffc5d.png" src="../../_images/4ad307895563ab234f908f5069658dd6a1a01310136b794e5de0b44ed50ffc5d.png" />
+<img alt="../../_images/72a7a7b543739ea4182670971d9104efd102ecabe2133320a8e559ef289163c1.png" src="../../_images/72a7a7b543739ea4182670971d9104efd102ecabe2133320a8e559ef289163c1.png" />
 <img alt="../../_images/d7b778b2db4ec94aae10b14b0e18b593f7be606506a4abad791bbc93bc5815aa.png" src="../../_images/d7b778b2db4ec94aae10b14b0e18b593f7be606506a4abad791bbc93bc5815aa.png" />
-<img alt="../../_images/01509123cb935b4d512be29cac0dc5c07b33d99cbbef0263587c6e2f06b86652.png" src="../../_images/01509123cb935b4d512be29cac0dc5c07b33d99cbbef0263587c6e2f06b86652.png" />
-<img alt="../../_images/84c3f396aa5aafa448dc81f5edf4b21b7f2d7948172072e5251eeb4866270bd8.png" src="../../_images/84c3f396aa5aafa448dc81f5edf4b21b7f2d7948172072e5251eeb4866270bd8.png" />
-<img alt="../../_images/00f33d7da42c451a709288d7f6ead80cab99a1e6a8f74d92107ad82cdda02d4f.png" src="../../_images/00f33d7da42c451a709288d7f6ead80cab99a1e6a8f74d92107ad82cdda02d4f.png" />
-<img alt="../../_images/26bd44d5e38ebaad4ea52dc4cf8c34a07c7911a742dfb8ccf9aa6b15961d16eb.png" src="../../_images/26bd44d5e38ebaad4ea52dc4cf8c34a07c7911a742dfb8ccf9aa6b15961d16eb.png" />
-<img alt="../../_images/6c9dda86f3ee64e9b53b397d0ca69f8f5c5ccd96fa301f69d3d41b6f36056456.png" src="../../_images/6c9dda86f3ee64e9b53b397d0ca69f8f5c5ccd96fa301f69d3d41b6f36056456.png" />
-<img alt="../../_images/a47e87d11688dcbba5ad96dfdb0a5e0d72ce6dcc568f365a0391372ce70ba928.png" src="../../_images/a47e87d11688dcbba5ad96dfdb0a5e0d72ce6dcc568f365a0391372ce70ba928.png" />
+<img alt="../../_images/6bad46fc649c86d495039eda7b78131a02bd93c7a4f2e5000d0576662108fbc2.png" src="../../_images/6bad46fc649c86d495039eda7b78131a02bd93c7a4f2e5000d0576662108fbc2.png" />
+<img alt="../../_images/ccbc2f6f19b53d3fcd31e028d8fece59172f7e226d160f59338e0630d79da6e2.png" src="../../_images/ccbc2f6f19b53d3fcd31e028d8fece59172f7e226d160f59338e0630d79da6e2.png" />
+<img alt="../../_images/fd7b624f47cc061c60e827cfa6680454b34be919cdc1bdb96d7c23f60e55e6d5.png" src="../../_images/fd7b624f47cc061c60e827cfa6680454b34be919cdc1bdb96d7c23f60e55e6d5.png" />
+<img alt="../../_images/be9e8159791915b691080a51a2e7b09b0e31feebf8eed5bd9243c5925cccfd47.png" src="../../_images/be9e8159791915b691080a51a2e7b09b0e31feebf8eed5bd9243c5925cccfd47.png" />
+<img alt="../../_images/2db221509b7bf642518cfc2eeb3a3710cd5119a168ef75fe67dc1d05f53d6af9.png" src="../../_images/2db221509b7bf642518cfc2eeb3a3710cd5119a168ef75fe67dc1d05f53d6af9.png" />
+<img alt="../../_images/f75d656d6d5bbba3b7e20e6aaa90fbfbd180abafd0d89de77e8eec7d7c31fa14.png" src="../../_images/f75d656d6d5bbba3b7e20e6aaa90fbfbd180abafd0d89de77e8eec7d7c31fa14.png" />
+<img alt="../../_images/e100f6a24fe6133b0d7df0c90ab8c1cfde91c557f97d58a717a4874ac6ad4a61.png" src="../../_images/e100f6a24fe6133b0d7df0c90ab8c1cfde91c557f97d58a717a4874ac6ad4a61.png" />
+<img alt="../../_images/01128b55fdc2d24c783a6bcb9f3e6525e132a4a66b53814d158e874a384fcaca.png" src="../../_images/01128b55fdc2d24c783a6bcb9f3e6525e132a4a66b53814d158e874a384fcaca.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -532,7 +535,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0187a0dcdab4f317f9a0c601eec8b8714688cdd77549dd8fa90578af21484c19.png" src="../../_images/0187a0dcdab4f317f9a0c601eec8b8714688cdd77549dd8fa90578af21484c19.png" />
+<img alt="../../_images/5a71e83ceb9101d9a26895f717bc78d0ce0dca967b3c5a2fe311723c0f59f612.png" src="../../_images/5a71e83ceb9101d9a26895f717bc78d0ce0dca967b3c5a2fe311723c0f59f612.png" />
 </div>
 </div>
 </section>

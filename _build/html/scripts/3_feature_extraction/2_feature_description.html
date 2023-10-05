@@ -191,12 +191,15 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Complex object detection</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/1_image_classification_fully_connected.html">Image Classification using fully connected layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/2_image_classification_convolutional.html">Image Classification using convolutional layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/1_image_classification_fully_connected_keras.html">Image Classification using fully connected layers with Keras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/1_image_classification_fully_connected_pytorch.html">Image Classification using fully connected layers with PyTorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/2_image_classification_convolutional_keras.html">Image Classification using convolutional layers with Keras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/2_image_classification_convolutional_pytorch.html">Image Classification using convolutional layers with PyTorch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/3_object_detection.html">Object Detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/4_image_segmentation.html">Image Segmentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/5_dataset_creation.html">Dataset Creation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/6_transfer_learning.html">Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/5_dataset_creation_keras.html">Dataset Creation with Keras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/5_dataset_creation_pytorch.html">Dataset Creation with PyTorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/6_transfer_learning_pytorch.html">Transfer Learning</a></li>
 </ul>
 
     </div>
@@ -474,7 +477,7 @@ HOG Descriptor has shape: (10557540,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The feature detector returns a list of keypoints: (&lt; cv2.KeyPoint 00000228653CCDB0&gt;, &lt; cv2.KeyPoint 00000228653CCDE0&gt;, &lt; cv2.KeyPoint 00000228653CCFC0&gt;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The feature detector returns a list of keypoints: (&lt; cv2.KeyPoint 0000016DC229B330&gt;, &lt; cv2.KeyPoint 0000016DC229B240&gt;, &lt; cv2.KeyPoint 0000016DC229B360&gt;)
 The feature descriptor returns a list of feature descriptors for each keypoint: [  0.   1.   0.   1.  58. 153.   0.   0.  29.   0.   0.   1.  15.  69.
    2.  24.  42.   0.   0.   0.   0.   0.   0.  36.   0.   0.   0.   0.
    0.   0.   0.   0.  10.  34.   0.   0.  42. 153.   0.   0.  90.   2.
