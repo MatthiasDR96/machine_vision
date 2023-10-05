@@ -7,3 +7,4 @@ matplotlib
 opencv-python
 jupyter-book
 k_means_constrained
+tensorflow
