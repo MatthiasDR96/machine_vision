@@ -187,6 +187,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/7_measuring_application.html">Measuring application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/8_sawblade_application.html">Sawblade analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/92_car_detection_application.html">Car detection using motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/93_perspective_transformation_application.html">Perspective transformtaion application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/9_crop_row_application.html">Crop row application</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Complex object detection</span></p>
@@ -476,10 +477,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/e801675ccd3a902ce0f617a92d84019bd66627f7adcbeac4331588c34294e1f8.png" src="../../_images/e801675ccd3a902ce0f617a92d84019bd66627f7adcbeac4331588c34294e1f8.png" />
+<img alt="../../_images/a432f56cef410ce4a5b11779287ae8d472d9a75d92ea276d82ab5be2e865f2bd.png" src="../../_images/a432f56cef410ce4a5b11779287ae8d472d9a75d92ea276d82ab5be2e865f2bd.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The batch contains 10 samples.
-The labels that belong to the images are: tensor([0, 9, 7, 0, 4, 6, 6, 6, 6, 3])
-The label that belongs to the first image is: 0
+The labels that belong to the images are: tensor([3, 3, 8, 8, 0, 0, 1, 1, 5, 6])
+The label that belongs to the first image is: 3
 </pre></div>
 </div>
 </div>
@@ -625,50 +626,50 @@ The label that belongs to the first image is: 0
 ----------
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.636 train_loss 1.333
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.599 train_loss 1.431
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.850 val_loss 0.590
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.843 val_loss 0.601
 Epoch 2/10
 ----------
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.869 train_loss 0.477
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.870 train_loss 0.474
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.886 val_loss 0.399
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.890 val_loss 0.385
 Epoch 3/10
 ----------
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.892 train_loss 0.376
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.892 train_loss 0.372
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.902 val_loss 0.339
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.900 val_loss 0.336
 Epoch 4/10
 ----------
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.902 train_loss 0.336
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.902 train_loss 0.335
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.908 val_loss 0.316
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.912 val_loss 0.310
 Epoch 5/10
 ----------
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.909 train_loss 0.311
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.908 train_loss 0.312
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.914 val_loss 0.292
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.915 val_loss 0.292
 Epoch 6/10
 ----------
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.915 train_loss 0.293
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.914 train_loss 0.294
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.921 val_loss 0.277
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.919 val_loss 0.282
 Epoch 7/10
 ----------
 </pre></div>
@@ -676,15 +677,15 @@ Epoch 7/10
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.919 train_loss 0.278
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.924 val_loss 0.264
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.924 val_loss 0.263
 Epoch 8/10
 ----------
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.923 train_loss 0.263
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.923 train_loss 0.264
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.926 val_loss 0.255
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.926 val_loss 0.254
 Epoch 9/10
 ----------
 </pre></div>
@@ -692,15 +693,15 @@ Epoch 9/10
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.927 train_loss 0.250
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.929 val_loss 0.239
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.929 val_loss 0.240
 Epoch 10/10
 ----------
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.932 train_loss 0.236
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.930 train_loss 0.237
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.932 val_loss 0.229
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.934 val_loss 0.233
 </pre></div>
 </div>
 </div>
@@ -731,7 +732,7 @@ Epoch 10/10
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Accuracy&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/55eb17dcb1656b2d3a5f6e8810c8b9e4d348e78d92b8f095feac3d2c2683f3e8.png" src="../../_images/55eb17dcb1656b2d3a5f6e8810c8b9e4d348e78d92b8f095feac3d2c2683f3e8.png" />
+<img alt="../../_images/ba4e3a99e3cfdf59a1fd00ef8255b8cb94be5c01eebea857084ba60b196fc3ee.png" src="../../_images/ba4e3a99e3cfdf59a1fd00ef8255b8cb94be5c01eebea857084ba60b196fc3ee.png" />
 </div>
 </div>
 </section>
@@ -753,7 +754,7 @@ Epoch 10/10
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The model predicts the number to be 0 and the real number is 0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The model predicts the number to be 3 and the real number is 3
 </pre></div>
 </div>
 </div>
@@ -775,7 +776,7 @@ Epoch 10/10
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29d028a415d9c6082b5731442c1e01be4c10f9a4e0650bce03f9b7bf9684b2b3.png" src="../../_images/29d028a415d9c6082b5731442c1e01be4c10f9a4e0650bce03f9b7bf9684b2b3.png" />
+<img alt="../../_images/7077194c87072eb2aa2f40f318bdfe1cbf9dd43ce1fefbb2386be31ffef121f5.png" src="../../_images/7077194c87072eb2aa2f40f318bdfe1cbf9dd43ce1fefbb2386be31ffef121f5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -812,7 +813,7 @@ Epoch 10/10
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The model has an accuracy of 93.17999999999999 on the validation set.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The model has an accuracy of 93.41000000000001 on the validation set.
 </pre></div>
 </div>
 </div>

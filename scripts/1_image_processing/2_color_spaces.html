@@ -187,6 +187,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/7_measuring_application.html">Measuring application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/8_sawblade_application.html">Sawblade analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/92_car_detection_application.html">Car detection using motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/93_perspective_transformation_application.html">Perspective transformtaion application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/9_crop_row_application.html">Crop row application</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Complex object detection</span></p>
@@ -465,15 +466,40 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert to HSV</span>
 <span class="n">hsv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2HSV</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hsv</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="c1"># Show image</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">hsv</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">hsv</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/9107548c2df50df8f29dd0d961a2115c2c56271eb2d666375be89e5e3e7b18d2.png" src="../../_images/9107548c2df50df8f29dd0d961a2115c2c56271eb2d666375be89e5e3e7b18d2.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+</pre></div>
+</div>
+<img alt="../../_images/2a88ea30e913aac4c054e8ef9a8cf1dadc13a30a8dca4853337a9f6025448a36.png" src="../../_images/2a88ea30e913aac4c054e8ef9a8cf1dadc13a30a8dca4853337a9f6025448a36.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate histogram</span>
+<span class="n">hist_hsv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">hsv</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[</span><span class="mi">256</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">256</span><span class="p">])</span>
+
+<span class="c1"># Show images</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hist_hsv</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f835c8c720cd0886a94bf4175e8f34bad630170579cc0649304df49afcb4e55a.png" src="../../_images/f835c8c720cd0886a94bf4175e8f34bad630170579cc0649304df49afcb4e55a.png" />
 </div>
 </div>
 </section>
@@ -482,8 +508,8 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define lower and upper threshold for the pixel values we want to select (to select the blue color we define a hue bewteen 100 and 120; saturation and value in the full range)</span>
-<span class="n">lower_green</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> <span class="c1"># Lower HSV-threshold </span>
-<span class="n">upper_green</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">120</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">])</span> <span class="c1"># Upper HSV-threshold</span>
+<span class="n">lower_green</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">80</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> <span class="c1"># Lower HSV-threshold </span>
+<span class="n">upper_green</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">])</span> <span class="c1"># Upper HSV-threshold</span>
 
 <span class="c1"># Define a mask where the pixel values in the range obtain the value of 255, and other pixels the value of 0</span>
 <span class="n">mask</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">inRange</span><span class="p">(</span><span class="n">hsv</span><span class="p">,</span> <span class="n">lower_green</span><span class="p">,</span> <span class="n">upper_green</span><span class="p">)</span>
@@ -505,7 +531,7 @@ The unique values occuring in the mask are [  0 255] (only 0 and 255)
 The data type of the pixel values is stored as: &lt;class &#39;numpy.uint8&#39;&gt; (integers)
 </pre></div>
 </div>
-<img alt="../../_images/58f4e346e1c6ada22c65cb094ec4cca8b1efa07a4226ed755a84b01e6383b142.png" src="../../_images/58f4e346e1c6ada22c65cb094ec4cca8b1efa07a4226ed755a84b01e6383b142.png" />
+<img alt="../../_images/16ae88988f1654b7cb7a13771841696c94388eedc647025943abe4eaedc86817.png" src="../../_images/16ae88988f1654b7cb7a13771841696c94388eedc647025943abe4eaedc86817.png" />
 </div>
 </div>
 </section>
