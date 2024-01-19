@@ -1,0 +1,49 @@
+{
+  "categories": [
+    {
+      "id": 0,
+      "name": "ANF"
+    },
+    {
+      "id": 1,
+      "name": "BIB"
+    },
+    {
+      "id": 2,
+      "name": "GUR"
+    },
+    {
+      "id": 3,
+      "name": "GUU"
+    },
+    {
+      "id": 4,
+      "name": "HAD"
+    },
+    {
+      "id": 5,
+      "name": "MEG"
+    },
+    {
+      "id": 6,
+      "name": "PLE"
+    },
+    {
+      "id": 7,
+      "name": "SOL"
+    },
+    {
+      "id": 8,
+      "name": "WHG"
+    },
+    {
+      "id": 9,
+      "name": "WIT"
+    }
+  ],
+  "info": {
+    "year": 2024,
+    "version": "1.0",
+    "contributor": "Label Studio"
+  }
+}
