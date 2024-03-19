@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -185,6 +185,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/5_spatial_operations.html">Spatial operations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/6_shape_changing.html">Shape changing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/7_histogram_equalization.html">Histogram equalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_image_processing/82_threshold_calibration.html">Thresholding using RGB and HSV space</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/8_thresholding.html">Thresholding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/9_morphological_transformations.html">Morphological transformations</a></li>
 </ul>
@@ -605,10 +606,10 @@ Scores: tensor([0.9977, 0.9913, 0.9898, 0.2787, 0.1807, 0.1448, 0.1275, 0.0993, 
         0.0730], grad_fn=&lt;IndexBackward0&gt;)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1ec76f60b20&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x264a40ad210&gt;
 </pre></div>
 </div>
-<img alt="../../_images/c80f94e83b9493b54081fd958296a107f2f634704e9f465e336afc27d2dd430e.png" src="../../_images/c80f94e83b9493b54081fd958296a107f2f634704e9f465e336afc27d2dd430e.png" />
+<img alt="../../_images/c8cd8d475596d472809d1b6106fb6f23ebeeeb2cf041ce0db2ce80e1ddf859ac.png" src="../../_images/c8cd8d475596d472809d1b6106fb6f23ebeeeb2cf041ce0db2ce80e1ddf859ac.png" />
 </div>
 </div>
 <p>Image example 2:</p>
@@ -744,10 +745,10 @@ Scores: tensor([0.9994, 0.9987, 0.9986, 0.9969, 0.9966, 0.9960, 0.9949, 0.9908, 
         0.0557], grad_fn=&lt;IndexBackward0&gt;)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1ec770b3970&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x264ab2e6860&gt;
 </pre></div>
 </div>
-<img alt="../../_images/d5b5892372982b30d13695e9e6b063b85e4673ed5b565cc645b7616cf023d214.png" src="../../_images/d5b5892372982b30d13695e9e6b063b85e4673ed5b565cc645b7616cf023d214.png" />
+<img alt="../../_images/0c9fc3f7c2d3991e17c8438f31c8d4b768920eafd627a46529a330933891d032.png" src="../../_images/0c9fc3f7c2d3991e17c8438f31c8d4b768920eafd627a46529a330933891d032.png" />
 </div>
 </div>
 <p>Image example 3:</p>
@@ -863,10 +864,10 @@ Scores: tensor([0.9993, 0.9897, 0.9853, 0.9846, 0.9822, 0.9693, 0.9591, 0.9528, 
         0.0516, 0.0511], grad_fn=&lt;IndexBackward0&gt;)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1ec02ff31f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x264ad7f1e70&gt;
 </pre></div>
 </div>
-<img alt="../../_images/d23e1c791c7bd1b87744fb0e0866c07b62f3a88180723c1c56da6674c3f43521.png" src="../../_images/d23e1c791c7bd1b87744fb0e0866c07b62f3a88180723c1c56da6674c3f43521.png" />
+<img alt="../../_images/11f9ad174fc49bd1050d5e40ad7a64bb56fcb5037e2ab8e0eee215169d027e8e.png" src="../../_images/11f9ad174fc49bd1050d5e40ad7a64bb56fcb5037e2ab8e0eee215169d027e8e.png" />
 </div>
 </div>
 </section>
@@ -933,7 +934,7 @@ Scores: tensor([0.9993, 0.9897, 0.9853, 0.9846, 0.9822, 0.9693, 0.9591, 0.9528, 
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 1/2: 720x1280 2 persons, 1 tie
 image 2/2: 1080x810 4 persons, 1 bus
-Speed: 2.0ms pre-process, 41.7ms inference, 126.3ms NMS per image at shape (2, 3, 640, 640)
+Speed: 2.0ms pre-process, 48.1ms inference, 136.9ms NMS per image at shape (2, 3, 640, 640)
 </pre></div>
 </div>
 <img alt="../../_images/670531943dfefa727dbc1d58aa016836694ab68b4d9f23bf0ae6f34a02d13a3e.png" src="../../_images/670531943dfefa727dbc1d58aa016836694ab68b4d9f23bf0ae6f34a02d13a3e.png" />

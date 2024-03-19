@@ -15,25 +15,18 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Imports
-import cv2
-import torch
-import numpy as np
-import torchvision
-import matplotlib.pyplot as plt
-import torchvision.transforms as transforms
-from torchvision.transforms.functional import pil_to_tensor, to_pil_image
-from torchvision.utils import draw_segmentation_masks
+Horses_preprocess = img_preprocess(Horses).unsqueeze(dim=0) # unsqueeze at index 0 because the batch_size is 1
+People_preprocess = img_preprocess(People).unsqueeze(dim=0)
+Street_preprocess = img_preprocess(Street).unsqueeze(dim=0)
 ------------------
 
 
 [1;31m---------------------------------------------------------------------------[0m
-[1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [1;32mIn[1], line 2[0m
-[0;32m      1[0m [38;5;66;03m# Imports[39;00m
-[1;32m----> 2[0m [38;5;28;01mimport[39;00m [38;5;21;01mcv2[39;00m
-[0;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mtorch[39;00m
-[0;32m      4[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[1;31mNameError[0m                                 Traceback (most recent call last)
+Cell [1;32mIn[5], line 1[0m
+[1;32m----> 1[0m Horses_preprocess [38;5;241m=[39m img_preprocess([43mHorses[49m)[38;5;241m.[39munsqueeze(dim[38;5;241m=[39m[38;5;241m0[39m) [38;5;66;03m# unsqueeze at index 0 because the batch_size is 1[39;00m
+[0;32m      2[0m People_preprocess [38;5;241m=[39m img_preprocess(People)[38;5;241m.[39munsqueeze(dim[38;5;241m=[39m[38;5;241m0[39m)
+[0;32m      3[0m Street_preprocess [38;5;241m=[39m img_preprocess(Street)[38;5;241m.[39munsqueeze(dim[38;5;241m=[39m[38;5;241m0[39m)
 
-[1;31mModuleNotFoundError[0m: No module named 'cv2'
+[1;31mNameError[0m: name 'Horses' is not defined
 

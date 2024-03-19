@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -185,6 +185,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/5_spatial_operations.html">Spatial operations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/6_shape_changing.html">Shape changing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/7_histogram_equalization.html">Histogram equalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_image_processing/82_threshold_calibration.html">Thresholding using RGB and HSV space</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/8_thresholding.html">Thresholding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/9_morphological_transformations.html">Morphological transformations</a></li>
 </ul>
@@ -442,18 +443,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span> <span class="c1"># Module for 3D plotting</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span> <span class="c1"># Module to encode string labels</span>
-<span class="ne">---&gt; </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="o">*</span> <span class="c1"># Module that imports decode and extract_color_bands functions</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;utils&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <section id="data-analysis">
 <h2>Data analysis<a class="headerlink" href="#data-analysis" title="Link to this heading">#</a></h2>
@@ -508,23 +497,23 @@ The color bands are encoded as follows: [k, z, r, o, y, g, b, v, x, w] -&gt; [bl
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File name: 100_zkr.jpg
 </pre></div>
 </div>
-<img alt="../../_images/369fd1b29853adafe88303beeef0cb7997ac9fc2aafa5a2930b973d9a5611c0c.png" src="../../_images/369fd1b29853adafe88303beeef0cb7997ac9fc2aafa5a2930b973d9a5611c0c.png" />
+<img alt="../../_images/a7d0a91bc9a5913cbe8fe3aa93f314e9551d96e4fa4c7fa4172335308629d420.png" src="../../_images/a7d0a91bc9a5913cbe8fe3aa93f314e9551d96e4fa4c7fa4172335308629d420.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File name: 101_bxz.jpg
 </pre></div>
 </div>
-<img alt="../../_images/bf0e41ade28356a278b6c905ad6607ef7d8bf115e8ca9d94682462693422d407.png" src="../../_images/bf0e41ade28356a278b6c905ad6607ef7d8bf115e8ca9d94682462693422d407.png" />
+<img alt="../../_images/fac1ef7d0bb7af1e5a19e4ee16a4fbce8b532f69bd2d41fb506a646a1427406d.png" src="../../_images/fac1ef7d0bb7af1e5a19e4ee16a4fbce8b532f69bd2d41fb506a646a1427406d.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File name: 102_bxz.jpg
 </pre></div>
 </div>
-<img alt="../../_images/eb7ff257390b80ac628a325b7107b456f602935a3b2c4f29c1f9ccf2fe87739b.png" src="../../_images/eb7ff257390b80ac628a325b7107b456f602935a3b2c4f29c1f9ccf2fe87739b.png" />
+<img alt="../../_images/b03ca6d371146454736ff9d5f0e3a5db1118df34722ad1daed83aed384768b5e.png" src="../../_images/b03ca6d371146454736ff9d5f0e3a5db1118df34722ad1daed83aed384768b5e.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File name: 103_bxz.jpg
 </pre></div>
 </div>
-<img alt="../../_images/b24dfbfa277e618d653b68d554562f46498a8c74b765a579ec1ab97e3284464d.png" src="../../_images/b24dfbfa277e618d653b68d554562f46498a8c74b765a579ec1ab97e3284464d.png" />
+<img alt="../../_images/82497678336709ead8809b735692856be167d320a777e5f0206eb6252ace5d50.png" src="../../_images/82497678336709ead8809b735692856be167d320a777e5f0206eb6252ace5d50.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File name: 104_bxz.jpg
 </pre></div>
 </div>
-<img alt="../../_images/51080f8c45b5c2906cc9c0321f32f97604526ed718eefacdacaafb623a910faa.png" src="../../_images/51080f8c45b5c2906cc9c0321f32f97604526ed718eefacdacaafb623a910faa.png" />
+<img alt="../../_images/bce2db36769df334b187694c83d4b9e6e70b2a47940cea89bd5581d5ead8dda4.png" src="../../_images/bce2db36769df334b187694c83d4b9e6e70b2a47940cea89bd5581d5ead8dda4.png" />
 </div>
 </div>
 </section>
@@ -546,7 +535,7 @@ The color bands are encoded as follows: [k, z, r, o, y, g, b, v, x, w] -&gt; [bl
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/00b5e6e840d5939c3ede18b543be781f929f4aee101aadd0dbcd67e9de5ac0f9.png" src="../../_images/00b5e6e840d5939c3ede18b543be781f929f4aee101aadd0dbcd67e9de5ac0f9.png" />
+<img alt="../../_images/56a7914ac1c322dce16afee031552ad31fff8b39651085524b3461e7b92f7767.png" src="../../_images/56a7914ac1c322dce16afee031552ad31fff8b39651085524b3461e7b92f7767.png" />
 </div>
 </div>
 <p>In the next step, we convert the BGR-image to grayscale and threshold the saturated (value 255) background.</p>
@@ -565,7 +554,7 @@ The color bands are encoded as follows: [k, z, r, o, y, g, b, v, x, w] -&gt; [bl
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a1c922deb42d76c7271ec243f13525f504f2eea9efa163971acca07b6aaf60db.png" src="../../_images/a1c922deb42d76c7271ec243f13525f504f2eea9efa163971acca07b6aaf60db.png" />
+<img alt="../../_images/b90083a25b53b7a7d639e0b386635bc9b160bc219d638c75f1a0c6cd5343355a.png" src="../../_images/b90083a25b53b7a7d639e0b386635bc9b160bc219d638c75f1a0c6cd5343355a.png" />
 </div>
 </div>
 <p>To remove the sticks, we use some morphological transformations that remove all white elements that are smaller than the kernel. To do this, we define a kernel that is smaller than the core of the resistor which we want to keep, and larger than the elements we want to remove. In our case this is a rectangular kernel with size 20x20 pixels.</p>
@@ -584,7 +573,7 @@ The color bands are encoded as follows: [k, z, r, o, y, g, b, v, x, w] -&gt; [bl
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ebb6e0da021b55e154aedb7cb1d7c81ba848257935f0e7f5fe71aeeec63b209a.png" src="../../_images/ebb6e0da021b55e154aedb7cb1d7c81ba848257935f0e7f5fe71aeeec63b209a.png" />
+<img alt="../../_images/fbec3cfcfaddfa2c23b948c56a36c721d5538a63b5250191da57066ed7f3cb04.png" src="../../_images/fbec3cfcfaddfa2c23b948c56a36c721d5538a63b5250191da57066ed7f3cb04.png" />
 </div>
 </div>
 <p>We want to find the bounding box of the resistor. Using the binary mask, we find the contour of the resistor and obtain its bounding box.</p>
@@ -618,7 +607,7 @@ A minimum area rectangle is found with an upper right corner on (x, y) = (595.53
 and an orientation of 39.214447021484375 degrees with the horizontal
 </pre></div>
 </div>
-<img alt="../../_images/c78277d9ccfaae389f062506eefafcc06e9ea443c77dd6e7c1ca4369cad1f18e.png" src="../../_images/c78277d9ccfaae389f062506eefafcc06e9ea443c77dd6e7c1ca4369cad1f18e.png" />
+<img alt="../../_images/367196b219511afaa92a96c41d9cdb90005f71aab2d54aa5cbc0299adddb0bf2.png" src="../../_images/367196b219511afaa92a96c41d9cdb90005f71aab2d54aa5cbc0299adddb0bf2.png" />
 </div>
 </div>
 <p>Next, we will align the resistor with the horizontal for further analysis. To do this, we use the orientation of the bounding box and transform the image using this orientation.</p>
@@ -650,7 +639,7 @@ and an orientation of 39.214447021484375 degrees with the horizontal
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2ea72cb194308d5b2cedc9218e59c22019db0b5164c612c72ac65a256d33fb0a.png" src="../../_images/2ea72cb194308d5b2cedc9218e59c22019db0b5164c612c72ac65a256d33fb0a.png" />
+<img alt="../../_images/358653e9ee417fc27381c66ad4f93a7a15cef7a3bd9fbd92dee1b59fddc2c355.png" src="../../_images/358653e9ee417fc27381c66ad4f93a7a15cef7a3bd9fbd92dee1b59fddc2c355.png" />
 </div>
 </div>
 <p>Next, we will detect the color bands using a combination of two thresholding masks. The HSV threshold values were calibrated earlier and the threshold values for the background and the resistor core were saved in numpy arrays (.npy files).</p>
@@ -710,19 +699,19 @@ The HSV threshold values to threshold the background are: [  0 179   0 255   0 2
 Resistor core removed:
 </pre></div>
 </div>
-<img alt="../../_images/b68404714a4de4ffd2f4e94b3d425c48989e2e4f17a072cb0c8beb36b73c4f18.png" src="../../_images/b68404714a4de4ffd2f4e94b3d425c48989e2e4f17a072cb0c8beb36b73c4f18.png" />
+<img alt="../../_images/a6968b66f7d1b645644685f0bed0ae0326d7690cc6ea433681f9da7bbeb53128.png" src="../../_images/a6968b66f7d1b645644685f0bed0ae0326d7690cc6ea433681f9da7bbeb53128.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Background removed:
 </pre></div>
 </div>
-<img alt="../../_images/90f2a85f0f945fc41238bd1f43427977792cf1d03b013b5fda619c93a09a4350.png" src="../../_images/90f2a85f0f945fc41238bd1f43427977792cf1d03b013b5fda619c93a09a4350.png" />
+<img alt="../../_images/f66aeda45c507957b874c4e06c40768ad0d204a0d5e85f82f9c1390a17fd76d3.png" src="../../_images/f66aeda45c507957b874c4e06c40768ad0d204a0d5e85f82f9c1390a17fd76d3.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Combined effect:
 </pre></div>
 </div>
-<img alt="../../_images/88d8e12f712dd8bbbb7045ef45325821b89b3e1a38ff179b3bfc194027f2899b.png" src="../../_images/88d8e12f712dd8bbbb7045ef45325821b89b3e1a38ff179b3bfc194027f2899b.png" />
+<img alt="../../_images/b2add7d908792e81a85bd250ce351a7675c3a0aea69a29119a4374d280c35201.png" src="../../_images/b2add7d908792e81a85bd250ce351a7675c3a0aea69a29119a4374d280c35201.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result after morphology:
 </pre></div>
 </div>
-<img alt="../../_images/69e2f63a41e76432f645d6fc62dbc5e2e0cc46b71e8ea770218f2ed9fd4bcedf.png" src="../../_images/69e2f63a41e76432f645d6fc62dbc5e2e0cc46b71e8ea770218f2ed9fd4bcedf.png" />
+<img alt="../../_images/bbfa655833a6c5aa33978e3f6a72a71fcce6014f571eb01b8ea43821fda061e2.png" src="../../_images/bbfa655833a6c5aa33978e3f6a72a71fcce6014f571eb01b8ea43821fda061e2.png" />
 </div>
 </div>
 <p>Using the HSV thresholds and the morphological transformations, we managed to extract the color bands from the image. In the next step we will generate three cropped images of only the color bands.</p>
@@ -750,7 +739,7 @@ Resistor core removed:
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>There are 3 contours found in the binary image.
 </pre></div>
 </div>
-<img alt="../../_images/a9c70e020be89ee9ea6f90354993c37f5b6cf96cbfbc71d7202a96ef43fa3a63.png" src="../../_images/a9c70e020be89ee9ea6f90354993c37f5b6cf96cbfbc71d7202a96ef43fa3a63.png" />
+<img alt="../../_images/6693821d728653ae15925f1073e8b6fd60b2f20b86d090db1d74a8ae57e65733.png" src="../../_images/6693821d728653ae15925f1073e8b6fd60b2f20b86d090db1d74a8ae57e65733.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -790,15 +779,15 @@ Resistor core removed:
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Contour 1 has a mean HSV-value of [8.114197530864198, 116.11728395061728, 125.4320987654321]
 </pre></div>
 </div>
-<img alt="../../_images/9f2a9ca0c5e721ee3547da16ae9567b1499f57ec1368fabfd23b0e71e316c9bd.png" src="../../_images/9f2a9ca0c5e721ee3547da16ae9567b1499f57ec1368fabfd23b0e71e316c9bd.png" />
+<img alt="../../_images/6f362ec383a7624f13d35e5858597b45e1a884082ecc75aa6e88dbb736450b3c.png" src="../../_images/6f362ec383a7624f13d35e5858597b45e1a884082ecc75aa6e88dbb736450b3c.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Contour 2 has a mean HSV-value of [114.47030878859857, 38.764845605700714, 53.87971698113208]
 </pre></div>
 </div>
-<img alt="../../_images/5e4575ea89ad64f69b9454f21ccd84ff7ddd5af3423011ff5fb93d0b2f5fb5b2.png" src="../../_images/5e4575ea89ad64f69b9454f21ccd84ff7ddd5af3423011ff5fb93d0b2f5fb5b2.png" />
+<img alt="../../_images/90abe5c2f1615862a7833671ce763a05775db27e0d5c33627fa01ea85636d837.png" src="../../_images/90abe5c2f1615862a7833671ce763a05775db27e0d5c33627fa01ea85636d837.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Contour 3 has a mean HSV-value of [2.4292845257903495, 152.4551282051282, 191.09134615384616]
 </pre></div>
 </div>
-<img alt="../../_images/03c80d2e75ab2a61001beac6c75f37930d112e1658781836fe6f20c42346ac2b.png" src="../../_images/03c80d2e75ab2a61001beac6c75f37930d112e1658781836fe6f20c42346ac2b.png" />
+<img alt="../../_images/785864ce73bb675f3cc122223646553304a0e28fbcd127ced77d056d2d60ab1b.png" src="../../_images/785864ce73bb675f3cc122223646553304a0e28fbcd127ced77d056d2d60ab1b.png" />
 </div>
 </div>
 <p>Now we have a matrix with the HSV-values of the three color bands. This is the core information that we need for the image in order to be able to classify it properly. The HSV-values of the three color bands are the essential features that we need. To visualize this, we will plot is in a 3D scatterplot. The plot shows three dots in a 3D space which represents our image. Every image in our dataset can be represented using three dots. All dots of all images represents the full dataset on which we can train a classifier that learns how to classify images in resistor values.</p>
@@ -818,7 +807,7 @@ Resistor core removed:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/009466b2f57de5c409c9bf5511d1918528c5ebc84de18b58bdc2b52e91aaa3a4.png" src="../../_images/009466b2f57de5c409c9bf5511d1918528c5ebc84de18b58bdc2b52e91aaa3a4.png" />
+<img alt="../../_images/a82389925dd3cd0f1a463462f8aa633cf27f61177964d4e12c66401090e59565.png" src="../../_images/a82389925dd3cd0f1a463462f8aa633cf27f61177964d4e12c66401090e59565.png" />
 </div>
 </div>
 </section>
@@ -877,7 +866,7 @@ The encoded Pandas DataFrame looks like (only the first five entries):
 The dataset has a column for the H-, S-, and V-values of each row (representing one color band), as well as a column for the class of that color band.
 </pre></div>
 </div>
-<img alt="../../_images/fadaaec250f42e73c7908234ec4652c11d81fb2461bb6fc11f07d2a18683f963.png" src="../../_images/fadaaec250f42e73c7908234ec4652c11d81fb2461bb6fc11f07d2a18683f963.png" />
+<img alt="../../_images/887d2129d4013f8d31f49394a77ad40f0bab770ba3bfd2c386c018e8c61f72e0.png" src="../../_images/887d2129d4013f8d31f49394a77ad40f0bab770ba3bfd2c386c018e8c61f72e0.png" />
 </div>
 </div>
 <p>Now we can proceed to the training of the SVM. To do this, we extract the inputs (HSV-values) and output (Class) from the dataset and give it to the model.</p>

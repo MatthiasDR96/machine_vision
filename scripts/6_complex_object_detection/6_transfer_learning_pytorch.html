@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -185,6 +185,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/5_spatial_operations.html">Spatial operations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/6_shape_changing.html">Shape changing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/7_histogram_equalization.html">Histogram equalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_image_processing/82_threshold_calibration.html">Thresholding using RGB and HSV space</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/8_thresholding.html">Thresholding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/9_morphological_transformations.html">Morphological transformations</a></li>
 </ul>
@@ -554,7 +555,7 @@ These are the classes: [&#39;crazing&#39;, &#39;inclusion&#39;, &#39;patches&#39
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/3aeb4e7e1b58e81d8f5df55922c135ab2f5e4577bf8f06398e5391a0336b3dec.png" src="../../_images/3aeb4e7e1b58e81d8f5df55922c135ab2f5e4577bf8f06398e5391a0336b3dec.png" />
+<img alt="../../_images/58cdffc4af38263a823caff85e2fcec2301ba20eb94b01ba2dc408f65c2ce5af.png" src="../../_images/58cdffc4af38263a823caff85e2fcec2301ba20eb94b01ba2dc408f65c2ce5af.png" />
 </div>
 </div>
 </section>
@@ -695,83 +696,83 @@ C:\Python310\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Ar
 ----------
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.753 train_loss 0.867
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.707 train_loss 0.913
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.875 val_loss 0.485
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.906 val_loss 0.452
 Epoch 2/10
 ----------
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.881 train_loss 0.419
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.879 train_loss 0.447
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.931 val_loss 0.305
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.917 val_loss 0.304
 Epoch 3/10
 ----------
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.918 train_loss 0.322
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.897 train_loss 0.350
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.908 val_loss 0.308
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.931 val_loss 0.265
 Epoch 4/10
 ----------
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.918 train_loss 0.295
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.918 train_loss 0.285
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.942 val_loss 0.239
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.933 val_loss 0.267
 Epoch 5/10
 ----------
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.923 train_loss 0.264
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.927 train_loss 0.248
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.931 val_loss 0.229
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.936 val_loss 0.248
 Epoch 6/10
 ----------
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.923 train_loss 0.244
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.922 train_loss 0.240
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.914 val_loss 0.282
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.928 val_loss 0.264
 Epoch 7/10
 ----------
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.928 train_loss 0.232
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.924 train_loss 0.240
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.925 val_loss 0.237
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.947 val_loss 0.187
 Epoch 8/10
 ----------
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.927 train_loss 0.224
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.937 train_loss 0.220
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.936 val_loss 0.221
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.939 val_loss 0.200
 Epoch 9/10
 ----------
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.952 train_loss 0.188
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.939 train_loss 0.194
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.939 val_loss 0.190
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.931 val_loss 0.245
 Epoch 10/10
 ----------
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.937 train_loss 0.191
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.949 train_loss 0.191
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.936 val_loss 0.202
-Best val Acc: 0.9417
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.947 val_loss 0.193
+Best val Acc: 0.9472
 </pre></div>
 </div>
 </div>
@@ -784,7 +785,7 @@ Best val Acc: 0.9417
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The best validation accuracy is: 0.9416666666666667
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The best validation accuracy is: 0.9472222222222222
 </pre></div>
 </div>
 </div>
@@ -814,7 +815,7 @@ Best val Acc: 0.9417
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Accuracy&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/eeaf0af35e116b845c169d8143b9ade4ab77095379a5764509da3bc7be3644a3.png" src="../../_images/eeaf0af35e116b845c169d8143b9ade4ab77095379a5764509da3bc7be3644a3.png" />
+<img alt="../../_images/a3c57d2acf671debe1749642b6f2242b2172792b7d0ce3cf7365eeff61cb9d81.png" src="../../_images/a3c57d2acf671debe1749642b6f2242b2172792b7d0ce3cf7365eeff61cb9d81.png" />
 </div>
 </div>
 </section>
@@ -849,7 +850,7 @@ Best val Acc: 0.9417
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/845976ce6a9e695cfa8ce469aeba1ded7156d6496ea9c8fa160f21ea28eff89e.png" src="../../_images/845976ce6a9e695cfa8ce469aeba1ded7156d6496ea9c8fa160f21ea28eff89e.png" />
+<img alt="../../_images/e0ad1d05e76c026675945668accad7bcb43d7cf82da807e91838be5b0bd8acbb.png" src="../../_images/e0ad1d05e76c026675945668accad7bcb43d7cf82da807e91838be5b0bd8acbb.png" />
 </div>
 </div>
 <div class="cell docutils container">
