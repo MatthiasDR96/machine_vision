@@ -15,34 +15,33 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Set the optimizer
-optimizer = SGD(model.parameters(), lr=0.001)
+# Extract a batch
+batch = next(iter(train_loader))
 
-# Set the loss function
-criterium = nn.CrossEntropyLoss()
+# Extract the images and labels
+x, y = batch
 
-# Train for 50 epochs
-results = train_model(model, optimizer, criterium, n_epochs=10)
+# Get the predictions for the whole batch
+y_pred = model(x).argmax(axis=1)
+
+# Plot predictions and labels
+fig, ax = plt.subplots(2,5,figsize=(10,5))
+for i in range(10):
+    plt.subplot(2,5,i+1)
+    plt.imshow(x[i].permute(1,2,0), cmap='gray')
+    plt.title(f'Predicted Digit: {y_pred[i]}')
+plt.show()
 ------------------
 
------ stdout -----
-Epoch 1/10
-----------
-------------------
 
 [1;31m---------------------------------------------------------------------------[0m
 [1;31mRuntimeError[0m                              Traceback (most recent call last)
-Cell [1;32mIn[7], line 8[0m
-[0;32m      5[0m criterium [38;5;241m=[39m nn[38;5;241m.[39mCrossEntropyLoss()
-[0;32m      7[0m [38;5;66;03m# Train for 50 epochs[39;00m
-[1;32m----> 8[0m results [38;5;241m=[39m [43mtrain_model[49m[43m([49m[43mmodel[49m[43m,[49m[43m [49m[43moptimizer[49m[43m,[49m[43m [49m[43mcriterium[49m[43m,[49m[43m [49m[43mn_epochs[49m[38;5;241;43m=[39;49m[38;5;241;43m10[39;49m[43m)[49m
-
-Cell [1;32mIn[6], line 39[0m, in [0;36mtrain_model[1;34m(model, optimizer, criterum, n_epochs)[0m
-[0;32m     36[0m labels [38;5;241m=[39m labels[38;5;241m.[39mto(device)  
-[0;32m     38[0m [38;5;66;03m# Forward pass through the network[39;00m
-[1;32m---> 39[0m outputs [38;5;241m=[39m [43mmodel[49m[43m([49m[43minputs[49m[43m)[49m
-[0;32m     41[0m [38;5;66;03m# Softmax transforms the output probabilities into one selected class[39;00m
-[0;32m     42[0m _, class_pred [38;5;241m=[39m torch[38;5;241m.[39mmax(outputs, [38;5;241m1[39m)
+Cell [1;32mIn[9], line 8[0m
+[0;32m      5[0m x, y [38;5;241m=[39m batch
+[0;32m      7[0m [38;5;66;03m# Get the predictions for the whole batch[39;00m
+[1;32m----> 8[0m y_pred [38;5;241m=[39m [43mmodel[49m[43m([49m[43mx[49m[43m)[49m[38;5;241m.[39margmax(axis[38;5;241m=[39m[38;5;241m1[39m)
+[0;32m     10[0m [38;5;66;03m# Plot predictions and labels[39;00m
+[0;32m     11[0m fig, ax [38;5;241m=[39m plt[38;5;241m.[39msubplots([38;5;241m2[39m,[38;5;241m5[39m,figsize[38;5;241m=[39m([38;5;241m10[39m,[38;5;241m5[39m))
 
 File [1;32mC:\Python310\lib\site-packages\torch\nn\modules\module.py:1518[0m, in [0;36mModule._wrapped_call_impl[1;34m(self, *args, **kwargs)[0m
 [0;32m   1516[0m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39m_compiled_call_impl([38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs)  [38;5;66;03m# type: ignore[misc][39;00m
@@ -113,5 +112,5 @@ File [1;32mC:\Python310\lib\site-packages\torch\nn\modules\conv.py:456[0m, in 
 [1;32m--> 456[0m [38;5;28;01mreturn[39;00m [43mF[49m[38;5;241;43m.[39;49m[43mconv2d[49m[43m([49m[38;5;28;43minput[39;49m[43m,[49m[43m [49m[43mweight[49m[43m,[49m[43m [49m[43mbias[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mstride[49m[43m,[49m
 [0;32m    457[0m [43m                [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mpadding[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mdilation[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mgroups[49m[43m)[49m
 
-[1;31mRuntimeError[0m: Input type (torch.cuda.FloatTensor) and weight type (torch.FloatTensor) should be the same
+[1;31mRuntimeError[0m: Input type (torch.FloatTensor) and weight type (torch.cuda.FloatTensor) should be the same or input should be a MKLDNN tensor and weight is a dense tensor
 

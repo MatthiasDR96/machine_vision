@@ -227,9 +227,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../7_applications/5_fish_classification_keras.html">Fish classification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../7_applications/6_fish_detection_keras.html">Fish detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../7_applications/7_chicory_line_detection_yolov8.html">Chicory cutting line detection using a YOLOv8 model</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../7_applications/8_chicory_segmentation_yolov8.html">Chicory segmentation using a YOLOv8 model</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../7_applications/9_denoising_autoencoder.html">Denoising autoencoder</a></li>
 </ul>
 
@@ -499,10 +497,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0eabea95d16019de59e0d4d992fb44168957b612dba18b8ef485ca3571c22626.png" src="../../_images/0eabea95d16019de59e0d4d992fb44168957b612dba18b8ef485ca3571c22626.png" />
+<img alt="../../_images/8d533789d29a70f0998b74ffce89d0e4caea1b7cbd1da674a763600a8cbec2ed.png" src="../../_images/8d533789d29a70f0998b74ffce89d0e4caea1b7cbd1da674a763600a8cbec2ed.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The batch contains 10 samples.
-The labels that belong to the images are: tensor([3, 0, 6, 9, 3, 5, 2, 7, 9, 0])
-The label that belongs to the first image is: 3
+The labels that belong to the images are: tensor([5, 1, 7, 3, 7, 2, 0, 4, 7, 1])
+The label that belongs to the first image is: 5
 </pre></div>
 </div>
 </div>
@@ -551,7 +549,7 @@ The label that belongs to the first image is: 3
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">criterum</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">criterium</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
 
     <span class="c1"># Learning curves</span>
     <span class="n">results</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;training_acc&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;training_loss&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;validation_acc&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;validation_loss&quot;</span><span class="p">:</span> <span class="p">[]}</span>
@@ -630,9 +628,12 @@ The label that belongs to the first image is: 3
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the optimizer</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set model to device</span>
+<span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+<span class="c1"># Set the optimizer</span>
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
 
 <span class="c1"># Set the loss function</span>
@@ -648,19 +649,141 @@ The label that belongs to the first image is: 3
 ----------
 </pre></div>
 </div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.659 train_loss 1.284
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.856 val_loss 0.549
+Epoch 2/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.871 train_loss 0.463
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.893 val_loss 0.375
+Epoch 3/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.894 train_loss 0.369
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.905 val_loss 0.327
+Epoch 4/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.905 train_loss 0.329
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.914 val_loss 0.302
+Epoch 5/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.912 train_loss 0.304
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.920 val_loss 0.281
+Epoch 6/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.917 train_loss 0.285
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.923 val_loss 0.271
+Epoch 7/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.923 train_loss 0.269
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.924 val_loss 0.258
+Epoch 8/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.927 train_loss 0.254
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.931 val_loss 0.243
+Epoch 9/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.931 train_loss 0.239
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.935 val_loss 0.229
+Epoch 10/10
+----------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train_acc 0.935 train_loss 0.226
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>val_acc 0.937 val_loss 0.219
+</pre></div>
+</div>
+</div>
+</div>
+<p>The training and validation loss are plotted for each epoch during the training procedure. It is clear that the loss becomes smaller as the amount of epochs progresses. The validation loss keeps decreasing, thus overfitting does not occur here.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;training_loss&#39;</span><span class="p">])),</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;training_loss&#39;</span><span class="p">],</span> <span class="s1">&#39;bo-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;validation_loss&#39;</span><span class="p">])),</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;validation_loss&#39;</span><span class="p">],</span> <span class="s1">&#39;ro-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;val&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epochs&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;training_acc&#39;</span><span class="p">])),</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;training_acc&#39;</span><span class="p">],</span> <span class="s1">&#39;bo-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;validation_acc&#39;</span><span class="p">])),</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;validation_acc&#39;</span><span class="p">],</span> <span class="s1">&#39;ro-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;val&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epochs&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Accuracy&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/e07fc309fe05d25c8909ded80b8015dabf888465e3893bd33ef44b90ea8c7cba.png" src="../../_images/e07fc309fe05d25c8909ded80b8015dabf888465e3893bd33ef44b90ea8c7cba.png" />
+</div>
+</div>
+</section>
+<section id="model-validation">
+<h2>Model validation<a class="headerlink" href="#model-validation" title="Link to this heading">#</a></h2>
+<p>To validate the model we can compare the predicted value of an image to the ground thruth. We can do this for the first image in the batch that we extracted earlier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predicted label of the sampel image</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">class_pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># The true label</span>
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">y</span>
+
+<span class="c1"># Print result</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The model predicts the number to be &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">class_pred</span><span class="o">.</span><span class="n">item</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&quot; and the real number is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y_true</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">8</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">criterium</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1"># Train for 50 epochs</span>
-<span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">results</span> <span class="o">=</span> <span class="n">train_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">criterium</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-
-<span class="nn">Cell In[7], line 39,</span> in <span class="ni">train_model</span><span class="nt">(model, optimizer, criterum, n_epochs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>  
-<span class="g g-Whitespace">     </span><span class="mi">38</span> <span class="c1"># Forward pass through the network</span>
-<span class="ne">---&gt; </span><span class="mi">39</span> <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span> <span class="c1"># Softmax transforms the output probabilities into one selected class</span>
-<span class="g g-Whitespace">     </span><span class="mi">42</span> <span class="n">_</span><span class="p">,</span> <span class="n">class_pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Predicted label of the sampel image</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">_</span><span class="p">,</span> <span class="n">class_pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># The true label</span>
 
 <span class="nn">File C:\Python310\lib\site-packages\torch\nn\modules\module.py:1518,</span> in <span class="ni">Module._wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1516</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
@@ -703,60 +826,7 @@ The label that belongs to the first image is: 3
 <span class="g g-Whitespace">    </span><span class="mi">113</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
 <span class="ne">--&gt; </span><span class="mi">114</span>     <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
 
-<span class="ne">RuntimeError</span>: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument mat1 in method wrapper_CUDA_addmm)
-</pre></div>
-</div>
-</div>
-</div>
-<p>The training and validation loss are plotted for each epoch during the training procedure. It is clear that the loss becomes smaller as the amount of epochs progresses. The validation loss keeps decreasing, thus overfitting does not occur here.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot results</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;training_loss&#39;</span><span class="p">])),</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;training_loss&#39;</span><span class="p">],</span> <span class="s1">&#39;bo-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;validation_loss&#39;</span><span class="p">])),</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;validation_loss&#39;</span><span class="p">],</span> <span class="s1">&#39;ro-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;val&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epochs&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;training_acc&#39;</span><span class="p">])),</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;training_acc&#39;</span><span class="p">],</span> <span class="s1">&#39;bo-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;validation_acc&#39;</span><span class="p">])),</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;validation_acc&#39;</span><span class="p">],</span> <span class="s1">&#39;ro-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;val&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epochs&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Accuracy&#39;)
-</pre></div>
-</div>
-<img alt="../../_images/41d12552490a729d8907abfcf8079d8fe853022e97727b1d016c6b630db4df76.png" src="../../_images/41d12552490a729d8907abfcf8079d8fe853022e97727b1d016c6b630db4df76.png" />
-</div>
-</div>
-</section>
-<section id="model-validation">
-<h2>Model validation<a class="headerlink" href="#model-validation" title="Link to this heading">#</a></h2>
-<p>To validate the model we can compare the predicted value of an image to the ground thruth. We can do this for the first image in the batch that we extracted earlier.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predicted label of the sampel image</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">_</span><span class="p">,</span> <span class="n">class_pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># The true label</span>
-<span class="n">y_true</span> <span class="o">=</span> <span class="n">y</span>
-
-<span class="c1"># Print result</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The model predicts the number to be &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">class_pred</span><span class="o">.</span><span class="n">item</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&quot; and the real number is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y_true</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The model predicts the number to be 0 and the real number is 0
+<span class="ne">RuntimeError</span>: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu! (when checking argument for argument mat1 in method wrapper_CUDA_addmm)
 </pre></div>
 </div>
 </div>
