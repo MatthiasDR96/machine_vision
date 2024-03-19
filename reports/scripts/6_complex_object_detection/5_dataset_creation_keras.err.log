@@ -1,0 +1,71 @@
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\matth\AppData\Roaming\Python\Python310\site-packages\nbclient\client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\Users\matth\AppData\Roaming\Python\Python310\site-packages\jupyter_core\utils\__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+  File "C:\Python310\lib\asyncio\base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "C:\Users\matth\AppData\Roaming\Python\Python310\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\matth\AppData\Roaming\Python\Python310\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\matth\AppData\Roaming\Python\Python310\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Define parameters
+image_size = (180, 180)
+batch_size = 128
+
+# Load custom dataset
+train_ds, val_ds = tf.keras.utils.image_dataset_from_directory(
+    "../../data/custom_dataset/",
+    validation_split=0.2,
+    subset="both",
+    seed=1337,
+    image_size=image_size,
+    batch_size=batch_size,
+)
+------------------
+
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mValueError[0m                                Traceback (most recent call last)
+Cell [1;32mIn[2], line 6[0m
+[0;32m      3[0m batch_size [38;5;241m=[39m [38;5;241m128[39m
+[0;32m      5[0m [38;5;66;03m# Load custom dataset[39;00m
+[1;32m----> 6[0m train_ds, val_ds [38;5;241m=[39m [43mtf[49m[38;5;241;43m.[39;49m[43mkeras[49m[38;5;241;43m.[39;49m[43mutils[49m[38;5;241;43m.[39;49m[43mimage_dataset_from_directory[49m[43m([49m
+[0;32m      7[0m [43m    [49m[38;5;124;43m"[39;49m[38;5;124;43m../../data/custom_dataset/[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[0;32m      8[0m [43m    [49m[43mvalidation_split[49m[38;5;241;43m=[39;49m[38;5;241;43m0.2[39;49m[43m,[49m
+[0;32m      9[0m [43m    [49m[43msubset[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mboth[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[0;32m     10[0m [43m    [49m[43mseed[49m[38;5;241;43m=[39;49m[38;5;241;43m1337[39;49m[43m,[49m
+[0;32m     11[0m [43m    [49m[43mimage_size[49m[38;5;241;43m=[39;49m[43mimage_size[49m[43m,[49m
+[0;32m     12[0m [43m    [49m[43mbatch_size[49m[38;5;241;43m=[39;49m[43mbatch_size[49m[43m,[49m
+[0;32m     13[0m [43m)[49m
+
+File [1;32mC:\Python310\lib\site-packages\keras\utils\image_dataset.py:187[0m, in [0;36mimage_dataset_from_directory[1;34m(directory, labels, label_mode, class_names, color_mode, batch_size, image_size, shuffle, seed, validation_split, subset, interpolation, follow_links, crop_to_aspect_ratio, **kwargs)[0m
+[0;32m    183[0m   [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[0;32m    184[0m       [38;5;124m'[39m[38;5;124m`color_mode` must be one of [39m[38;5;124m{[39m[38;5;124m"[39m[38;5;124mrgb[39m[38;5;124m"[39m[38;5;124m, [39m[38;5;124m"[39m[38;5;124mrgba[39m[38;5;124m"[39m[38;5;124m, [39m[38;5;124m"[39m[38;5;124mgrayscale[39m[38;5;124m"[39m[38;5;124m}. [39m[38;5;124m'[39m
+[0;32m    185[0m       [38;5;124mf[39m[38;5;124m'[39m[38;5;124mReceived: color_mode=[39m[38;5;132;01m{[39;00mcolor_mode[38;5;132;01m}[39;00m[38;5;124m'[39m)
+[0;32m    186[0m interpolation [38;5;241m=[39m image_utils[38;5;241m.[39mget_interpolation(interpolation)
+[1;32m--> 187[0m [43mdataset_utils[49m[38;5;241;43m.[39;49m[43mcheck_validation_split_arg[49m[43m([49m
+[0;32m    188[0m [43m    [49m[43mvalidation_split[49m[43m,[49m[43m [49m[43msubset[49m[43m,[49m[43m [49m[43mshuffle[49m[43m,[49m[43m [49m[43mseed[49m[43m)[49m
+[0;32m    190[0m [38;5;28;01mif[39;00m seed [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[0;32m    191[0m   seed [38;5;241m=[39m np[38;5;241m.[39mrandom[38;5;241m.[39mrandint([38;5;241m1e6[39m)
+
+File [1;32mC:\Python310\lib\site-packages\keras\utils\dataset_utils.py:246[0m, in [0;36mcheck_validation_split_arg[1;34m(validation_split, subset, shuffle, seed)[0m
+[0;32m    243[0m   [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[0;32m    244[0m       [38;5;124m'[39m[38;5;124mIf `subset` is set, `validation_split` must be set, and inversely.[39m[38;5;124m'[39m)
+[0;32m    245[0m [38;5;28;01mif[39;00m subset [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m ([38;5;124m'[39m[38;5;124mtraining[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mvalidation[39m[38;5;124m'[39m, [38;5;28;01mNone[39;00m):
+[1;32m--> 246[0m   [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([38;5;124m'[39m[38;5;124m`subset` must be either [39m[38;5;124m"[39m[38;5;124mtraining[39m[38;5;124m"[39m[38;5;124m [39m[38;5;124m'[39m
+[0;32m    247[0m                    [38;5;124m'[39m[38;5;124mor [39m[38;5;124m"[39m[38;5;124mvalidation[39m[38;5;124m"[39m[38;5;124m, received: [39m[38;5;132;01m%s[39;00m[38;5;124m'[39m [38;5;241m%[39m (subset,))
+[0;32m    248[0m [38;5;28;01mif[39;00m validation_split [38;5;129;01mand[39;00m shuffle [38;5;129;01mand[39;00m seed [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[0;32m    249[0m   [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[0;32m    250[0m       [38;5;124m'[39m[38;5;124mIf using `validation_split` and shuffling the data, you must provide [39m[38;5;124m'[39m
+[0;32m    251[0m       [38;5;124m'[39m[38;5;124ma `seed` argument, to make sure that there is no overlap between the [39m[38;5;124m'[39m
+[0;32m    252[0m       [38;5;124m'[39m[38;5;124mtraining and validation subset.[39m[38;5;124m'[39m)
+
+[1;31mValueError[0m: `subset` must be either "training" or "validation", received: both
+
