@@ -15,34 +15,25 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Set the optimizer
-optimizer = SGD(model.parameters(), lr=0.001)
+# Predicted label of the sampel image
+y_pred = model(x[0])
+_, class_pred = torch.max(y_pred, 1)
 
-# Set the loss function
-criterium = nn.CrossEntropyLoss()
+# The true label
+y_true = y
 
-# Train for 50 epochs
-results = train_model(model, optimizer, criterium, n_epochs=10)
+# Print result
+print("The model predicts the number to be " + str(class_pred.item()) + " and the real number is " + str(y_true[0].item()))
 ------------------
 
------ stdout -----
-Epoch 1/10
-----------
-------------------
 
 [1;31m---------------------------------------------------------------------------[0m
 [1;31mRuntimeError[0m                              Traceback (most recent call last)
-Cell [1;32mIn[8], line 8[0m
-[0;32m      5[0m criterium [38;5;241m=[39m nn[38;5;241m.[39mCrossEntropyLoss()
-[0;32m      7[0m [38;5;66;03m# Train for 50 epochs[39;00m
-[1;32m----> 8[0m results [38;5;241m=[39m [43mtrain_model[49m[43m([49m[43mmodel[49m[43m,[49m[43m [49m[43moptimizer[49m[43m,[49m[43m [49m[43mcriterium[49m[43m,[49m[43m [49m[43mn_epochs[49m[38;5;241;43m=[39;49m[38;5;241;43m10[39;49m[43m)[49m
-
-Cell [1;32mIn[7], line 39[0m, in [0;36mtrain_model[1;34m(model, optimizer, criterum, n_epochs)[0m
-[0;32m     36[0m labels [38;5;241m=[39m labels[38;5;241m.[39mto(device)  
-[0;32m     38[0m [38;5;66;03m# Forward pass through the network[39;00m
-[1;32m---> 39[0m outputs [38;5;241m=[39m [43mmodel[49m[43m([49m[43minputs[49m[43m)[49m
-[0;32m     41[0m [38;5;66;03m# Softmax transforms the output probabilities into one selected class[39;00m
-[0;32m     42[0m _, class_pred [38;5;241m=[39m torch[38;5;241m.[39mmax(outputs, [38;5;241m1[39m)
+Cell [1;32mIn[10], line 2[0m
+[0;32m      1[0m [38;5;66;03m# Predicted label of the sampel image[39;00m
+[1;32m----> 2[0m y_pred [38;5;241m=[39m [43mmodel[49m[43m([49m[43mx[49m[43m[[49m[38;5;241;43m0[39;49m[43m][49m[43m)[49m
+[0;32m      3[0m _, class_pred [38;5;241m=[39m torch[38;5;241m.[39mmax(y_pred, [38;5;241m1[39m)
+[0;32m      5[0m [38;5;66;03m# The true label[39;00m
 
 File [1;32mC:\Python310\lib\site-packages\torch\nn\modules\module.py:1518[0m, in [0;36mModule._wrapped_call_impl[1;34m(self, *args, **kwargs)[0m
 [0;32m   1516[0m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39m_compiled_call_impl([38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs)  [38;5;66;03m# type: ignore[misc][39;00m
@@ -85,5 +76,5 @@ File [1;32mC:\Python310\lib\site-packages\torch\nn\modules\linear.py:114[0m, i
 [0;32m    113[0m [38;5;28;01mdef[39;00m [38;5;21mforward[39m([38;5;28mself[39m, [38;5;28minput[39m: Tensor) [38;5;241m-[39m[38;5;241m>[39m Tensor:
 [1;32m--> 114[0m     [38;5;28;01mreturn[39;00m [43mF[49m[38;5;241;43m.[39;49m[43mlinear[49m[43m([49m[38;5;28;43minput[39;49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mweight[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mbias[49m[43m)[49m
 
-[1;31mRuntimeError[0m: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument mat1 in method wrapper_CUDA_addmm)
+[1;31mRuntimeError[0m: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu! (when checking argument for argument mat1 in method wrapper_CUDA_addmm)
 
