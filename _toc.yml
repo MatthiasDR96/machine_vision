@@ -22,3 +22,6 @@ parts:
   - caption: Complex object detection
     chapters:
     - glob: scripts/6_complex_object_detection/*
+  - caption: Applications
+    chapters:
+    - glob: scripts/7_applications/*

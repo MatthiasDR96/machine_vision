@@ -1,0 +1,13 @@
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+path: ../../data/chicory_data_keypoints/images  # dataset root dir
+train: ../autosplit_train.txt  # train images (relative to 'path') 4 images
+val: ../autosplit_val.txt  # val images (relative to 'path') 4 images
+test:  ../autosplit_test.txt # test images (optional)
+
+# Keypoints
+kpt_shape: [2, 2]  # number of keypoints, number of dims (2 for x,y or 3 for x,y,visible)
+flip_idx: [0, 1]
+
+# Classes dictionary
+names:
+  0: chicory

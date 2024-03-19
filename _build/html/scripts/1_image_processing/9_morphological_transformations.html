@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Morphological transformations &#8212; Machine Vision</title>
   
@@ -19,54 +18,50 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'scripts/1_image_processing/9_morphological_transformations';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Feature detection" href="../3_feature_extraction/1_feature_detection.html" />
-    <link rel="prev" title="Thresholding" href="8_thresholding.html" />
+    <link rel="prev" title="Denoising autoencoder" href="92_denoising_autoencoder.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -76,7 +71,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -111,11 +114,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -130,9 +136,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../../intro.html">
+  
   
   
   
@@ -142,12 +150,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="Machine Vision - Home"/>
+    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="Machine Vision - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -167,6 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="6_shape_changing.html">Shape changing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="7_histogram_equalization.html">Histogram equalization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="8_thresholding.html">Thresholding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="92_denoising_autoencoder.html">Denoising autoencoder</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Morphological transformations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Feature extraction</span></p>
@@ -183,12 +203,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/3_template_matching.html">Template matching</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/4_simple_classifier.html">Simple classifier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/5_haarcascades.html">Haarcascades</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/6_color_detection_application.html">Color detection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/7_measuring_application.html">Measuring application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/8_sawblade_application.html">Sawblade analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/92_car_detection_application.html">Car detection using motion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/93_perspective_transformation_application.html">Perspective transformtaion application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/9_crop_row_application.html">Crop row application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/6_measuring_objects.html">Measuring objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/7_movement_detection.html">Car detection using motion</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Complex object detection</span></p>
 <ul class="nav bd-sidenav">
@@ -201,6 +217,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/5_dataset_creation_keras.html">Dataset Creation with Keras</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/5_dataset_creation_pytorch.html">Dataset Creation with PyTorch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../6_complex_object_detection/6_transfer_learning_pytorch.html">Transfer Learning</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/1_crop_row_detection.html">Crop row application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/2_sawblade_measurement.html">Sawblade measurement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/3_perspective_transformation.html">Perspective transformtaion application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/4_resistor_detection.html">Resistor detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/5_fish_classification_keras.html">Fish classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/6_fish_detection_keras.html">Fish detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/7_chicory_line_detection_yolov8.html">Chicory cutting line detection using a YOLOv8 model</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/8_chicory_segmentation_yolov8.html">Chicory segmentation using a YOLOv8 model</a></li>
+
 </ul>
 
     </div>
@@ -338,20 +367,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -392,10 +423,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="morphological-transformations">
-<h1>Morphological transformations<a class="headerlink" href="#morphological-transformations" title="Permalink to this heading">#</a></h1>
+<h1>Morphological transformations<a class="headerlink" href="#morphological-transformations" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
@@ -417,7 +448,7 @@ document.write(`
 </div>
 </div>
 <section id="dilation">
-<h2>Dilation<a class="headerlink" href="#dilation" title="Permalink to this heading">#</a></h2>
+<h2>Dilation<a class="headerlink" href="#dilation" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dilation</span>
@@ -435,12 +466,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a7ec5c311da19bf9490f511f6f49688e8bdb59177db6a8419ceea333d454c10f.png" src="../../_images/a7ec5c311da19bf9490f511f6f49688e8bdb59177db6a8419ceea333d454c10f.png" />
+<img alt="../../_images/5c6874ed8334ecd0cbacc2c19c09aec536c1200d9e3e618b472c54f69b183a5e.png" src="../../_images/5c6874ed8334ecd0cbacc2c19c09aec536c1200d9e3e618b472c54f69b183a5e.png" />
 </div>
 </div>
 </section>
 <section id="erosion">
-<h2>Erosion<a class="headerlink" href="#erosion" title="Permalink to this heading">#</a></h2>
+<h2>Erosion<a class="headerlink" href="#erosion" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Erosion</span>
@@ -458,12 +489,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/68e2a3ce12958fd8d10c3311265b9af3d5bc5fe4cd5e6a470530df551c16ed36.png" src="../../_images/68e2a3ce12958fd8d10c3311265b9af3d5bc5fe4cd5e6a470530df551c16ed36.png" />
+<img alt="../../_images/5971ee901bfdf1e4cfbf45b6b1eb0b0b9a7e70d6f9818aa6712f9f1bc80662a7.png" src="../../_images/5971ee901bfdf1e4cfbf45b6b1eb0b0b9a7e70d6f9818aa6712f9f1bc80662a7.png" />
 </div>
 </div>
 </section>
 <section id="opening">
-<h2>Opening<a class="headerlink" href="#opening" title="Permalink to this heading">#</a></h2>
+<h2>Opening<a class="headerlink" href="#opening" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Opening</span>
@@ -481,12 +512,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/6864c61f0812107fa405b48c7fae540c95f2e08ca3a301eb4d60207918f44df6.png" src="../../_images/6864c61f0812107fa405b48c7fae540c95f2e08ca3a301eb4d60207918f44df6.png" />
+<img alt="../../_images/1c39ad128679f60f9ca47c35c71b43bcc092e1d92f6159226f889e5c75445404.png" src="../../_images/1c39ad128679f60f9ca47c35c71b43bcc092e1d92f6159226f889e5c75445404.png" />
 </div>
 </div>
 </section>
 <section id="closing">
-<h2>Closing<a class="headerlink" href="#closing" title="Permalink to this heading">#</a></h2>
+<h2>Closing<a class="headerlink" href="#closing" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Closing</span>
@@ -504,12 +535,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/1d8045fa093f52074a99ea478b657c17e8bee9bcab04f15ed8342f95c4f04ab8.png" src="../../_images/1d8045fa093f52074a99ea478b657c17e8bee9bcab04f15ed8342f95c4f04ab8.png" />
+<img alt="../../_images/5cc61c61a9183229765041679ab14bf8cfbca50d8a01deac69e77dcc818bb5b7.png" src="../../_images/5cc61c61a9183229765041679ab14bf8cfbca50d8a01deac69e77dcc818bb5b7.png" />
 </div>
 </div>
 </section>
 <section id="skeletonization">
-<h2>Skeletonization<a class="headerlink" href="#skeletonization" title="Permalink to this heading">#</a></h2>
+<h2>Skeletonization<a class="headerlink" href="#skeletonization" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert RGB-image to gray scale image</span>
@@ -555,21 +586,21 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/285562b38d130962d471bdc69dbfbb4451a4f1d63bbf3e7a47e7110cf968bba3.png" src="../../_images/285562b38d130962d471bdc69dbfbb4451a4f1d63bbf3e7a47e7110cf968bba3.png" />
-<img alt="../../_images/71f7fbc48aa4973ea92f61df8761a25084044857921eb1ed8bf8b76ee2aa92de.png" src="../../_images/71f7fbc48aa4973ea92f61df8761a25084044857921eb1ed8bf8b76ee2aa92de.png" />
-<img alt="../../_images/6c0b30e02e67d4096fbfe8793f66373ce31168cabd786afd60a6945a1fd7543f.png" src="../../_images/6c0b30e02e67d4096fbfe8793f66373ce31168cabd786afd60a6945a1fd7543f.png" />
-<img alt="../../_images/45afc67eb52fc38fe81c1e0cc84446881b04185a8157ff6b2bd9e3aab3194bc1.png" src="../../_images/45afc67eb52fc38fe81c1e0cc84446881b04185a8157ff6b2bd9e3aab3194bc1.png" />
-<img alt="../../_images/15af310e9bed887d3f45eda8788825da1280f6a5effeb01300a78567f313115f.png" src="../../_images/15af310e9bed887d3f45eda8788825da1280f6a5effeb01300a78567f313115f.png" />
-<img alt="../../_images/d05945c61ded433d9e9a3680bcc1fcb43acdfc6bcfe55e5443e4b2a937dfe0ca.png" src="../../_images/d05945c61ded433d9e9a3680bcc1fcb43acdfc6bcfe55e5443e4b2a937dfe0ca.png" />
-<img alt="../../_images/c128d382a7e8fe39fc8846f243100ba571613afeb1e6cc35e244bb6900bf0916.png" src="../../_images/c128d382a7e8fe39fc8846f243100ba571613afeb1e6cc35e244bb6900bf0916.png" />
-<img alt="../../_images/bb182a6b9a3a6d9dfe2d15c748efec40c607c4a9628e175a8371171d9218cece.png" src="../../_images/bb182a6b9a3a6d9dfe2d15c748efec40c607c4a9628e175a8371171d9218cece.png" />
-<img alt="../../_images/372e1e6cf418f58e195844878c80250ddc89b0c96a617cd7668037d00735bad0.png" src="../../_images/372e1e6cf418f58e195844878c80250ddc89b0c96a617cd7668037d00735bad0.png" />
-<img alt="../../_images/12c390f6ed92cd8136a36b22c30941f9ab4fee85c8e8ca6bba4d34593d1f8588.png" src="../../_images/12c390f6ed92cd8136a36b22c30941f9ab4fee85c8e8ca6bba4d34593d1f8588.png" />
-<img alt="../../_images/055cc81eba3b97b2843cc0463cbf7e3487e67f6e57268db745226053f4480c52.png" src="../../_images/055cc81eba3b97b2843cc0463cbf7e3487e67f6e57268db745226053f4480c52.png" />
-<img alt="../../_images/e388e3bafd4dd4f1faa5017c797d8e95cab1cc657ca40bdbbda8cbbceed9c4ea.png" src="../../_images/e388e3bafd4dd4f1faa5017c797d8e95cab1cc657ca40bdbbda8cbbceed9c4ea.png" />
-<img alt="../../_images/21c90a5b6633ae6e900b2e84b1d1c8d8d5785063978244563a2d1c018cc47200.png" src="../../_images/21c90a5b6633ae6e900b2e84b1d1c8d8d5785063978244563a2d1c018cc47200.png" />
-<img alt="../../_images/037ba3751af238afeaeb2135698d369c5adcf288fba98a320ff8e74c7f5e179f.png" src="../../_images/037ba3751af238afeaeb2135698d369c5adcf288fba98a320ff8e74c7f5e179f.png" />
-<img alt="../../_images/f1973ab94d95c41369e0a24edd9cb53aa900ebe4227d248ab89397cdbefbd18b.png" src="../../_images/f1973ab94d95c41369e0a24edd9cb53aa900ebe4227d248ab89397cdbefbd18b.png" />
+<img alt="../../_images/748780e6fe0d0295be8fb870e3d894a3d6f5acea19de74963f3aea51bc443a2f.png" src="../../_images/748780e6fe0d0295be8fb870e3d894a3d6f5acea19de74963f3aea51bc443a2f.png" />
+<img alt="../../_images/50029b41384f4d0f4a8ad06046b2c0f1c341139a3565531533ae2db4c283486c.png" src="../../_images/50029b41384f4d0f4a8ad06046b2c0f1c341139a3565531533ae2db4c283486c.png" />
+<img alt="../../_images/029d84d7493347099264bdea8410f4525d2233a838021c927556f4ca8e4bbe15.png" src="../../_images/029d84d7493347099264bdea8410f4525d2233a838021c927556f4ca8e4bbe15.png" />
+<img alt="../../_images/2d01019cd47488ec2292396200e80fba00cb8c0f38191eb604a171b13e5bead4.png" src="../../_images/2d01019cd47488ec2292396200e80fba00cb8c0f38191eb604a171b13e5bead4.png" />
+<img alt="../../_images/48bb00b100bd50d4cb476c7d3e9068846a1a3ef22ac797af29148204a3d090ad.png" src="../../_images/48bb00b100bd50d4cb476c7d3e9068846a1a3ef22ac797af29148204a3d090ad.png" />
+<img alt="../../_images/60759cc784c0bb2c5305abd606cbe28f84526b226c8514d4787c9e7efe6f95bd.png" src="../../_images/60759cc784c0bb2c5305abd606cbe28f84526b226c8514d4787c9e7efe6f95bd.png" />
+<img alt="../../_images/f98388d015e42d7f4fc3847f542a7ba61bbbd8cf1da96bd8d092d76265863f00.png" src="../../_images/f98388d015e42d7f4fc3847f542a7ba61bbbd8cf1da96bd8d092d76265863f00.png" />
+<img alt="../../_images/7664c4e52075d7cd2ce453815131df88e80dd8f0c405d0743376729698445211.png" src="../../_images/7664c4e52075d7cd2ce453815131df88e80dd8f0c405d0743376729698445211.png" />
+<img alt="../../_images/9395dcc296ac6c192cceab953699725b30459a0fe8bde1fb13714b9b5e9ac934.png" src="../../_images/9395dcc296ac6c192cceab953699725b30459a0fe8bde1fb13714b9b5e9ac934.png" />
+<img alt="../../_images/910628c50fac335b2435731452ea0e40a18ff89f430ea9fdf1d3949093dbd098.png" src="../../_images/910628c50fac335b2435731452ea0e40a18ff89f430ea9fdf1d3949093dbd098.png" />
+<img alt="../../_images/840433084d8f6863be4ac3e692f591e2365f5a8d57b4cd717479ad1554447d22.png" src="../../_images/840433084d8f6863be4ac3e692f591e2365f5a8d57b4cd717479ad1554447d22.png" />
+<img alt="../../_images/569e40f82bb2afe6bfb214a5eb47ad16c3b68da461d10a8389a968221944c332.png" src="../../_images/569e40f82bb2afe6bfb214a5eb47ad16c3b68da461d10a8389a968221944c332.png" />
+<img alt="../../_images/c0b97b8cbda2bac0970f3dc4bda8428556b0d7b0a145dc8b519882b960245ac9.png" src="../../_images/c0b97b8cbda2bac0970f3dc4bda8428556b0d7b0a145dc8b519882b960245ac9.png" />
+<img alt="../../_images/6d816d212c9425edc8707c5637a4106428c016a382a1dde9b0a92f92f22e8cb4.png" src="../../_images/6d816d212c9425edc8707c5637a4106428c016a382a1dde9b0a92f92f22e8cb4.png" />
+<img alt="../../_images/2d64ce79b9f6ba0071d717719d133df49d97e8b4c28f834738d57101b71c33b2.png" src="../../_images/2d64ce79b9f6ba0071d717719d133df49d97e8b4c28f834738d57101b71c33b2.png" />
 </div>
 </div>
 </section>
@@ -600,19 +631,18 @@ document.write(`
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="8_thresholding.html"
+       href="92_denoising_autoencoder.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Thresholding</p>
+        <p class="prev-next-title">Denoising autoencoder</p>
       </div>
     </a>
     <a class="right-next"
@@ -624,10 +654,7 @@ document.write(`
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -635,6 +662,7 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -668,9 +696,10 @@ By Matthias De Ryck
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -694,8 +723,8 @@ By Matthias De Ryck
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
