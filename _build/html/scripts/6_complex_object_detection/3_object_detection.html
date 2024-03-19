@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Object Detection &#8212; Machine Vision</title>
   
@@ -19,49 +18,45 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'scripts/6_complex_object_detection/3_object_detection';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -76,7 +71,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -111,11 +114,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -130,9 +136,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../../intro.html">
+  
   
   
   
@@ -142,12 +150,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="Machine Vision - Home"/>
+    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="Machine Vision - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -166,6 +185,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/5_spatial_operations.html">Spatial operations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/6_shape_changing.html">Shape changing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/7_histogram_equalization.html">Histogram equalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_image_processing/82_threshold_calibration.html">Thresholding using RGB and HSV space</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/8_thresholding.html">Thresholding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../1_image_processing/9_morphological_transformations.html">Morphological transformations</a></li>
 </ul>
@@ -174,7 +194,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/1_feature_detection.html">Feature detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/2_feature_description.html">Feature description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/3_feature_matching.html">Feature matching</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/4_panorama_application.html">Panorama application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_feature_extraction/4_panorama_stitching.html">Panorama stitching</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Simple object detection</span></p>
 <ul class="nav bd-sidenav">
@@ -183,12 +203,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/3_template_matching.html">Template matching</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/4_simple_classifier.html">Simple classifier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/5_haarcascades.html">Haarcascades</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/6_color_detection_application.html">Color detection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/7_measuring_application.html">Measuring application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/8_sawblade_application.html">Sawblade analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/92_car_detection_application.html">Car detection using motion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/93_perspective_transformation_application.html">Perspective transformtaion application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/9_crop_row_application.html">Crop row application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/6_measuring_objects.html">Measuring objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_simple_object_detection/7_movement_detection.html">Car detection using motion</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Complex object detection</span></p>
 <ul class="current nav bd-sidenav">
@@ -201,6 +217,20 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="5_dataset_creation_keras.html">Dataset Creation with Keras</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5_dataset_creation_pytorch.html">Dataset Creation with PyTorch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6_transfer_learning_pytorch.html">Transfer Learning</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/1_crop_row_detection.html">Crop row detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/2_sawblade_measurement.html">Sawblade measurement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/3_perspective_transformation.html">Perspective transformtaion for robot picking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/4_resistor_detection.html">Resistor detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/5_fish_classification_keras.html">Fish classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/6_fish_detection_keras.html">Fish detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/7_chicory_line_detection_yolov8.html">Chicory cutting line detection using a YOLOv8 model</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/8_chicory_segmentation_yolov8.html">Chicory segmentation using a YOLOv8 model</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/9_denoising_autoencoder.html">Denoising autoencoder</a></li>
 </ul>
 
     </div>
@@ -338,20 +368,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -398,10 +430,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="object-detection">
-<h1>Object Detection<a class="headerlink" href="#object-detection" title="Permalink to this heading">#</a></h1>
+<h1>Object Detection<a class="headerlink" href="#object-detection" title="Link to this heading">#</a></h1>
 <p>In this notebook, state-of-the-art models for object detection are used on some example images. First, Faster R-CNN will be covered. Subsequently, YOLO will be used for object detection.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -417,15 +449,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\python39\lib\site-packages\tqdm\auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
-  from .autonotebook import tqdm as notebook_tqdm
-</pre></div>
-</div>
-</div>
 </div>
 <section id="faster-r-cnn">
-<h2>Faster R-CNN<a class="headerlink" href="#faster-r-cnn" title="Permalink to this heading">#</a></h2>
+<h2>Faster R-CNN<a class="headerlink" href="#faster-r-cnn" title="Link to this heading">#</a></h2>
 <p>The pre-trained Faster R-CNN model will be loaded here. The model has a ResNet50 base network and will be loaded from the torchvision module. The min_size argument denotes the minimum dimensions of the bounding boxes that surround the objects. Making this value smaller will result in more small object to be detected.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -450,9 +476,17 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Python310\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter &#39;pretrained&#39; is deprecated since 0.13 and may be removed in the future, please use &#39;weights&#39; instead.
+  warnings.warn(
+C:\Python310\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for &#39;weights&#39; are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=FasterRCNN_ResNet50_FPN_Weights.COCO_V1`. You can also use `weights=FasterRCNN_ResNet50_FPN_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+</pre></div>
+</div>
+</div>
 </div>
 <section id="predicting-the-object-classes">
-<h3>Predicting the Object Classes<a class="headerlink" href="#predicting-the-object-classes" title="Permalink to this heading">#</a></h3>
+<h3>Predicting the Object Classes<a class="headerlink" href="#predicting-the-object-classes" title="Link to this heading">#</a></h3>
 <p>A function is written to detect objects and predict its classes and bounding boxes with the pre-trained Faster R-CNN. The torchvision model takes as input an image in the form of a tensor with dimensions [batch_size x channels x height x width]. Therefore the image needs to be transformed to a tensor.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -498,7 +532,7 @@ document.write(`
 </div>
 </section>
 <section id="drawing-the-bounding-box">
-<h3>Drawing the Bounding Box<a class="headerlink" href="#drawing-the-bounding-box" title="Permalink to this heading">#</a></h3>
+<h3>Drawing the Bounding Box<a class="headerlink" href="#drawing-the-bounding-box" title="Link to this heading">#</a></h3>
 <p>A function is written here to draw the bounding boxes around the detected objects in the image. In the image there can be many objects of different classes. Therefore, bounding boxes of similar classes need to have the same colour. This helps in visualising of the detections.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -532,7 +566,7 @@ document.write(`
 </div>
 </section>
 <section id="results">
-<h3>Results<a class="headerlink" href="#results" title="Permalink to this heading">#</a></h3>
+<h3>Results<a class="headerlink" href="#results" title="Link to this heading">#</a></h3>
 <p>The Faster R-CNN model will be now used with the above defined functions to perform object detection on 3 image examples. The Faster R-CNN model detects all the objects within the image. A bounding box is placed around the objects. These are annotated with only the class name.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -557,25 +591,25 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Boxes: tensor([[281.8719,  79.2813, 420.7068, 225.9756],
-        [330.9540,  80.9836, 593.0887, 228.4178],
-        [109.6095,  95.4174, 332.9263, 226.0391],
-        [111.1189, 108.3176, 299.6678, 226.6196],
-        [359.3415,  98.2549, 600.4445, 232.9423],
-        [142.3595,  82.4780, 474.7162, 232.5669],
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Boxes: tensor([[281.8719,  79.2813, 420.7067, 225.9756],
+        [330.9539,  80.9836, 593.0888, 228.4178],
+        [109.6094,  95.4174, 332.9263, 226.0391],
+        [111.1189, 108.3176, 299.6678, 226.6195],
+        [359.3415,  98.2548, 600.4445, 232.9422],
+        [142.3595,  82.4780, 474.7162, 232.5670],
         [217.1381,  91.9967, 338.9270, 226.1555],
         [111.3002, 108.9321, 300.2285, 223.7775],
-        [346.2999,  14.0223, 632.1669, 213.3479],
+        [346.2999,  14.0222, 632.1669, 213.3479],
         [351.5599, 123.3582, 592.3282, 229.2103]], grad_fn=&lt;StackBackward0&gt;)
 Labels: tensor([19, 19, 19, 18, 18, 19, 19, 21,  1, 22])
 Scores: tensor([0.9977, 0.9913, 0.9898, 0.2787, 0.1807, 0.1448, 0.1275, 0.0993, 0.0854,
         0.0730], grad_fn=&lt;IndexBackward0&gt;)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1fce9c0e070&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x264a40ad210&gt;
 </pre></div>
 </div>
-<img alt="../../_images/22064e208e8b063d808653386ce1a5c80766de1ee0dce628094d5b7cab1b4195.png" src="../../_images/22064e208e8b063d808653386ce1a5c80766de1ee0dce628094d5b7cab1b4195.png" />
+<img alt="../../_images/c8cd8d475596d472809d1b6106fb6f23ebeeeb2cf041ce0db2ce80e1ddf859ac.png" src="../../_images/c8cd8d475596d472809d1b6106fb6f23ebeeeb2cf041ce0db2ce80e1ddf859ac.png" />
 </div>
 </div>
 <p>Image example 2:</p>
@@ -590,131 +624,131 @@ Scores: tensor([0.9977, 0.9913, 0.9898, 0.2787, 0.1807, 0.1448, 0.1275, 0.0993, 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Boxes: tensor([[ 838.6357,  332.8714,  931.3898,  610.8370],
-        [ 235.5437,  160.7106,  430.6570,  690.1385],
-        [1036.0818,  286.9706, 1156.6217,  604.0552],
-        [ 718.0005,  406.3850,  778.0783,  582.8207],
-        [ 490.6573,  387.9689,  557.2424,  599.1245],
-        [ 762.8723,  405.6624,  821.9858,  584.3357],
-        [ 608.5616,  386.3053,  668.2618,  598.7283],
-        [ 455.2066,  407.0004,  505.5714,  588.4600],
-        [ 572.2787,  409.2901,  619.7392,  594.0986],
-        [ 654.2797,  413.5543,  704.2627,  587.6580],
-        [ 376.1682,  346.8564,  469.2232,  622.5775],
-        [ 184.0398,  191.8036,  311.2569,  613.2949],
-        [ 869.4252,  368.6361,  920.3806,  477.0749],
-        [ 463.3396,  441.3141,  502.3931,  502.6068],
-        [ 685.6665,  444.3586,  713.8293,  519.5699],
-        [1125.1451,  457.0602, 1159.7242,  500.2275],
-        [ 179.3643,  366.9853,  238.8592,  446.9797],
-        [1077.9030,  328.4338, 1087.2566,  336.9096],
-        [ 606.8297,  462.7869,  646.4382,  520.2723],
-        [ 591.4876,  394.0874,  646.1447,  601.4102],
-        [ 582.7982,  471.8316,  608.9168,  504.8882],
-        [ 190.5133,  229.5213,  294.1514,  435.1717],
-        [ 272.1346,  233.2624,  389.4355,  316.5599],
-        [1076.8818,  326.5679, 1084.8354,  334.7568],
-        [1076.5956,  330.3362, 1086.1100,  339.2858],
-        [ 267.9199,  234.2086,  303.3983,  313.4418],
-        [ 182.2680,  290.9090,  248.0474,  606.8740],
-        [ 444.4969,  442.9612,  500.1387,  531.9548],
-        [ 265.5374,  223.8680,  399.3688,  409.8997],
-        [ 663.5272,  441.8121,  707.2195,  519.1761],
-        [ 368.8487,  406.9132,  408.7021,  604.7890],
-        [ 364.9154,  230.8734,  388.6153,  318.1841],
-        [1079.2686,  324.9971, 1088.9220,  334.3480],
-        [ 371.6683,  237.1386,  402.4029,  429.4453],
-        [ 452.5699,  493.1788,  472.5578,  541.1099],
-        [ 846.0768,  495.3786,  870.2686,  575.4498],
-        [ 341.3665,  234.4846,  389.6394,  323.2491],
-        [1079.9164,  331.8026, 1088.7949,  339.8934],
-        [1081.1753,  327.7093, 1089.1255,  337.2556],
-        [1074.9075,  328.8900, 1082.3828,  337.1688],
-        [ 201.4164,  110.4208,  242.1925,  151.4852],
-        [ 378.0235,  421.7130,  396.0757,  443.9825],
-        [ 267.0450,  242.6031,  295.9886,  323.6701],
-        [ 685.0258,  527.2996,  727.5939,  570.6239],
-        [ 330.6585,  202.2558,  450.7219,  643.6893],
-        [ 847.7819,  500.6789,  869.3420,  575.8314],
-        [ 606.3312,  432.8837,  650.4194,  514.3808],
-        [1076.7960,  332.1517, 1087.5543,  343.0009],
-        [ 293.2908,  297.6859,  335.3050,  354.2381],
-        [ 917.5048,  277.3171, 1173.4240,  508.0830],
-        [ 619.4684,  387.9424,  633.0032,  415.3565],
-        [ 861.8056,  374.0642,  916.3223,  449.5958],
-        [ 872.6832,  376.2596,  910.2354,  449.4832],
-        [ 264.3297,  215.0753,  400.9728,  431.4932],
-        [ 609.6161,  431.2699,  650.5692,  511.6338],
-        [1076.1873,  320.9078, 1087.6924,  333.7244],
-        [ 559.4634,  518.8362,  582.5876,  559.7557],
-        [ 626.0091,  424.2775,  646.0500,  440.4637],
-        [ 425.8086,  360.0791,  489.9436,  587.2103],
-        [ 359.1672,  315.8117,  416.9345,  627.9748],
-        [ 667.2068,  443.1427,  712.4965,  520.7168],
-        [ 180.7574,  363.7177,  235.5377,  449.9066],
-        [ 843.9357,  443.4940,  870.9682,  579.7020],
-        [ 339.4965,  231.9283,  412.0001,  434.1108],
-        [ 727.3713,  438.8018,  770.7550,  511.5930],
-        [ 582.7912,  471.0620,  609.3301,  505.2876],
-        [ 368.1226,  231.4482,  430.2379,  433.4969],
-        [ 745.7851,  437.6010,  773.3105,  499.8787],
-        [ 668.2466,  425.5608,  720.4260,  570.3207],
-        [ 558.1824,  515.4928,  584.2905,  559.8503],
-        [ 362.3917,  227.8664,  390.9729,  429.1332],
-        [ 715.9057,  499.7786,  731.8455,  517.3592],
-        [ 749.9986,  437.8740,  773.7009,  508.0158],
-        [ 659.7586,  446.9388,  694.0140,  510.3259],
-        [ 769.5088,  450.7254,  793.0660,  486.3598],
-        [ 414.2022,  345.2998,  471.6040,  552.5645],
-        [ 211.6082,  260.1252,  253.8368,  367.4156],
-        [1073.9492,  324.3899, 1080.2733,  333.5712],
-        [ 370.8800,  239.9180,  403.5157,  424.2955],
-        [ 725.6953,  438.4138,  765.6232,  516.1744],
-        [ 838.3405,  373.5944,  865.6230,  508.7991],
-        [ 621.1635,  386.5378,  635.8318,  404.9206],
-        [ 462.0700,  359.2635,  490.6133,  405.8841],
-        [ 240.2804,  200.2216,  311.0899,  336.6351],
-        [ 309.3058,  233.9445,  401.5692,  347.0969],
-        [ 685.1102,  499.3394,  730.4431,  566.8127],
-        [ 817.5460,  490.9743,  850.7949,  575.2332],
-        [ 361.0360,  230.7718,  391.5721,  420.1715],
-        [ 563.2507,  416.8864,  596.1801,  564.4354],
-        [ 684.2018,  451.3035,  717.9206,  522.8469],
-        [ 483.5204,  446.8525,  506.5295,  505.7527],
-        [ 846.2860,  372.7580,  919.3865,  523.3671],
-        [ 665.2142,  422.9935,  680.1905,  445.5361],
-        [ 923.6544,  288.4534, 1174.4847,  502.5110],
-        [ 723.1340,  449.3365,  744.0955,  505.2619],
-        [ 722.7779,  441.9756,  744.5986,  498.4233],
-        [1075.0762,  322.0228, 1083.8936,  330.9146],
-        [ 617.6600,  394.3867,  630.8707,  423.8289],
-        [ 376.9502,  413.5647,  396.6335,  445.4343],
-        [ 189.6607,  230.7472,  295.7137,  427.7722]],
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Boxes: tensor([[ 838.5433,  332.5758,  931.5140,  610.5795],
+        [ 239.9837,  161.4275,  428.7710,  689.3965],
+        [1036.9299,  286.8641, 1157.1976,  602.9467],
+        [ 717.9536,  406.3633,  778.8359,  582.7150],
+        [ 490.6514,  387.5172,  557.0750,  598.9990],
+        [ 763.2920,  406.0027,  822.7873,  584.4618],
+        [ 607.7260,  386.1168,  668.4711,  599.6000],
+        [ 455.9370,  406.9035,  505.5158,  590.1761],
+        [ 572.1499,  407.7713,  618.9603,  594.5995],
+        [ 654.3629,  416.0069,  703.9949,  587.2538],
+        [ 375.1678,  346.2524,  469.9462,  622.2195],
+        [ 184.6026,  191.5600,  311.4709,  613.8544],
+        [ 465.8302,  440.2793,  504.8549,  503.2961],
+        [ 869.5604,  368.8593,  919.9224,  474.9595],
+        [ 685.4947,  444.7533,  713.3499,  519.0981],
+        [1125.0425,  459.2548, 1160.8821,  500.1597],
+        [1077.5970,  327.6360, 1087.3284,  336.4713],
+        [ 585.1913,  392.8564,  639.9267,  600.1978],
+        [ 582.6463,  470.6033,  609.2745,  504.5190],
+        [ 606.9536,  452.1397,  647.9363,  520.9818],
+        [ 179.7739,  364.0603,  237.6602,  450.1708],
+        [ 275.6412,  233.5326,  388.7699,  313.2475],
+        [ 191.5257,  228.8145,  293.5888,  433.7150],
+        [1078.0931,  330.1027, 1087.6997,  339.7899],
+        [1076.6250,  325.8732, 1085.2097,  334.3552],
+        [ 303.7643,  305.2427,  331.5435,  353.6874],
+        [ 182.3030,  293.7758,  247.0682,  605.3796],
+        [ 626.8694,  425.0804,  643.8000,  438.1385],
+        [ 268.0809,  234.3471,  303.4632,  311.6593],
+        [1076.3866,  329.2950, 1084.2710,  338.3965],
+        [ 261.5677,  225.6643,  403.4594,  405.6454],
+        [ 452.8376,  493.5363,  472.6875,  541.6702],
+        [1080.9545,  328.6306, 1088.1949,  337.5898],
+        [ 369.1913,  400.6548,  409.2696,  603.3193],
+        [1074.8801,  327.2018, 1083.2633,  336.4820],
+        [ 365.1035,  231.8161,  388.6365,  318.6357],
+        [ 203.9453,  109.7047,  242.5040,  153.2835],
+        [ 662.6910,  442.1403,  710.6938,  515.4327],
+        [ 339.1196,  234.4246,  389.4464,  323.2653],
+        [ 846.0215,  494.9893,  870.4185,  576.3632],
+        [1079.2275,  324.5047, 1089.0439,  334.0043],
+        [ 372.7979,  231.6616,  406.0476,  442.0986],
+        [ 606.2867,  431.9123,  651.1853,  514.5244],
+        [ 557.6252,  513.8831,  583.1645,  559.5898],
+        [ 377.8900,  419.5333,  395.9729,  443.5934],
+        [ 558.3942,  515.5137,  584.6953,  560.0383],
+        [ 750.8987,  437.9918,  773.3691,  504.0519],
+        [ 920.0993,  280.7623, 1173.4944,  508.8515],
+        [ 746.1849,  436.5587,  773.4849,  498.5926],
+        [ 326.0108,  199.9341,  450.0499,  644.3552],
+        [ 294.2295,  282.0775,  335.4588,  353.4574],
+        [ 671.9442,  445.0837,  715.0211,  517.4367],
+        [ 268.4941,  240.0733,  296.2682,  317.0032],
+        [ 661.8937,  452.9005,  693.1349,  510.9017],
+        [ 847.4689,  500.7531,  869.5782,  577.0382],
+        [ 180.9046,  363.4845,  235.0558,  448.9444],
+        [ 272.6783,  224.5878,  399.8664,  429.4268],
+        [ 424.6151,  358.6985,  486.9638,  587.3406],
+        [ 861.4684,  373.8017,  916.0148,  449.5602],
+        [1076.2776,  320.7070, 1087.6201,  333.3458],
+        [ 582.9052,  471.1598,  609.5038,  504.3947],
+        [1075.7732,  331.4438, 1086.2102,  342.7945],
+        [ 368.6541,  230.1154,  430.0262,  436.2051],
+        [ 361.0941,  300.3752,  419.5616,  621.0687],
+        [ 337.1907,  233.7879,  411.9977,  435.2710],
+        [ 685.4332,  526.2060,  728.5645,  570.6224],
+        [ 183.6079,  262.1712,  259.8232,  450.2284],
+        [ 660.9319,  452.2824,  694.1898,  509.5463],
+        [ 768.7786,  445.6456,  794.5212,  489.4145],
+        [ 716.7833,  497.3843,  732.4064,  517.4325],
+        [1082.4006,  331.4130, 1090.7793,  339.5085],
+        [ 925.9379,  291.0097, 1174.3452,  502.7010],
+        [ 843.9118,  448.4667,  871.0272,  580.6073],
+        [ 218.2206,  264.1483,  248.0893,  332.9616],
+        [ 723.5281,  459.0368,  743.7402,  510.0163],
+        [ 728.3142,  437.8430,  771.0148,  509.0298],
+        [ 451.4430,  433.6099,  499.4997,  532.7283],
+        [1073.3257,  325.0337, 1080.7245,  334.0544],
+        [ 845.9488,  372.4849,  919.0787,  522.5646],
+        [ 619.3151,  387.2460,  633.1321,  414.8064],
+        [1073.1266,  327.8285, 1079.0970,  337.8943],
+        [ 371.1100,  239.7454,  403.9071,  428.6401],
+        [ 725.7161,  437.6911,  766.1697,  514.6259],
+        [ 362.9974,  228.8885,  391.1058,  433.2373],
+        [ 837.6227,  379.1404,  868.8798,  584.4401],
+        [ 462.1557,  359.9368,  489.8860,  405.6737],
+        [ 491.0030,  450.0316,  506.4973,  503.6412],
+        [ 572.4252,  386.0709,  616.1110,  448.4288],
+        [ 762.6274,  438.7613,  805.4399,  504.0065],
+        [ 740.7990,  435.5816,  781.4313,  510.3344],
+        [ 240.6882,  200.2886,  311.2633,  336.3673],
+        [ 543.3958,  504.2163,  562.9417,  573.7109],
+        [ 361.6308,  232.2900,  391.6476,  423.8802],
+        [ 267.0357,  235.2611,  299.6821,  324.7756],
+        [ 874.4395,  378.5705,  910.3145,  449.9491],
+        [ 840.1934,  369.0962,  875.7321,  503.2735],
+        [ 668.0060,  429.3645,  718.2995,  567.8273],
+        [ 330.5700,  234.6796,  414.9526,  428.3968],
+        [ 749.7850,  442.0208,  770.3132,  497.3477],
+        [ 921.9981,  275.4673, 1172.6144,  502.1423]],
        grad_fn=&lt;StackBackward0&gt;)
-Labels: tensor([ 1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 31, 31, 31, 31, 31, 77,
-        31,  1, 31, 31, 27, 77, 77, 27,  1, 31, 27, 31,  1, 27, 77, 31, 31, 31,
-        27, 77, 77, 77, 64, 77, 32, 33,  1, 33, 27, 77, 77,  8,  1, 27, 31, 31,
-        31, 77, 33, 77,  1,  1, 27, 44,  1, 31, 27, 27, 27, 27,  1, 31, 31, 31,
-        31, 27, 31,  1, 31, 77, 27, 31, 31,  1,  1,  1, 27, 31, 33, 27,  1, 27,
-        31, 31, 77,  3, 31, 27, 77,  1, 44, 27])
-Scores: tensor([0.9995, 0.9986, 0.9986, 0.9970, 0.9966, 0.9966, 0.9939, 0.9896, 0.9882,
-        0.9750, 0.9654, 0.9540, 0.9378, 0.9237, 0.9116, 0.9080, 0.7812, 0.7810,
-        0.7532, 0.7439, 0.7231, 0.7100, 0.6692, 0.6403, 0.6005, 0.5869, 0.5862,
-        0.5023, 0.4942, 0.4621, 0.4291, 0.3991, 0.3954, 0.3662, 0.3451, 0.3438,
-        0.3399, 0.3290, 0.3194, 0.2803, 0.2803, 0.2733, 0.2375, 0.2302, 0.2220,
-        0.2211, 0.2156, 0.2136, 0.1913, 0.1812, 0.1713, 0.1599, 0.1552, 0.1546,
-        0.1524, 0.1510, 0.1498, 0.1419, 0.1308, 0.1286, 0.1272, 0.1266, 0.1263,
-        0.1248, 0.1246, 0.1232, 0.1180, 0.1177, 0.1127, 0.1101, 0.1044, 0.1024,
-        0.1024, 0.0958, 0.0933, 0.0904, 0.0867, 0.0841, 0.0838, 0.0827, 0.0816,
-        0.0812, 0.0804, 0.0801, 0.0792, 0.0774, 0.0770, 0.0726, 0.0707, 0.0699,
-        0.0687, 0.0684, 0.0663, 0.0662, 0.0643, 0.0616, 0.0613, 0.0610, 0.0608,
-        0.0592], grad_fn=&lt;IndexBackward0&gt;)
+Labels: tensor([ 1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 31, 31, 31, 31, 77,  1,
+        31, 31, 31, 27, 31, 77, 77, 77,  1, 77, 27, 77, 27, 31, 77,  1, 77, 27,
+        64, 31, 27, 31, 77, 31, 27, 31, 77, 33, 31,  8, 27,  1, 77, 27, 32, 31,
+        33, 44, 31,  1, 27, 77, 27, 77, 27,  1, 31, 33, 31, 27, 31, 31, 77,  3,
+         1, 31, 31, 27, 31, 77, 31,  1, 77, 27, 31, 31,  1,  1, 31,  1, 31, 31,
+         1, 31, 27, 31, 31, 31,  1, 27, 32,  6])
+Scores: tensor([0.9994, 0.9987, 0.9986, 0.9969, 0.9966, 0.9960, 0.9949, 0.9908, 0.9906,
+        0.9824, 0.9611, 0.9564, 0.9357, 0.9220, 0.8819, 0.8630, 0.7999, 0.7572,
+        0.7463, 0.7185, 0.7170, 0.7053, 0.6853, 0.6414, 0.6277, 0.6057, 0.5755,
+        0.5707, 0.5592, 0.5422, 0.4592, 0.4484, 0.4354, 0.4335, 0.4304, 0.4232,
+        0.3857, 0.3786, 0.3751, 0.3707, 0.3703, 0.3517, 0.3203, 0.2852, 0.2735,
+        0.2578, 0.2322, 0.2262, 0.2072, 0.1988, 0.1976, 0.1943, 0.1935, 0.1924,
+        0.1910, 0.1824, 0.1741, 0.1732, 0.1540, 0.1456, 0.1424, 0.1379, 0.1368,
+        0.1363, 0.1305, 0.1304, 0.1288, 0.1209, 0.1146, 0.1113, 0.1094, 0.1036,
+        0.1011, 0.0991, 0.0971, 0.0941, 0.0931, 0.0914, 0.0908, 0.0905, 0.0883,
+        0.0869, 0.0869, 0.0869, 0.0833, 0.0754, 0.0752, 0.0715, 0.0712, 0.0705,
+        0.0688, 0.0656, 0.0647, 0.0633, 0.0623, 0.0620, 0.0617, 0.0605, 0.0580,
+        0.0557], grad_fn=&lt;IndexBackward0&gt;)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1fc80143550&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x264ab2e6860&gt;
 </pre></div>
 </div>
-<img alt="../../_images/6f4e56c1c1dead375530a1f98cfbc0e0439a3143f9db6a92f22758af374d7b1f.png" src="../../_images/6f4e56c1c1dead375530a1f98cfbc0e0439a3143f9db6a92f22758af374d7b1f.png" />
+<img alt="../../_images/0c9fc3f7c2d3991e17c8438f31c8d4b768920eafd627a46529a330933891d032.png" src="../../_images/0c9fc3f7c2d3991e17c8438f31c8d4b768920eafd627a46529a330933891d032.png" />
 </div>
 </div>
 <p>Image example 3:</p>
@@ -830,16 +864,16 @@ Scores: tensor([0.9993, 0.9897, 0.9853, 0.9846, 0.9822, 0.9693, 0.9591, 0.9528, 
         0.0516, 0.0511], grad_fn=&lt;IndexBackward0&gt;)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1fc8017b280&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x264ad7f1e70&gt;
 </pre></div>
 </div>
-<img alt="../../_images/d7a66ffbfa5fa38a95632b46ddb26d1568b995c3b61c354b6b8e5c03bedec0ec.png" src="../../_images/d7a66ffbfa5fa38a95632b46ddb26d1568b995c3b61c354b6b8e5c03bedec0ec.png" />
+<img alt="../../_images/11f9ad174fc49bd1050d5e40ad7a64bb56fcb5037e2ab8e0eee215169d027e8e.png" src="../../_images/11f9ad174fc49bd1050d5e40ad7a64bb56fcb5037e2ab8e0eee215169d027e8e.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="yolo">
-<h2>YOLO<a class="headerlink" href="#yolo" title="Permalink to this heading">#</a></h2>
+<h2>YOLO<a class="headerlink" href="#yolo" title="Link to this heading">#</a></h2>
 <p>The pre-trained YOLO v5 model will be loaded here from ultralytics.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -852,19 +886,19 @@ Scores: tensor([0.9993, 0.9897, 0.9853, 0.9846, 0.9822, 0.9693, 0.9591, 0.9528, 
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using cache found in C:\Users\matth/.cache\torch\hub\ultralytics_yolov5_master
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">requirements:</span> Ultralytics requirements [&#39;gitpython&gt;=3.1.30&#39;, &#39;setuptools&gt;=65.5.1&#39;] not found, attempting AutoUpdate...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">requirements:</span> Ultralytics requirement [&#39;setuptools&gt;=65.5.1&#39;] not found, attempting AutoUpdate...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">requirements:</span>  AutoUpdate skipped (offline)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">requirements:</span> ❌ AutoUpdate skipped (offline)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>YOLOv5  2023-9-1 Python-3.9.0 torch-1.11.0+cu113 CPU
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>YOLOv5  2024-3-19 Python-3.10.11 torch-2.1.1+cu121 CUDA:0 (NVIDIA RTX A500 Laptop GPU, 4096MiB)
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fusing layers... 
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>YOLOv5s summary: 213 layers, 7225885 parameters, 0 gradients
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>YOLOv5s summary: 213 layers, 7225885 parameters, 0 gradients, 16.4 GFLOPs
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adding AutoShape... 
@@ -873,7 +907,7 @@ Scores: tensor([0.9993, 0.9897, 0.9853, 0.9846, 0.9822, 0.9693, 0.9591, 0.9528, 
 </div>
 </div>
 <section id="id1">
-<h3>Results<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3>Results<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>Some images from ultralytics are loaded here to perform object detection on.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -886,7 +920,7 @@ Scores: tensor([0.9993, 0.9897, 0.9853, 0.9846, 0.9822, 0.9693, 0.9591, 0.9528, 
 </div>
 </section>
 <section id="id2">
-<h3>Results<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<h3>Results<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <p>The YOLO v5 model is now used to perform object detection on the 2 downloaded image examples. Batch interference is used. The YOLO v5 model detects all the objects within the image. A bounding box is placed around the objects. These are annotated with the class name and probability.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -900,11 +934,11 @@ Scores: tensor([0.9993, 0.9897, 0.9853, 0.9846, 0.9822, 0.9693, 0.9591, 0.9528, 
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 1/2: 720x1280 2 persons, 1 tie
 image 2/2: 1080x810 4 persons, 1 bus
-Speed: 7.0ms pre-process, 307.1ms inference, 4.5ms NMS per image at shape (2, 3, 640, 640)
+Speed: 2.0ms pre-process, 48.1ms inference, 136.9ms NMS per image at shape (2, 3, 640, 640)
 </pre></div>
 </div>
-<img alt="../../_images/571dce5386c5f035f184ce050c9d8f5e1c790f46569eb964aeb37ff871cac3cc.png" src="../../_images/571dce5386c5f035f184ce050c9d8f5e1c790f46569eb964aeb37ff871cac3cc.png" />
-<img alt="../../_images/1a14884341b989f5a4b89353b78950a719cf1c98f302147620f4dae6d411540e.png" src="../../_images/1a14884341b989f5a4b89353b78950a719cf1c98f302147620f4dae6d411540e.png" />
+<img alt="../../_images/670531943dfefa727dbc1d58aa016836694ab68b4d9f23bf0ae6f34a02d13a3e.png" src="../../_images/670531943dfefa727dbc1d58aa016836694ab68b4d9f23bf0ae6f34a02d13a3e.png" />
+<img alt="../../_images/d8f9170678b5d66104d2e786d61f20de4d59706c04dc2feac5188bb476d08459.png" src="../../_images/d8f9170678b5d66104d2e786d61f20de4d59706c04dc2feac5188bb476d08459.png" />
 </div>
 </div>
 </section>
@@ -936,11 +970,10 @@ Speed: 7.0ms pre-process, 307.1ms inference, 4.5ms NMS per image at shape (2, 3,
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="2_image_classification_convolutional_pytorch.html"
@@ -960,10 +993,7 @@ Speed: 7.0ms pre-process, 307.1ms inference, 4.5ms NMS per image at shape (2, 3,
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -971,6 +1001,7 @@ Speed: 7.0ms pre-process, 307.1ms inference, 4.5ms NMS per image at shape (2, 3,
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1010,9 +1041,10 @@ By Matthias De Ryck
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -1036,8 +1068,8 @@ By Matthias De Ryck
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
